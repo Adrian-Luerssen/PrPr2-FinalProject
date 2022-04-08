@@ -33,4 +33,20 @@
         </item>
 
     </style>
+
+    <style name="linkText">
+
+        <item name="android:textSize">
+            13sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.08
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
 </resources>
