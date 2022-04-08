@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- colors imported from figma-->
+    <color name="background">#343D53</color>
+    <color name="sentBubble">#303542</color>
+    <color name="receivedBubble">#474F63</color>
+    <color name="iconBox">#565E70</color>
+    <color name="inputText">#99FFFFFF</color>
+
+
 </resources>

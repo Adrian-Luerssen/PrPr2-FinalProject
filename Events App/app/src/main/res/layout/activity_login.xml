@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="195dp"
+        android:text="@string/lets_sign_y"
+        android:textAppearance="@style/BigText"
+        android:gravity="top"
+        tools:ignore="MissingConstraints"
+        android:fontFamily="@font/outfit_extra_bold"/>
+
+    <EditText
+        android:id="@+id/Login_email_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/inputbox"
+        android:layout_marginTop="70dp"
+        android:gravity="top"
+        android:text="@string/email"
+        android:padding="16dp"
+        android:textColor="@color/inputText"
+        android:textAppearance="@style/InputFieldText"
+        android:fontFamily="@font/outfit_medium"/>
+
+    <EditText
+        android:id="@+id/Login_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/inputbox"
+        android:gravity="top"
+        android:text="@string/password"
+        android:padding="16dp"
+        android:textColor="@color/inputText"
+        android:textAppearance="@style/InputFieldText"
+        android:fontFamily="@font/outfit_medium"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bigbutton"
+        android:text="@string/SignIn"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_bold"/>
+</LinearLayout>
