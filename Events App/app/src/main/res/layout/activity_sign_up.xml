@@ -5,7 +5,7 @@
     android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".SignUpActivity"
     android:orientation="vertical"
     >
 
@@ -16,15 +16,31 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="25dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="195dp"
-        android:text="@string/lets_sign_y"
+        android:layout_marginTop="100dp"
+        android:text="@string/Register_account"
         android:textAppearance="@style/BigText"
         android:gravity="top"
         tools:ignore="MissingConstraints"
         android:fontFamily="@font/outfit_extra_bold"/>
+    <EditText
+        android:id="@+id/SignUp_First_Name_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/inputbox"
+        android:gravity="top"
+        android:text="@string/First_Name"
+        android:padding="16dp"
+        android:textColor="@color/inputText"
+        android:textAppearance="@style/InputFieldText"
+        android:fontFamily="@font/outfit_medium"/>
 
     <EditText
-        android:id="@+id/Login_email_input"
+        android:id="@+id/SignUp_Last_Name_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
@@ -32,7 +48,41 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/inputbox"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:text="@string/Last_Name"
+        android:padding="16dp"
+        android:textColor="@color/inputText"
+        android:textAppearance="@style/InputFieldText"
+        android:fontFamily="@font/outfit_medium"/>
+
+    <EditText
+        android:id="@+id/SignUp_Phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/inputbox"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:text="@string/phonenumber"
+        android:padding="16dp"
+        android:textColor="@color/inputText"
+        android:textAppearance="@style/InputFieldText"
+        android:fontFamily="@font/outfit_medium"/>
+
+    <EditText
+        android:id="@+id/SignUp_email_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/inputbox"
+        android:layout_marginTop="10dp"
         android:gravity="top"
         android:text="@string/email"
         android:padding="16dp"
@@ -41,7 +91,7 @@
         android:fontFamily="@font/outfit_medium"/>
 
     <EditText
-        android:id="@+id/Login_password_input"
+        android:id="@+id/SignUp_password_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
@@ -58,7 +108,7 @@
         android:fontFamily="@font/outfit_medium"/>
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
@@ -67,7 +117,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/bigbutton"
-        android:text="@string/SignIn"
+        android:text="@string/SignUp"
         android:textAppearance="@style/mediumText"
         android:fontFamily="@font/outfit_bold"/>
 
@@ -85,7 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/register_message_part1"
+            android:text="@string/already_registered_message_part1"
             android:paddingRight="5dp"
             android:fontFamily="@font/outfit_semi_bold"
             android:textColor="@color/inputText"
@@ -95,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/register_message_part2"
+            android:text="@string/already_registered_message_part2"
             android:textAppearance="@style/linkText"
             android:fontFamily="@font/outfit_semi_bold"
             android:gravity="left|center_vertical"/>

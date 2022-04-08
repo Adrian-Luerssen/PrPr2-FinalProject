@@ -7,4 +7,11 @@
     <string name="SignIn">Sign in</string>
     <string name="register_message_part1">Don\'t have an account?</string>
     <string name="register_message_part2">Register Now</string>
+    <string name="Register_account">Lets Register \nYour Account</string>
+    <string name="SignUp">Sign up</string>
+    <string name="already_registered_message_part1">Already have an account?</string>
+    <string name="already_registered_message_part2">Login Here</string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="phonenumber">Phone Number</string>
 </resources>
