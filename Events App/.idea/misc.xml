@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/drawable/bigbutton.xml" value="0.1635" />
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/drawable/roundbutton.xml" value="0.1635" />
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main_view.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_sign_up.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/bigbutton.xml" value="0.335" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/inputbox.xml" value="0.2985" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.5" />

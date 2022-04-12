@@ -14,6 +14,7 @@
     <color name="receivedBubble">#474F63</color>
     <color name="iconBox">#565E70</color>
     <color name="inputText">#99FFFFFF</color>
+    <color name="bubblesMain">#7C8CAD</color>
 
 
 </resources>
