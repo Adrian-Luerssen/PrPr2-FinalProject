@@ -20,6 +20,7 @@
         android:contentDescription="@string/Explore_Events"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_explore_events"
+        android:padding="10dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -45,6 +46,7 @@
         android:contentDescription="@string/myEvents"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_my_events"
+        android:padding="10dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -95,6 +97,7 @@
         android:contentDescription="@string/createEvents"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_create_events"
+        android:padding="12dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -120,6 +123,7 @@
         android:contentDescription="@string/searchUsers"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_search_users"
+        android:padding="12dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -146,6 +150,7 @@
         android:contentDescription="@string/timeline"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_timeline"
+        android:padding="12dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -156,7 +161,7 @@
         android:fontFamily="@font/outfit_semi_bold"
         android:textColor="@color/inputText"
         android:gravity="center_horizontal"
-        android:layout_marginStart="285dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="7dp"
         tools:ignore="RtlSymmetry"/>
 
@@ -171,6 +176,7 @@
         android:contentDescription="@string/Log_Out"
         android:scaleType="fitXY"
         android:src="@drawable/ic_logout"
+        android:padding="8dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
