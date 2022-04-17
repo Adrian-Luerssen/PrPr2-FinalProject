@@ -14,4 +14,11 @@
     <string name="First_Name">First Name</string>
     <string name="Last_Name">Last Name</string>
     <string name="phonenumber">Phone Number</string>
+    <string name="Explore_Events">Explore Events</string>
+    <string name="myEvents">My Events</string>
+    <string name="rateEvents">Rate Events</string>
+    <string name="createEvents">Create Events</string>
+    <string name="searchUsers">Search Users</string>
+    <string name="timeline">Timeline</string>
+    <string name="Log_Out">Log Out</string>
 </resources>

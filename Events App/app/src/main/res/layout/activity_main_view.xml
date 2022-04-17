@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainViewActivity"
+    android:orientation="vertical"
+    >
+
+    <ImageButton
+        android:id="@+id/explore_events"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/Explore_Events"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_explore_events"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Explore_Events"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageButton
+        android:id="@+id/myEvents"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="-110dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/myEvents"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_my_events"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/myEvents"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="265dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageButton
+        android:id="@+id/rateEvents"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/rateEvents"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_rate_events"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rateEvents"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageButton
+        android:id="@+id/createEvents"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="-115dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/createEvents"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_create_events"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/createEvents"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageButton
+        android:id="@+id/searchUsers"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/searchUsers"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_search_users"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/searchUsers"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+
+    <ImageButton
+        android:id="@+id/timeline"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="257dp"
+        android:layout_marginTop="-115dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/timeline"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_timeline"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timeline"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textColor="@color/inputText"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="285dp"
+        android:layout_marginTop="7dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/bubblesMain"
+        android:contentDescription="@string/Log_Out"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_logout"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:gravity="center_horizontal"
+        android:paddingEnd="5dp"
+        android:text="@string/Log_Out"
+        android:textColor="@color/inputText"
+        tools:ignore="RtlSymmetry" />
+
+
+</LinearLayout>
