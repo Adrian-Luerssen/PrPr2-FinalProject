@@ -27,7 +27,8 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/input_box"
         android:gravity="top"
-        android:text="@string/First_Name"
+        android:hint="@string/First_Name"
+        android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/inputText"
         android:textAppearance="@style/InputFieldText"
@@ -42,7 +43,8 @@
         android:background="@drawable/input_box"
         android:layout_marginTop="10dp"
         android:gravity="top"
-        android:text="@string/Last_Name"
+        android:hint="@string/Last_Name"
+        android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/inputText"
         android:textAppearance="@style/InputFieldText"
@@ -57,11 +59,13 @@
         android:background="@drawable/input_box"
         android:layout_marginTop="10dp"
         android:gravity="top"
-        android:text="@string/phonenumber"
+        android:hint="@string/phonenumber"
+        android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/inputText"
         android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:fontFamily="@font/outfit_medium"
+        android:inputType="phone"/>
 
     <EditText
         android:id="@+id/SignUp_email_input"
@@ -72,7 +76,8 @@
         android:background="@drawable/input_box"
         android:layout_marginTop="10dp"
         android:gravity="top"
-        android:text="@string/email"
+        android:hint="@string/email"
+        android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/inputText"
         android:textAppearance="@style/InputFieldText"
@@ -87,11 +92,13 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/input_box"
         android:gravity="top"
-        android:text="@string/password"
+        android:hint="@string/password"
+        android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/inputText"
         android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:fontFamily="@font/outfit_medium"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/sign_up_button"
