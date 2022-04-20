@@ -15,6 +15,7 @@
     <color name="iconBox">#565E70</color>
     <color name="inputText">#99FFFFFF</color>
     <color name="bubblesMain">#7C8CAD</color>
+    <color name="eventFinished">#A0A0A0</color>
 
 
 </resources>

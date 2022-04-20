@@ -28,4 +28,7 @@
     <string name="Start_Date_Event">Start Date Event</string>
     <string name="End_Date_Event">End Date Event</string>
     <string name="Location_Event">Location Event</string>
+    <string name="eventFinished">This event has already finished</string>
+    <string name="opinion">Write Opinion</string>
+    <string name="rate">Rate Event</string>
 </resources>
