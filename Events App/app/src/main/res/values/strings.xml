@@ -31,4 +31,5 @@
     <string name="eventFinished">This event has already finished</string>
     <string name="opinion">Write Opinion</string>
     <string name="rate">Rate Event</string>
+    <string name="hello">Hello, user!</string>
 </resources>
