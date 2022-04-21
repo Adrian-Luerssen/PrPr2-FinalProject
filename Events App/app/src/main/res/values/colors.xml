@@ -16,6 +16,8 @@
     <color name="inputText">#99FFFFFF</color>
     <color name="bubblesMain">#7C8CAD</color>
     <color name="eventFinished">#A0A0A0</color>
-
+    <color name="sports">#D48888</color>
+    <color name="concerts">#A7B792</color>
+    <color name="museums">#B57DAF</color>
 
 </resources>

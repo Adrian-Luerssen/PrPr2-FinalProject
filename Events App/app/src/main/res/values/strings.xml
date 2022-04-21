@@ -32,4 +32,7 @@
     <string name="opinion">Write Opinion</string>
     <string name="rate">Rate Event</string>
     <string name="hello">Hello, user!</string>
+    <string name="sports">Sports</string>
+    <string name="concerts">Concerts</string>
+    <string name="museums">Museums</string>
 </resources>
