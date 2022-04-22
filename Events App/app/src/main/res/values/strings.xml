@@ -36,4 +36,8 @@
     <string name="concerts">Concerts</string>
     <string name="museums">Museums</string>
     <string name="title">Title</string>
+    <string name="search">Search user</string>
+    <string name="matching">X matching results found:</string>
+    <string name="user1">Spencer Wazowski</string>
+    <string name="user2">Spencer Jaeger</string>
 </resources>

@@ -19,5 +19,7 @@
     <color name="sports">#D48888</color>
     <color name="concerts">#A7B792</color>
     <color name="museums">#B57DAF</color>
+    <color name="search_box">#272E3E</color>
+    <color name="search_icon">#565E70</color>
 
 </resources>
