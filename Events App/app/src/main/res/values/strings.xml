@@ -40,4 +40,10 @@
     <string name="matching">X matching results found:</string>
     <string name="user1">Spencer Wazowski</string>
     <string name="user2">Spencer Jaeger</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="attending_Event">You are attending this event</string>
+    <string name="add_Event">Do you want to add this event to your calendar?</string>
+
+
 </resources>

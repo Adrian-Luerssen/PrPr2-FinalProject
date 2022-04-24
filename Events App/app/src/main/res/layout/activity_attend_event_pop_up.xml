@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="220dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_margin="120dp"
+    android:layout_gravity="center">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/attending_Event"
+        android:textColor="@color/black"
+        android:layout_margin="20dp"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_Event"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_medium" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/white"
+            android:text="@string/yes"
+            android:background="@color/iconBox"
+            android:textAppearance="@style/mediumText"/>
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/white"
+            android:text="@string/no"
+            android:background="@color/iconBox"
+            android:textAppearance="@style/mediumText"/>
+    </LinearLayout>
+
+
+</LinearLayout>
