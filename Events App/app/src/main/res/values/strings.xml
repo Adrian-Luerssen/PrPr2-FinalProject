@@ -44,6 +44,6 @@
     <string name="no">No</string>
     <string name="attending_Event">You are attending this event</string>
     <string name="add_Event">Do you want to add this event to your calendar?</string>
-
+    <string name="title_activity_open_chat">OpenChatActivity</string>
 
 </resources>
