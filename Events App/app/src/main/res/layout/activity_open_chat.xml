@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
-            android:graity="left|center_vertical"
+            android:gravity="left|center_vertical"
             android:background="@drawable/ic_baseline_options_24"/>
 
     </LinearLayout>
@@ -72,7 +72,8 @@
             android:background="@color/sentBubble"
             android:hint="Write"
             android:inputType="text"
-            tools:ignore="Autofill" />
+            tools:ignore="Autofill"
+            android:padding="12dp"/>
 
         <ImageButton
             android:id="@+id/sendMessage"
@@ -81,6 +82,7 @@
             android:layout_marginLeft="20dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ic_baseline_camera_24"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:padding="12dp"/>
     </LinearLayout>
 </LinearLayout>
