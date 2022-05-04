@@ -35,7 +35,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="120dp"
             android:background="@drawable/ic_baseline_options_24" />
-
     </LinearLayout>
 
     <ImageView
@@ -43,7 +42,6 @@
         android:layout_width="200dp"
         android:layout_height="172dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
         android:src="@drawable/image"
         tools:ignore="ContentDescription" />
 
