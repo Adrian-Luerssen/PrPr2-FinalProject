@@ -42,8 +42,44 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/ic_baseline_filter_alt_24" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/sports"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/white"
+            android:text="@string/sports"
+            android:background="@color/sports"
+            android:layout_marginRight="20dp"
+            android:textAppearance="@style/mediumText"/>
 
+        <Button
+            android:id="@+id/concerts"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@color/concerts"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/concerts"
+            android:layout_marginRight="20dp"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/museums"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/white"
+            android:text="@string/museums"
+            android:background="@color/museums"
+            android:textAppearance="@style/mediumText"/>
     </LinearLayout>
 
     <TextView
@@ -51,7 +87,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/events_rectangle"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="50dp"/>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -118,7 +154,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="12dp"
         android:text="@string/Start_Date_Event"
         android:textColor="@color/white"
         android:textAppearance="@style/linkText"
@@ -128,49 +164,11 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="12dp"
         android:text="@string/Location_Event"
         android:textColor="@color/white"
         android:textAppearance="@style/linkText"
         android:fontFamily="@font/outfit_light"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"/>
-
-    <Button
-        android:id="@+id/sports"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="-480dp"
-        android:fontFamily="@font/outfit_bold"
-        android:textColor="@color/white"
-        android:text="@string/sports"
-        android:background="@color/sports"
-        android:textAppearance="@style/mediumText"/>
-
-    <Button
-        android:id="@+id/concerts"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="-40dp"
-        android:fontFamily="@font/outfit_bold"
-        android:textColor="@color/white"
-        android:text="@string/concerts"
-        android:background="@color/concerts"
-        android:textAppearance="@style/mediumText"/>
-
-    <Button
-        android:id="@+id/museums"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="-40dp"
-        android:layout_marginStart="280dp"
-        android:fontFamily="@font/outfit_bold"
-        android:textColor="@color/white"
-        android:text="@string/museums"
-        android:background="@color/museums"
-        android:textAppearance="@style/mediumText"/>
-
-
 </LinearLayout>
