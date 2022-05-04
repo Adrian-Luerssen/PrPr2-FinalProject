@@ -35,38 +35,34 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="200dp"
             android:background="@drawable/ic_baseline_options_24" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="20dp">
 
-    <EditText
-        android:id="@+id/search_users"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@color/search_box"
-        android:layout_marginTop="100dp"
-        android:gravity="top"
-        android:hint="@string/search"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"
-        tools:ignore="Autofill,TextFields" />
+        <ImageButton
+            android:id="@+id/calendar1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/search_icon"
+            android:src="@drawable/ic_search_users_white" />
 
-    <ImageButton
-        android:id="@+id/calendar1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_serach_users_white"
-        android:backgroundTint="@color/search_icon" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/search_users"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/search_box"
+            android:fontFamily="@font/outfit_medium"
+            android:gravity="top"
+            android:hint="@string/search"
+            android:padding="16dp"
+            android:textAppearance="@style/InputFieldText"
+            android:textColor="@color/white"
+            android:textColorHint="@color/inputText"
+            tools:ignore="Autofill,TextFields" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,26 +78,69 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/boy1"
-        tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/boy1"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:fontFamily="@font/outfit_light"
-        android:layout_marginTop="-30dp"
-        android:layout_marginLeft="105dp"
-        android:textAppearance="@style/mediumText"
-        android:textColor="@color/white"
-        android:text="@string/user1"
-        tools:ignore="RtlHardcoded" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/white"
+            android:text="@string/user1"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            tools:ignore="RtlHardcoded" />
 
+        <ImageButton
+            android:id="@+id/addUser"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_add_user"
+            android:layout_marginLeft="60dp"
+            android:backgroundTint="@color/background" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/girl1"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/white"
+            android:text="@string/user2"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/addUser1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_add_user"
+            android:layout_marginLeft="80dp"
+            android:backgroundTint="@color/background" />
+    </LinearLayout>
+
+
 </LinearLayout>
 
