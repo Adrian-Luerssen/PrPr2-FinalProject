@@ -4,8 +4,8 @@ package com.example.events.DataStructures;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Events {
-    private String id;
+public class Event {
+    private int id;
     private String name;
     private String ownerID;
     private String imageURL;
@@ -19,18 +19,18 @@ public class Events {
     private ArrayList<Comment> comments;
     private float rating;
 
-    public Events() {
+    public Event() {
         comments = new ArrayList<>();
     }
 
     public void addComment(Comment comment){
         comments.add(comment);
     }
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
