@@ -1,14 +1,16 @@
-package com.example.events;
+package com.example.events.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CreateEventsActivity extends AppCompatActivity {
+import com.example.events.R;
+
+public class EventsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_events);
+        setContentView(R.layout.activity_events);
     }
 }

@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Events">
         <activity
-            android:name=".OpenChatActivity"
+            android:name=".Activities.OpenChatActivity"
             android:exported="false" />
         <activity
-            android:name=".AttendEventPopUpActivity"
+            android:name=".Activities.AttendEventPopUpActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

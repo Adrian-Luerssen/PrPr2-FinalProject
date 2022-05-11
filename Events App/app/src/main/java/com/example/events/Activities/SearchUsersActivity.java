@@ -1,13 +1,16 @@
-package com.example.events;
+package com.example.events.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AttendEventActivity extends AppCompatActivity {
+import com.example.events.R;
+
+public class SearchUsersActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attend_event);
+        setContentView(R.layout.activity_search_users);
     }
 }

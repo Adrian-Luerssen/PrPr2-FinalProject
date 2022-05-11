@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.Activities;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -13,7 +13,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
+import com.example.events.R;
+
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {

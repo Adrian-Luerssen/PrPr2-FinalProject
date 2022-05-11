@@ -1,14 +1,15 @@
-package com.example.events;
+package com.example.events.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class OpenChatActivity extends AppCompatActivity {
+import com.example.events.R;
 
+public class AttendEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_chat);
+        setContentView(R.layout.activity_attend_event);
     }
 }

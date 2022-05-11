@@ -1,8 +1,10 @@
-package com.example.events;
+package com.example.events.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.events.R;
 
 public class MainViewActivity extends AppCompatActivity {
     @Override
