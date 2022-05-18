@@ -1,32 +1,62 @@
 package com.example.events.DataStructures;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Event {
+    @Expose(serialize = false)
+    @SerializedName("id")
     private int id;
+    @Expose
+    @SerializedName("name")
     private String name;
-    private String ownerID;
+    @Expose
+    @SerializedName("image")
     private String imageURL;
-    private Date date;
+    @Expose
+    @SerializedName("location")
     private String location;
+    @Expose
+    @SerializedName("description")
     private String description;
-    private Date startDate;
-    private Date endDate;
+    @Expose
+    @SerializedName("eventStart_date")
+    private String startDate;
+    @Expose
+    @SerializedName("eventEnd_date")
+    private String endDate;
+    @Expose
+    @SerializedName("n_participators")
     private int numParticipants;
+    @Expose
+    @SerializedName("type")
     private String eventType;
-    private ArrayList<Comment> comments;
-    private float rating;
+    @Expose(serialize = false)
+    @SerializedName("owner_id")
+    private int ownerID;
 
-    public Event() {
-        comments = new ArrayList<>();
+    private int currentParticipants;
+
+
+    public Event(String name, String imageURL, String location, String description, String startDate, String endDate, int numParticipants, String eventType) {
+        this.name = name;
+        this.imageURL = imageURL;
+        this.location = location;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.numParticipants = numParticipants;
+        this.eventType = eventType;
+        this.currentParticipants = 0;
+
     }
 
-    public void addComment(Comment comment){
-        comments.add(comment);
-    }
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
@@ -42,11 +72,11 @@ public class Event {
         this.name = name;
     }
 
-    public String getOwnerID() {
+    public int getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
 
@@ -58,13 +88,6 @@ public class Event {
         this.imageURL = imageURL;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public String getLocation() {
         return location;
@@ -82,19 +105,19 @@ public class Event {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -115,12 +138,4 @@ public class Event {
     }
 
 
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
 }
