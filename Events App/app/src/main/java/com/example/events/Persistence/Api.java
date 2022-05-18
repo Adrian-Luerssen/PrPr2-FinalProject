@@ -2,6 +2,7 @@ package com.example.events.Persistence;
 
 import com.example.events.DataStructures.Users.BearerToken;
 import com.example.events.DataStructures.Event;
+import com.example.events.DataStructures.Users.LoginObject;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserStatistics;
 
@@ -19,13 +20,13 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface JsonPlaceHolderApi {
+public interface Api {
     @POST("users")
     Call<User> registerUser(@Body User user);
 
-    @POST("users/login")
-    Call<BearerToken> authenticateUser(@Field("email") String email, @Field("password") String password);
 
+    @POST("users/login")
+    Call<BearerToken> authenticateUser(@Body LoginObject loginObject);
 
     @GET("users")
     Call<List<User>> getUsers();
@@ -44,7 +45,6 @@ public interface JsonPlaceHolderApi {
 
     @DELETE("user")
     Call<ResponseBody> deleteUser(@Header("Authorization") String token);
-
 
     @GET("users/{id}/events")
     Call<List<Event>> getEvents(@Path("id") int userId, @Header("Authorization") String token);

@@ -12,10 +12,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.events.DataStructures.Users.BearerToken;
+import com.example.events.DataStructures.Users.LoginObject;
+import com.example.events.Persistence.Api;
+import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     public static final int SIGNED_UP = 1;
@@ -63,6 +72,19 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(view -> {
             if (validEmail(email.getText().toString()) && password.getText().toString().length() != 0){
                 System.out.println("VALID");
+                ServiceAPI.getInstance().authenticateUser(new LoginObject(email.getText().toString(),password.getText().toString())).enqueue(new Callback<BearerToken>() {
+                    @Override
+                    public void onResponse(Call<BearerToken> call, Response<BearerToken> response) {
+                        if (response.isSuccessful()){
+                            System.out.println(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BearerToken> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             //check if email and password are valid (API)
         });

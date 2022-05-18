@@ -45,5 +45,6 @@
     <string name="attending_Event">You are attending this event</string>
     <string name="add_Event">Do you want to add this event to your calendar?</string>
     <string name="title_activity_open_chat">OpenChatActivity</string>
+    <string name="bad_connection">connection to api failed</string>
 
 </resources>
