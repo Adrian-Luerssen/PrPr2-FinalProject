@@ -48,5 +48,6 @@
     <string name="bad_connection">connection to api failed</string>
     <string name="login_failed">Login Failed</string>
     <string name="user_not_found">User not found</string>
+    <string name="signup_failed">Signup Failed</string>
 
 </resources>

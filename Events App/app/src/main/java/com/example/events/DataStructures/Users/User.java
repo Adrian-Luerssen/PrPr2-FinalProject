@@ -36,6 +36,15 @@ public class User {
         this.imageURL = imageURL;
     }
 
+    public User(String name, String lastName, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.imageURL = "https://imgur.com/mCHMpLT";
+    }
+
+
     public BearerToken getToken() {
         return token;
     }

@@ -6,10 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.events.DataStructures.Users.User;
+import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
     private Button signUp;
@@ -33,10 +40,25 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(view -> {
 
             if (validInputs()){
-                Intent intent = new Intent();
-                intent.putExtra(getString(R.string.email),email.getText().toString());
-                setResult(LoginActivity.SIGNED_UP,intent);
-                finish();
+                ServiceAPI.getInstance().registerUser(new User(firstName.getText().toString(),lastName.getText().toString(),email.getText().toString(),password.getText().toString())).enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful()){
+                            Intent intent = new Intent();
+                            intent.putExtra(getString(R.string.email),email.getText().toString());
+                            setResult(LoginActivity.SIGNED_UP,intent);
+                            finish();
+                        }else{
+                            Toast.makeText(SignUpActivity.this, R.string.signup_failed, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(SignUpActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
 
         });
