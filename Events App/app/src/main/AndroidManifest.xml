@@ -14,6 +14,30 @@
             android:name=".Activities.OpenChatActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.MainViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.EventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AttendEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CreateEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MyEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RateEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SearchUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SideMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.AttendEventPopUpActivity"
             android:exported="false" />
         <activity

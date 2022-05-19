@@ -13,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -24,7 +25,6 @@ public interface Api {
     @POST("users")
     Call<User> registerUser(@Body User user);
 
-
     @POST("users/login")
     Call<BearerToken> authenticateUser(@Body LoginObject loginObject);
 
@@ -32,13 +32,14 @@ public interface Api {
     Call<List<User>> getUsers();
 
     @GET("users/{id}")
-    Call<User> getUser(@Path("id") int userId, @Header("Authorisation") String token);
+    Call<User> getUser(@Path("id") int userId, @Header("Authorization") String token);
+
 
     @GET("users/search")
-    Call<List<User>> searchUsers(@Query("s") String match, @Header("Authorisation") String token);
+    Call<List<User>> searchUsers(@Query(value = "s",encoded = true) String match, @Header("Authorization") String token);
 
     @GET("users/{id}/statistics")
-    Call<UserStatistics> getUserStatistics (@Path("id") int userId, @Header("Authorisation") String token);
+    Call<UserStatistics> getUserStatistics (@Path("id") int userId, @Header("Authorization") String token);
 
     @PUT("users")
     Call<User> updateUser(@Body User user, @Header("Authorization") String token);

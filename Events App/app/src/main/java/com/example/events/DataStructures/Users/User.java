@@ -23,12 +23,25 @@ public class User {
     @SerializedName("image")
     private String imageURL;
 
+    private BearerToken token;
+
+    public User() {
+    }
+
     public User(String name, String lastName, String email, String password, String imageURL) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.imageURL = imageURL;
+    }
+
+    public BearerToken getToken() {
+        return token;
+    }
+
+    public void setToken(BearerToken token) {
+        this.token = token;
     }
 
     public String getName() {

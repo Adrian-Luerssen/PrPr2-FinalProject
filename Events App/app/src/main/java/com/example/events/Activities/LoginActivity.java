@@ -14,12 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.BearerToken;
 import com.example.events.DataStructures.Users.LoginObject;
+import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.Api;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -76,7 +79,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BearerToken> call, Response<BearerToken> response) {
                         if (response.isSuccessful()){
-                            System.out.println(response.body());
+                            getUser(response.body(), new LoginObject(email.getText().toString(),password.getText().toString()));
+                        } else {
+                            Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -97,5 +102,30 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validEmail(String email){
         return emailPattern.matcher(email).matches();
+    }
+
+    private void getUser(BearerToken token, LoginObject loginObject){
+        token.fixToken();
+        ServiceAPI.getInstance().searchUsers(loginObject.getEmail(), token.getToken()).enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()){
+                    User user = response.body().get(0);
+                    user.setPassword(loginObject.getPassword());
+                    user.setToken(token);
+                    AuthUser.setAuthUser(user);
+                    Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
