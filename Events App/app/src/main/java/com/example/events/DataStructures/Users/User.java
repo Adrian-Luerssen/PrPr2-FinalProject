@@ -92,4 +92,13 @@ public class User {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
+    public void setUser(User user) {
+        this.name = user.name;
+        this.lastName = user.lastName;
+        this.email = user.email;
+        this.password = user.password;
+        this.imageURL = user.imageURL;
+        this.token = user.getToken();
+    }
 }

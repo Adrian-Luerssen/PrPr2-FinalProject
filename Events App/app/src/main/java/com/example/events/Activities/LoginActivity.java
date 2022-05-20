@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     User user = response.body().get(0);
                     user.setPassword(loginObject.getPassword());
                     user.setToken(token);
-                    AuthUser.setAuthUser(user);
+                    AuthUser.getAuthUser().setUser(user);
                     Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
                     startActivity(intent);
                     finish();

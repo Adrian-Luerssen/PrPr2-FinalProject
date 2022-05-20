@@ -43,7 +43,7 @@
         android:layout_margin="20dp">
 
         <ImageButton
-            android:id="@+id/calendar1"
+            android:id="@+id/search_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/search_icon"
@@ -74,72 +74,24 @@
         android:textColor="@color/white"
         android:text="@string/matching"
         tools:ignore="RtlHardcoded" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/boy1"
-            tools:ignore="ContentDescription" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/user_search_rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:fontFamily="@font/outfit_light"
-            android:textAppearance="@style/mediumText"
-            android:textColor="@color/white"
-            android:text="@string/user1"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            tools:ignore="RtlHardcoded" />
 
-        <ImageButton
-            android:id="@+id/addUser"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_add_user"
-            android:layout_marginLeft="60dp"
-            android:backgroundTint="@color/background" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
+        </LinearLayout>
+    </ScrollView>
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/girl1"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:fontFamily="@font/outfit_light"
-            android:textAppearance="@style/mediumText"
-            android:textColor="@color/white"
-            android:text="@string/user2"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            tools:ignore="RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/addUser1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_add_user"
-            android:layout_marginLeft="80dp"
-            android:backgroundTint="@color/background" />
-    </LinearLayout>
 
 
 </LinearLayout>

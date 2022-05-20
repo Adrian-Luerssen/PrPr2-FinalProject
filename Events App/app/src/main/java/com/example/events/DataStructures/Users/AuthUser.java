@@ -11,7 +11,7 @@ public class AuthUser {
         return authUser;
     }
 
-    public static void setAuthUser(User authUser) {
-        authUser = new User(authUser.getName(), authUser.getLastName(), authUser.getEmail(), authUser.getPassword(), authUser.getImageURL());
+    public void setAuthUser(User authUser) {
+        this.authUser = new User(authUser.getName(), authUser.getLastName(), authUser.getEmail(), authUser.getPassword(), authUser.getImageURL());
     }
 }

@@ -14,22 +14,23 @@ public class ServiceAPI {
     private static Api api;
 
     public static Api getInstance() {
+        return (api == null)?generateApi():api;
+    }
+
+    private static Api generateApi() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.BODY);
 
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
-        if (api == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://172.16.205.68/api/v2/")
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(new OkHttpClient.Builder().addInterceptor(logging).build())
-                    .build();
 
-            api = retrofit.create(Api.class);
-        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://172.16.205.68/api/v2/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(new OkHttpClient.Builder().addInterceptor(logging).build())
+                .build();
 
-        return api;
+        return retrofit.create(Api.class);
     }
 }
