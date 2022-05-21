@@ -7,7 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initFields();
         setButtonListener();
+        getUserFromSharedPref();
 
     }
 
@@ -114,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.setPassword(loginObject.getPassword());
                     user.setToken(token);
                     AuthUser.getAuthUser().setUser(user);
+                    saveUserSharedPref(user);
                     Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
                     startActivity(intent);
                     finish();
@@ -127,5 +131,46 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void saveUserSharedPref(User user) {
+        SharedPreferences prefs = this.getSharedPreferences("com.example.app", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("Token", user.getToken().getToken());
+        editor.putString("Email", user.getEmail());
+        editor.putString("Password", user.getPassword());
+        editor.commit();
+    }
+
+    private void getUserFromSharedPref(){
+        SharedPreferences prefs = this.getSharedPreferences("com.example.app", Context.MODE_PRIVATE);
+        User user = new User();
+        user.setToken(new BearerToken(prefs.getString("Token",null)));
+        user.setEmail(prefs.getString("Email",null));
+        user.setPassword(prefs.getString("Password",null));
+        if (!(user.getPassword() == null || user.getEmail() == null || user.getToken().getToken() == null)){
+            ServiceAPI.getInstance().searchUsers(user.getEmail(), user.getToken().getToken()).enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    if (response.isSuccessful()){
+                        User newUser = response.body().get(0);
+                        newUser.setPassword(user.getPassword());
+                        newUser.setToken(user.getToken());
+                        AuthUser.getAuthUser().setUser(newUser);
+                        Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<User>> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 }
