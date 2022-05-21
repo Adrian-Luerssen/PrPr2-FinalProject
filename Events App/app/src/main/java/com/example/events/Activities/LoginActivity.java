@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
                     saveUserSharedPref(user);
                     Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
                     startActivity(intent);
-                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
                 }
@@ -149,27 +148,22 @@ public class LoginActivity extends AppCompatActivity {
         user.setEmail(prefs.getString("Email",null));
         user.setPassword(prefs.getString("Password",null));
         if (!(user.getPassword() == null || user.getEmail() == null || user.getToken().getToken() == null)){
-            ServiceAPI.getInstance().searchUsers(user.getEmail(), user.getToken().getToken()).enqueue(new Callback<List<User>>() {
+            ServiceAPI.getInstance().authenticateUser(new LoginObject(user.getEmail(),user.getPassword())).enqueue(new Callback<BearerToken>() {
                 @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                public void onResponse(Call<BearerToken> call, Response<BearerToken> response) {
                     if (response.isSuccessful()){
-                        User newUser = response.body().get(0);
-                        newUser.setPassword(user.getPassword());
-                        newUser.setToken(user.getToken());
-                        AuthUser.getAuthUser().setUser(newUser);
-                        Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+                        getUser(response.body(), new LoginObject(user.getEmail(),user.getPassword()));
+                    } else {
+                        Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
+                public void onFailure(Call<BearerToken> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
 
     }
