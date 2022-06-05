@@ -23,6 +23,13 @@ public class User {
     @SerializedName("image")
     private String imageURL;
 
+    @Expose
+    @SerializedName("puntuation")
+    private int puntuation;
+    @Expose
+    @SerializedName("comentary")
+    private String comentary;
+
     private BearerToken token;
 
     public User() {
