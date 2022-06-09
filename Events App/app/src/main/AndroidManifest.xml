@@ -13,37 +13,36 @@
         android:theme="@style/Theme.Events"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activities.OurMessagesActivity"
+            android:name=".Activities.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Events.NoActionBar" />
+        <activity
+            android:name=".Activities.Fragments.OurMessagesFragment"
             android:exported="false" />
         <activity
-            android:name=".Activities.OpenChatActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.OpenChatActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MainViewActivity"
+            android:name=".Activities.Fragments.HomeFragment"
             android:exported="false" />
         <activity
-            android:name=".Activities.EventsActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.EventsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.AttendEventActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.AttendEventActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CreateEventsActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.CreateEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MyEventsActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.MyEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.RateEventActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.RateEventActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SearchUsersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.SideMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.AttendEventPopUpActivity"
+            android:name=".Activities.Fragments.CONVERT_TO_FRAGMENT.AttendEventPopUpActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.SignUpActivity"

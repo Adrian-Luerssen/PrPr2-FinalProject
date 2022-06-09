@@ -46,4 +46,8 @@ public class Message {
     public void setReceiverID(int receiverID) {
         this.receiverID = receiverID;
     }
+
+    public String getDate() {
+        return mDate.toString();
+    }
 }

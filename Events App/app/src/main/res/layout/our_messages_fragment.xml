@@ -4,38 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".Activities.SearchUsersActivity">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_baseline_dehaze_24"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_users"
-            android:textColor="@color/white"
-            android:fontFamily="@font/outfit_bold"
-            android:textAppearance="@style/mediumText"
-            android:layout_margin="10dp"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="200dp"
-            android:background="@drawable/ic_baseline_options_24" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,16 +34,7 @@
             tools:ignore="Autofill,TextFields" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:fontFamily="@font/outfit_bold"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        android:text="@string/matching"
-        tools:ignore="RtlHardcoded" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -83,7 +44,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/user_search_rec_view"
+                android:id="@+id/our_messages_users_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

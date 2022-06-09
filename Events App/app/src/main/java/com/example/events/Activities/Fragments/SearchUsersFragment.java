@@ -1,15 +1,14 @@
-package com.example.events.Activities;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.events.Activities.Fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,20 +32,34 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchUsersActivity extends AppCompatActivity {
+
+public class SearchUsersFragment extends Fragment {
+
+    private View view;
+    private TextView numResults;
     private UserAdapter userAdapter;
     private ImageButton search;
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
+
+    public SearchUsersFragment() {
+        // Required empty public constructor
+    }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_users);
-        searchbar = (EditText) findViewById(R.id.search_users);
-        search = (ImageButton) findViewById(R.id.search_button);
-        userRecView = (RecyclerView) findViewById(R.id.user_search_rec_view);
-        userRecView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_search_users, container, false);
+        searchbar = (EditText) view.findViewById(R.id.search_users);
+        numResults = (TextView) view.findViewById(R.id.num_results);
+        search = (ImageButton) view.findViewById(R.id.search_button);
+        userRecView = (RecyclerView) view.findViewById(R.id.user_search_rec_view);
+        userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         search.setOnClickListener(view -> {
             ServiceAPI.getInstance().searchUsers(searchbar.getText().toString(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
@@ -56,20 +69,23 @@ public class SearchUsersActivity extends AppCompatActivity {
                         userList.setUserList(response.body());
                         updateUI();
                     } else {
-                        Toast.makeText(SearchUsersActivity.this, R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<User>> call, Throwable t) {
-                    Toast.makeText(SearchUsersActivity.this, R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
                 }
             });
         });
+        return view;
+
     }
 
     private void updateUI() {
         userAdapter = new UserAdapter(userList.getUsers());
+        numResults.setText(getString(R.string.matchingFormat, userList.getUsers().size()));
         userRecView.setAdapter(userAdapter);
     }
 
@@ -84,7 +100,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
         @Override
         public UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             return new UserHolder(layoutInflater, parent);
         }
 
@@ -158,5 +174,4 @@ public class SearchUsersActivity extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
-
 }

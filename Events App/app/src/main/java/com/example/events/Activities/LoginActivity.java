@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.setToken(token);
                     AuthUser.getAuthUser().setUser(user);
                     saveUserSharedPref(user);
-                    Intent intent = new Intent(LoginActivity.this,MainViewActivity.class);
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();

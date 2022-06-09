@@ -4,40 +4,11 @@
     android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainViewActivity"
+    tools:context=".Activities.Fragments.HomeFragment"
     android:orientation="vertical"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_baseline_dehaze_24"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main"
-            android:textColor="@color/white"
-            android:fontFamily="@font/outfit_bold"
-            android:textAppearance="@style/mediumText"
-            android:layout_margin="10dp"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="250dp"
-            android:background="@drawable/ic_baseline_options_24" />
-
-    </LinearLayout>
 
     <ImageButton
         android:id="@+id/explore_events"

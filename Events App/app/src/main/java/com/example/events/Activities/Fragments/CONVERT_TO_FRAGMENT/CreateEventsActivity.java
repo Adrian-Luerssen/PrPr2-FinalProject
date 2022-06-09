@@ -1,4 +1,4 @@
-package com.example.events.Activities;
+package com.example.events.Activities.Fragments.CONVERT_TO_FRAGMENT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,10 +6,11 @@ import android.os.Bundle;
 
 import com.example.events.R;
 
-public class AttendEventActivity extends AppCompatActivity {
+public class CreateEventsActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attend_event);
+        setContentView(R.layout.activity_create_events);
     }
 }

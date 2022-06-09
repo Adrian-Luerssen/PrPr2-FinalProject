@@ -103,4 +103,8 @@ public class User {
         this.imageURL = user.imageURL;
         this.token = user.getToken();
     }
+
+    public int getId() {
+        return id;
+    }
 }

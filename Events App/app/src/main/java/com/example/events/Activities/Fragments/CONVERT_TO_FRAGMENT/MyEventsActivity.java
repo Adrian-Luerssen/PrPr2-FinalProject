@@ -1,4 +1,4 @@
-package com.example.events.Activities;
+package com.example.events.Activities.Fragments.CONVERT_TO_FRAGMENT;
 
 import androidx.appcompat.app.AppCompatActivity;
 

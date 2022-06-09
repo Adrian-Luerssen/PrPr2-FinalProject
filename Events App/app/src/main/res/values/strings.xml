@@ -38,6 +38,7 @@
     <string name="title">Title</string>
     <string name="search">Search user</string>
     <string name="matching">X matching results found:</string>
+    <string name="matchingFormat">%d matching results found:</string>
     <string name="user1">Spencer Wazowski</string>
     <string name="user2">Spencer Jaeger</string>
     <string name="yes">Yes</string>
@@ -52,5 +53,20 @@
     <string name="unable_to_find_users">Unable to find users</string>
     <string name="search_users">Search Users</string>
     <string name="our_messages">Our Chats</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="profile">Profile</string>
+    <string name="navHeaderTitle">navigation header</string>
+    <string name="navigation_drawer_open">nav open</string>
+    <string name="navigation_drawer_close">nav closed</string>
+    <string name="explore_events">Explore Events</string>
+    <string name="HomeScreen">Home</string>
 
 </resources>
