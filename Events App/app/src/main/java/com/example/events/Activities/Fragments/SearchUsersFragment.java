@@ -28,6 +28,7 @@ import com.example.events.R;
 import java.io.InputStream;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,6 +129,7 @@ public class SearchUsersFragment extends Fragment {
         private User user;
         private TextView username;
         private ImageView profilePicture;
+        private ImageButton addFriend;
 
 
         public UserHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -135,6 +137,25 @@ public class SearchUsersFragment extends Fragment {
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.search_user_name);
             profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
+            addFriend.setOnClickListener(view -> {
+                ServiceAPI.getInstance().sendFriendRequest(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            Toast.makeText(getContext(), R.string.friend_added, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), R.string.unable_to_add_friend, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            });
         }
 
         public void bind(User user) {
@@ -146,7 +167,7 @@ public class SearchUsersFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
+            Toast.makeText(getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
         }
     }
 

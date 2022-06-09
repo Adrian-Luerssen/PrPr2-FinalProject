@@ -4,7 +4,7 @@
     android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Fragments.CONVERT_TO_FRAGMENT.EventsActivity"
+    tools:context=".Activities.Fragments.EventsFragment"
     android:orientation="vertical">
 
     <LinearLayout

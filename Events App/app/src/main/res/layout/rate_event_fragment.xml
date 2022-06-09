@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".Activities.Fragments.CONVERT_TO_FRAGMENT.AttendEventActivity">
+    tools:context=".Activities.Fragments.RateEventFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,32 +23,36 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Events"
+            android:text="Rate Events"
             android:textColor="@color/white"
             android:fontFamily="@font/outfit_bold"
             android:textAppearance="@style/mediumText"
             android:layout_margin="10dp"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="220dp"
-            android:background="@drawable/ic_baseline_options_24" />
-
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/attend_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="595dp"
-        android:layout_marginRight="25dp"
+        android:id="@+id/write_opinion"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="585dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/bigbutton"
         android:fontFamily="@font/outfit_bold"
-        android:text="@string/Attend"
+        android:text="@string/opinion"
+        android:textAppearance="@style/mediumText" />
+
+    <Button
+        android:id="@+id/rate_event"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="-60dp"
+        android:background="@drawable/bigbutton"
+        android:fontFamily="@font/outfit_bold"
+        android:text="@string/rateEvents"
         android:textAppearance="@style/mediumText" />
 
     <ImageView
@@ -64,6 +68,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/outfit_light"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="38dp"
+        android:textAppearance="@style/linkText"
+        android:textColor="@color/eventFinished"
+        android:text="@string/eventFinished"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="38dp"
         android:textAppearance="@style/mediumText"
         android:textColor="@color/white"

@@ -12,14 +12,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.events.Activities.Fragments.OpenChatFragment;
 import com.example.events.Activities.Fragments.OurMessagesFragment;
 import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
+import com.example.events.DataStructures.Users.User;
 import com.example.events.R;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentListener,OurMessagesFragment.OurMessagesFragmentListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -108,5 +110,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putString("Password", null);
         editor.commit();
         finish();
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OpenChatFragment(user)).commit();
+        toolbar.setTitle(R.string.our_messages);
     }
 }

@@ -1,10 +1,14 @@
-package com.example.events.Activities.Fragments.CONVERT_TO_FRAGMENT;
+package com.example.events.Activities.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
@@ -19,16 +23,27 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OpenChatActivity extends AppCompatActivity {
-    private User recipient;
+public class OpenChatFragment extends Fragment {
+    private final User recipient;
     private ArrayList<Message> messages;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_chat);
-        Intent intent = getIntent();
-        recipient = (User) intent.getSerializableExtra("recipient");
+    private View view;
+    private ImageView profilePic;
+    private TextView username;
 
+    public OpenChatFragment(User recipient){
+        this.recipient = recipient;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.open_chat_fragment, container, false);
+        profilePic = view.findViewById(R.id.profile_pic);
+        username = view.findViewById(R.id.username);
         ServiceAPI.getInstance().getMessages(recipient.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
@@ -43,5 +58,8 @@ public class OpenChatActivity extends AppCompatActivity {
 
             }
         });
+
+        return view;
     }
+
 }

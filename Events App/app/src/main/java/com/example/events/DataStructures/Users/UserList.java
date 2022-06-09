@@ -18,11 +18,15 @@ public class UserList {
         return users;
     }
 
-       public void remove(int position) {
+    public void remove(int position) {
         users.remove(position);
     }
 
     public void setUserList(List<User> body) {
         users = (ArrayList<User>) body;
+    }
+
+    public ArrayList<User> getUserList() {
+        return users;
     }
 }

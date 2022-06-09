@@ -1,10 +1,10 @@
 package com.example.events.Activities.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.events.Activities.Fragments.CONVERT_TO_FRAGMENT.OpenChatActivity;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
 import com.example.events.DataStructures.Users.User;
@@ -37,12 +36,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OurMessagesFragment extends Fragment {
+    private OurMessagesFragmentListener listener;
     private View view;
     private UserAdapter userAdapter;
     private ImageButton search;
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
+
+    public interface OurMessagesFragmentListener {
+        void onUserClicked(User user);
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +69,7 @@ public class OurMessagesFragment extends Fragment {
                 public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                     if (response.isSuccessful()){
                         userList = new UserList();
-                        userList.setUserList(response.body());
+                        filterUserlist(response.body());
                         updateUI();
                     } else {
                         Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
@@ -78,6 +83,29 @@ public class OurMessagesFragment extends Fragment {
             });
         });
         return view;
+    }
+
+    private void filterUserlist(List<User> users) {
+        ServiceAPI.getInstance().getFriends(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()){
+                    for (User user : users){
+                        assert response.body() != null;
+                        for (User friend : response.body()){
+                            if (user.getId() == friend.getId()){
+                                userList.addUser(user);
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -165,9 +193,7 @@ public class OurMessagesFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
-            Intent intent = new Intent(view.getContext(), OpenChatActivity.class);
-            intent.putExtra("recipient", (Parcelable) this.user);
-            startActivity(intent);
+            listener.onUserClicked(this.user);
         }
         private void getLastMessage(User user) {
             ServiceAPI.getInstance().getMessages(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Message>>() {
@@ -175,9 +201,16 @@ public class OurMessagesFragment extends Fragment {
                 public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                     if (response.isSuccessful()){
                         assert response.body() != null;
-                        message.setText(response.body().get(response.body().size()-1).getContent());
-                        date.setText(response.body().get(response.body().size()-1).getDate());
+                        if (response.body().size() > 0){
+                            message.setText(response.body().get(response.body().size()-1).getContent());
+                            date.setText(response.body().get(response.body().size()-1).getDate());
+                        } else {
+                            message.setText("");
+                            date.setText("");
+                        }
                     } else {
+                        message.setText("");
+                        date.setText("");
                         Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -217,4 +250,14 @@ public class OurMessagesFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OurMessagesFragmentListener) {
+            listener = (OurMessagesFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OurMessagesFragmentListener");
+        }
+    }
 }
