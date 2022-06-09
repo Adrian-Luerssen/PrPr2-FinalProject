@@ -12,16 +12,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.events.Activities.Fragments.CreateEventFragment;
+import com.example.events.Activities.Fragments.EventsFragment;
+import com.example.events.Activities.Fragments.MyEventsFragment;
 import com.example.events.Activities.Fragments.OpenChatFragment;
 import com.example.events.Activities.Fragments.OurMessagesFragment;
 import com.example.events.Activities.Fragments.HomeFragment;
+import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.R;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentListener,OurMessagesFragment.OurMessagesFragmentListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        HomeFragment.HomeFragmentListener,
+        OurMessagesFragment.OurMessagesFragmentListener,
+        OpenChatFragment.ChatOnClickListener,
+        SearchUsersFragment.SearchUsersOnclickListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -47,15 +55,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.createEvents:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventFragment()).commit();
                 toolbar.setTitle(R.string.createEvents);
                 break;
             case R.id.myEvents:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyEventsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyEventsFragment()).commit();
                 toolbar.setTitle(R.string.myEvents);
                 break;
             case R.id.explore_events:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
                 toolbar.setTitle(R.string.explore_events);
                 break;
             case R.id.timeline:
@@ -73,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OurMessagesFragment()).commit();
                 toolbar.setTitle(R.string.our_messages);
+                break;
+            case R.id.rate_event:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateEventFragment()).commit();
+                toolbar.setTitle(R.string.rateEvents);
                 break;
             case R.id.logout:
                 onLogoutClicked();
@@ -116,5 +128,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onUserClicked(User user) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OpenChatFragment(user)).commit();
         toolbar.setTitle(R.string.our_messages);
+    }
+
+    @Override
+    public void onBackClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OurMessagesFragment()).commit();
+        toolbar.setTitle(R.string.our_messages);
+    }
+
+    @Override
+    public void onProfileClicked(User user) {
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OtherUserProfileFragment()).commit();
+        //toolbar.setTitle(R.string.profile);
     }
 }

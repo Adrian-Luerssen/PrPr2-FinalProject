@@ -15,30 +15,33 @@
 
     </group>
 
-    <item android:title="Navigate"
-        android:checkableBehavior="single">
+    <item android:title="Navigate">
         <menu>
-            <item
-                android:id="@+id/home"
-                android:title="@string/HomeScreen" />
-            <item
-                android:id="@+id/explore_events"
-                android:title="@string/Explore_Events" />
-            <item
-                android:id="@+id/myEvents"
-                android:title="@string/myEvents" />
-            <item
-                android:id="@+id/rateEvents"
-                android:title="@string/rateEvents" />
-            <item
-                android:id="@+id/createEvents"
-                android:title="@string/createEvents" />
-            <item
-                android:id="@+id/timeline"
-                android:title="@string/timeline" />
-            <item
-                android:id="@+id/searchUsers"
-                android:title="@string/searchUsers" />
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/home"
+                    android:title="@string/HomeScreen" />
+                <item
+                    android:id="@+id/explore_events"
+                    android:title="@string/Explore_Events" />
+                <item
+                    android:id="@+id/myEvents"
+                    android:title="@string/myEvents" />
+                <item
+                    android:id="@+id/rateEvents"
+                    android:title="@string/rateEvents" />
+                <item
+                    android:id="@+id/createEvents"
+                    android:title="@string/createEvents" />
+                <item
+                    android:id="@+id/timeline"
+                    android:title="@string/timeline" />
+                <item
+                    android:id="@+id/searchUsers"
+                    android:title="@string/searchUsers" />
+            </group>
+
         </menu>
     </item>
 

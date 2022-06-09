@@ -25,6 +25,7 @@ import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserList;
+import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
@@ -225,30 +226,7 @@ public class OurMessagesFragment extends Fragment {
 
 
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {

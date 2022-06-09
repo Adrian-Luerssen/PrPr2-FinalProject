@@ -1,15 +1,12 @@
 package com.example.events.Activities.Fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +19,10 @@ import android.widget.Toast;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserList;
+import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
-import java.io.InputStream;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -43,6 +40,11 @@ public class SearchUsersFragment extends Fragment {
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
+    private SearchUsersOnclickListener listener;
+
+    public interface SearchUsersOnclickListener{
+        void onProfileClicked(User user);
+    }
 
     public SearchUsersFragment() {
         // Required empty public constructor
@@ -55,7 +57,7 @@ public class SearchUsersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_search_users, container, false);
+        view = inflater.inflate(R.layout.search_users_fragment, container, false);
         searchbar = (EditText) view.findViewById(R.id.search_users);
         numResults = (TextView) view.findViewById(R.id.num_results);
         search = (ImageButton) view.findViewById(R.id.search_button);
@@ -161,38 +163,24 @@ public class SearchUsersFragment extends Fragment {
         public void bind(User user) {
             this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.search_user_image))
-                    .execute(user.getImageURL());
+            new DownloadImageTask((ImageView) itemView.findViewById(R.id.search_user_image)).execute(user.getImageURL());
         }
 
         @Override
         public void onClick(View view) {
             Toast.makeText(getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
+            listener.onProfileClicked(this.user);
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof SearchUsersOnclickListener) {
+            listener = (SearchUsersOnclickListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement SearchUsersOnclickListener");
         }
     }
 }
