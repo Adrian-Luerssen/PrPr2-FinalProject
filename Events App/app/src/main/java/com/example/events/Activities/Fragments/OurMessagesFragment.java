@@ -193,7 +193,7 @@ public class OurMessagesFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
+            //Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
             listener.onUserClicked(this.user);
         }
         private void getLastMessage(User user) {
