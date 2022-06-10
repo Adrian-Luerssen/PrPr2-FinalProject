@@ -1,5 +1,7 @@
 package com.example.events.Activities;
 
+import static com.example.events.Activities.Fragments.OpenChatFragment.REFRESH_TIME;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +26,9 @@ import com.example.events.DataStructures.Users.User;
 import com.example.events.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         HomeFragment.HomeFragmentListener,
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
+    private Timer refreshTimer = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,9 +132,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onUserClicked(User user) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OpenChatFragment(user)).commit();
+    public void onUserChatClicked(User user) {
+        OpenChatFragment frag = new OpenChatFragment(user);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, frag).commit();
         toolbar.setTitle(R.string.our_messages);
+
     }
 
     @Override

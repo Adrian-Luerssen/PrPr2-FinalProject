@@ -98,6 +98,7 @@ public class User {
     }
 
     public void setUser(User user) {
+        this.id = user.id;
         this.name = user.name;
         this.lastName = user.lastName;
         this.email = user.email;

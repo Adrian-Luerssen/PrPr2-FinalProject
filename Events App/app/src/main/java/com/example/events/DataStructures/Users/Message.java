@@ -23,6 +23,13 @@ public class Message {
     @SerializedName("timeStamp")
     private Date mDate;
 
+
+    public Message(int senderID, int receiverID,String content) {
+        this.content = content;
+        this.senderID = senderID;
+        this.receiverID = receiverID;
+    }
+
     public String getContent() {
         return content;
     }

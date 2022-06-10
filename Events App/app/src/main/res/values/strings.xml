@@ -70,5 +70,8 @@
     <string name="HomeScreen">Home</string>
     <string name="friend_added">Friend Request Sent!</string>
     <string name="unable_to_add_friend">Unable to Send Request!</string>
+    <string name="type_your_message">Type your message</string>
+    <string name="send">Send</string>
+    <string name="default_message">this is a message bubble</string>
 
 </resources>

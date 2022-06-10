@@ -114,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()){
                     User user = response.body().get(0);
+
                     user.setPassword(loginObject.getPassword());
                     user.setToken(token);
                     AuthUser.getAuthUser().setUser(user);

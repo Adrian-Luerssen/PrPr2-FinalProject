@@ -46,7 +46,7 @@ public class OurMessagesFragment extends Fragment {
     private UserList userList;
 
     public interface OurMessagesFragmentListener {
-        void onUserClicked(User user);
+        void onUserChatClicked(User user);
     }
 
 
@@ -194,7 +194,7 @@ public class OurMessagesFragment extends Fragment {
         @Override
         public void onClick(View view) {
             //Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
-            listener.onUserClicked(this.user);
+            listener.onUserChatClicked(this.user);
         }
         private void getLastMessage(User user) {
             ServiceAPI.getInstance().getMessages(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Message>>() {

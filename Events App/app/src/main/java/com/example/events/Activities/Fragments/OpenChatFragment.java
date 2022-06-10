@@ -1,16 +1,24 @@
 package com.example.events.Activities.Fragments;
 
+import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
@@ -21,19 +29,30 @@ import com.example.events.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OpenChatFragment extends Fragment {
+    public static final long REFRESH_TIME = 1000;
     private final User recipient;
     private ArrayList<Message> messages;
     private View view;
     private ImageView profilePic;
+    private ImageView back;
     private TextView username;
+    private RecyclerView messageRecycler;
+    private boolean notClosed;
+
+    private EditText messageInput;
+    private Button sendMessage;
+
 
     private ChatOnClickListener listener;
+    private MessageAdapter messageAdapter;
 
     public interface ChatOnClickListener{
         void onBackClicked();
@@ -55,10 +74,90 @@ public class OpenChatFragment extends Fragment {
         view = inflater.inflate(R.layout.open_chat_fragment, container, false);
         profilePic = view.findViewById(R.id.profile_pic);
         username = view.findViewById(R.id.username);
-
+        back = view.findViewById(R.id.back_button);
+        messageRecycler = view.findViewById(R.id.messageRecyclerView);
+        messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        sendMessage = view.findViewById(R.id.sendMessage);
+        messageInput = view.findViewById(R.id.messageInput);
         username.setText(recipient.getName()+" "+recipient.getLastName());
         new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(recipient.getImageURL());
+        messages = new ArrayList<>();
+        notClosed = true;
+        updateUI();
+        refresh();
+        profilePic.setOnClickListener(view1 -> {
+            listener.onProfileClicked(recipient);
 
+        });
+        back.setOnClickListener(view1 -> {
+            listener.onBackClicked();
+            notClosed = false;
+        });
+
+        sendMessage.setOnClickListener(view -> {
+            String message = messageInput.getText().toString();
+            if (message.isEmpty()) {
+                Toast.makeText(getContext(), "Message cannot be empty", Toast.LENGTH_SHORT).show();
+            } else {
+                Message newMessage = new Message(AuthUser.getAuthUser().getId(), recipient.getId(), message);
+                ServiceAPI.getInstance().sendMessage(newMessage, AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Message>() {
+                    @Override
+                    public void onResponse(Call<Message> call, Response<Message> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getContext(), "Message sent", Toast.LENGTH_SHORT).show();
+                            messageInput.setText("");
+                            messages.add(response.body());
+                            updateUI();
+                        } else {
+                            Toast.makeText(getContext(), "Message not sent", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Message> call, Throwable t) {
+                        Toast.makeText(getContext(), "Message not sent", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+
+        return view;
+    }
+
+
+    public void refresh (){
+        getMessages();
+        if (messageAdapter.messageList.size() != messages.size()){
+            updateUI();
+        }
+        refreshUI(1000);
+    }
+
+    private void refreshUI(long milli) {
+        if (notClosed){
+            final Handler handler = new Handler();
+            final Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    refresh();
+                }
+            };
+            handler.postDelayed(runnable,milli);
+        }
+
+    }
+
+    public void updateUI(){
+        getMessages();
+        messageAdapter = new MessageAdapter(messages);
+        messageRecycler.setAdapter(messageAdapter);
+        System.out.println("Top:"+messageRecycler.getTop()+" Bottom:"+messageRecycler.getBottom()+" Baseline:"+messageRecycler.getBaseline());
+        messageRecycler.scrollBy(0,Integer.MAX_VALUE);
+        System.out.println(messageRecycler.getY());
+    }
+
+    private void getMessages() {
         ServiceAPI.getInstance().getMessages(recipient.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
@@ -73,13 +172,6 @@ public class OpenChatFragment extends Fragment {
 
             }
         });
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onProfileClicked(recipient);
-            }
-        });
-        return view;
     }
 
     @Override
@@ -91,5 +183,69 @@ public class OpenChatFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement ChatOnClickListener");
         }
+    }
+
+
+    private class MessageAdapter extends RecyclerView.Adapter<MessageHolder> {
+
+        private List<Message> messageList = new ArrayList<>();
+
+
+        private MessageAdapter(List<Message> messageList) {
+            this.messageList = messageList;
+        }
+
+        @Override
+        public MessageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view;
+            if (viewType == MessageHolder.VIEW_TYPE_SENT) {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_sent_item, parent, false);
+            } else {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_recived_item, parent, false);
+            }
+            return new MessageHolder(view);
+
+        }
+
+        @Override
+        public void onBindViewHolder(MessageHolder holder, int position) {
+            Message message = messageList.get(position);
+            holder.bind(message);
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            if (messageList.get(position).getSenderID() == AuthUser.getAuthUser().getId()) {
+                return MessageHolder.VIEW_TYPE_SENT;
+            } else {
+                return MessageHolder.VIEW_TYPE_RECEIVED;
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return messageList.size();
+        }
+    }
+
+
+    // View Holder
+    private class MessageHolder extends RecyclerView.ViewHolder {
+
+        public static final int VIEW_TYPE_SENT = 1;
+        public static final int VIEW_TYPE_RECEIVED = 2;
+        private Message message;
+        private TextView messageText;
+
+        public MessageHolder(View view) {
+            super(view);
+            messageText = view.findViewById(R.id.message_text);
+        }
+
+        public void bind(Message message) {
+            messageText.setText(message.getContent());
+        }
+
+
     }
 }
