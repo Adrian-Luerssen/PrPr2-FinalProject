@@ -40,8 +40,7 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_marginTop="30dp"
@@ -58,36 +57,37 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="@string/goto_chat"
-                android:background="@color/cardview_dark_background"
+                android:background="@drawable/bigbutton"
                 android:padding="10dp"
-                android:textColor="@color/inputText"
-                android:textAppearance="@style/BigText"
+                android:textColor="@color/black"
+                android:textAppearance="@style/mediumText"
+                android:fontFamily="@font/outfit_bold"
                 android:textAlignment="center"/>
         </LinearLayout>
         <TextView
             android:id="@+id/addUser"
-            android:background="@color/cardview_dark_background"
+            android:background="@drawable/bigbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/add_Friend"
-            android:textColor="@color/inputText"
-            android:textAppearance="@style/BigText"
-            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textAppearance="@style/mediumText"
+            android:fontFamily="@font/outfit_bold"
             android:textAlignment="center"/>
         <TextView
             android:id="@+id/see_friends"
-            android:background="@color/cardview_dark_background"
+            android:background="@drawable/bigbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/see_friends"
-            android:textColor="@color/inputText"
-            android:textAppearance="@style/BigText"
-            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textAppearance="@style/mediumText"
+            android:fontFamily="@font/outfit_bold"
             android:textAlignment="center"/>
         <Button
-            android:id="@+id/createEvents"
+            android:id="@+id/deleteAccount"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
