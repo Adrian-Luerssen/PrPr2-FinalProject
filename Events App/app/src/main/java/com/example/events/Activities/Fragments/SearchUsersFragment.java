@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,26 +66,46 @@ public class SearchUsersFragment extends Fragment {
         userRecView = (RecyclerView) view.findViewById(R.id.user_search_rec_view);
         userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         search.setOnClickListener(view -> {
-            ServiceAPI.getInstance().searchUsers(searchbar.getText().toString(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
-                @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                    if (response.isSuccessful()){
-                        userList = new UserList();
-                        userList.setUserList(response.body());
-                        updateUI();
-                    } else {
-                        Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
-                    }
-                }
+            searchAPI();
+        });
+        searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
-                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchAPI();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
         return view;
 
+    }
+
+    private void searchAPI() {
+        ServiceAPI.getInstance().searchUsers(searchbar.getText().toString(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()){
+                    userList = new UserList();
+                    userList.setUserList(response.body());
+                    updateUI();
+                } else {
+                    Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void updateUI() {
