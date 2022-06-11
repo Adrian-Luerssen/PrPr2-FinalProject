@@ -58,11 +58,34 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="@string/goto_chat"
+                android:background="@color/cardview_dark_background"
+                android:padding="10dp"
                 android:textColor="@color/inputText"
                 android:textAppearance="@style/BigText"
                 android:textAlignment="center"/>
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/addUser"
+            android:background="@color/cardview_dark_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/add_Friend"
+            android:textColor="@color/inputText"
+            android:textAppearance="@style/BigText"
+            android:textSize="30dp"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/see_friends"
+            android:background="@color/cardview_dark_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/see_friends"
+            android:textColor="@color/inputText"
+            android:textAppearance="@style/BigText"
+            android:textSize="30dp"
+            android:textAlignment="center"/>
     </LinearLayout>
 
 </LinearLayout>

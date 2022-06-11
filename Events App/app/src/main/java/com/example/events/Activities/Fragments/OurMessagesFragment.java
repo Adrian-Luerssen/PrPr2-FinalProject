@@ -47,8 +47,7 @@ public class OurMessagesFragment extends Fragment {
     private RecyclerView userRecView;
     private UserList userList;
 
-    public void setClosed() {
-    }
+
 
     public interface OurMessagesFragmentListener {
         void onUserChatClicked(User user);

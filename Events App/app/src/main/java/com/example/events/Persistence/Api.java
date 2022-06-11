@@ -184,6 +184,6 @@ public interface Api {
 
     //delete friend
     @DELETE("friends/{user_id}")
-    Call<ResponseBody> deleteFriend(@Path("user_id") int userId, @Header("Authorization") String token);
+    Call<ResponseBody> declineFriendRequest(@Path("user_id") int userId, @Header("Authorization") String token);
 
 }

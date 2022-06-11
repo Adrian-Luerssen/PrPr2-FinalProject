@@ -1,7 +1,5 @@
 package com.example.events.Activities;
 
-import static com.example.events.Activities.Fragments.OpenChatFragment.REFRESH_TIME;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.events.Activities.Fragments.CreateEventFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
+import com.example.events.Activities.Fragments.FriendRequestFragment;
+import com.example.events.Activities.Fragments.FriendsFragment;
 import com.example.events.Activities.Fragments.MyEventsFragment;
 import com.example.events.Activities.Fragments.OpenChatFragment;
 import com.example.events.Activities.Fragments.OurMessagesFragment;
@@ -23,12 +23,12 @@ import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
+import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OurMessagesFragment.OurMessagesFragmentListener,
         OpenChatFragment.ChatOnClickListener,
         SearchUsersFragment.SearchUsersOnclickListener,
-        ProfileFragment.ProfileListener {
+        ProfileFragment.ProfileListener,
+        FriendsFragment.FriendsOnclickListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(R.string.search_users);
                 break;
             case R.id.nav_profile:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment(AuthUser.getAuthUser())).commit();
                 toolbar.setTitle(R.string.profile);
                 break;
             case R.id.nav_message:
@@ -142,6 +143,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void viewFriends() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FriendsFragment()).commit();
+        toolbar.setTitle(R.string.friends);
+    }
+
+    @Override
     public void onBackClicked() {
         OurMessagesFragment ourMessagesFragment = new OurMessagesFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ourMessagesFragment).commit();
@@ -158,5 +165,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onEditProfileClicked() {
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
         //toolbar.setTitle(R.string.edit_profile);
+    }
+
+    @Override
+    public void viewFriendRequests() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FriendRequestFragment()).commit();
+        toolbar.setTitle(R.string.friend_requests);
     }
 }

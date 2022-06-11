@@ -75,8 +75,17 @@
     <string name="default_message">this is a message bubble</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="goto_chat">Goto Chat</string>
+    <string name="goto_chat">Go To Chat</string>
     <string name="Edit_Profile">Edit Profile</string>
     <string name="Go_to_chat">Go to Chat</string>
+    <string name="add_Friend">Send Friend Request</string>
+    <string name="View_Requests">View Friend Requests</string>
+    <string name="Remove_Friend">Remove Friend</string>
+    <string name="Friend_Removed">Friend Removed</string>
+    <string name="Error_Occurred">Error Occurred</string>
+    <string name="friend_requests">Friend Requests</string>
+    <string name="Already_Friends">You are already friends!</string>
+    <string name="see_friends">View Friends</string>
+    <string name="friends">Friends</string>
 
 </resources>
