@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.events.DataStructures.Event;
 import com.example.events.R;
@@ -45,7 +47,7 @@ public class CreateEventFragment extends Fragment {
         image = (ImageView) view.findViewById(R.id.imageView);
         title = (EditText) view.findViewById(R.id.title);
         description = (EditText) view.findViewById(R.id.description);
-        selectCategory = (ImageButton) view.findViewById(R.id.options);
+        //selectCategory = (ImageButton) view.findViewById(R.id.options);
         category = (Spinner) view.findViewById(R.id.categoriesSpinner);
         startDate = (ImageButton) view.findViewById(R.id.calendar1);
         startText = (EditText) view.findViewById(R.id.startText);
@@ -53,6 +55,10 @@ public class CreateEventFragment extends Fragment {
         endText = (EditText) view.findViewById(R.id.endText);
         location = (EditText) view.findViewById(R.id.location);
         createEvent = (Button) view.findViewById(R.id.createEvents);
+        ArrayAdapter<CharSequence> sequence = ArrayAdapter.createFromResource(getContext(), R.array.categories_array, android.R.layout.simple_spinner_item);
+        sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setAdapter(sequence);
+        category.setSelection(0);
     }
 
     @Override
@@ -69,13 +75,15 @@ public class CreateEventFragment extends Fragment {
     }
 
     private void setButtonListener() {
-        selectCategory.setOnClickListener(view-> {
-            ArrayAdapter<CharSequence> sequence = ArrayAdapter.createFromResource(getContext(), R.array.categories_array, android.R.layout.simple_spinner_item);
-            sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            category.setAdapter(sequence);
+        //selectCategory.setOnClickListener(view-> {
             category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.inputText));
+                    /*ArrayAdapter<CharSequence> sequence = ArrayAdapter.createFromResource(getContext(), R.array.categories_array, android.R.layout.simple_spinner_item);
+                    sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    category.setAdapter(sequence);
+                    category.setSelection(0);*/
                     if (parent.getItemAtPosition(pos).equals("Category Event")) {
 
                     }
@@ -88,7 +96,7 @@ public class CreateEventFragment extends Fragment {
 
                 }
             });
-        });
+        //});
 
         startDate.setOnClickListener(view -> {
             showDatePickerDialog(startText);
