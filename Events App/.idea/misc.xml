@@ -13,31 +13,80 @@
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_create_events.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_events.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main_view.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_my_events.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_rate_event.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_search_users.xml" value="0.2" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_side_menu.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/attend_event_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/category_spinner.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/create_events_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/events_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/home_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/my_events_fragment.xml" value="0.21510416666666668" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/profile_fragment.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/rate_event_fragment.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_attend_event.xml" value="0.1778115501519757" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main.xml" value="0.20625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main_view.xml" value="0.1" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_my_events.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_open_chat.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_our_messages.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_rate_event.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_search_users.xml" value="0.1778115501519757" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_side_menu.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_sign_up.xml" value="0.27760416666666665" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/attend_event_fragment.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/create_events_fragment.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/events_fragment.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/fragment_search_users.xml" value="0.20625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_fragment.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_item.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_request_item.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_requests_fragment.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/home_fragment.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/list_search_item.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/message_recived_item.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/message_sent_item.xml" value="0.25" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/message_user_list_item.xml" value="0.27760416666666665" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/my_events_fragment.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/navigation_header.xml" value="0.33" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/open_chat_fragment.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/our_messages_fragment.xml" value="0.1778115501519757" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/profile_fragment.xml" value="0.20871327254305977" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/rate_event_fragment.xml" value="0.365625" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/search_users_fragment.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/PrPr/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/menu/activity_side_menu.xml" value="0.20625" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/bigbutton.xml" value="0.335" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/inputbox.xml" value="0.2985" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_attend_event.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_attend_event_pop_up.xml" value="0.358695652173913" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main_view.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_my_events.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_open_chat.xml" value="0.1503623188405797" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_search_users.xml" value="0.3065512978986403" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_side_menu.xml" value="0.33" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/list_search_item.xml" value="0.1" />
+        <entry key="..\:/Users/queen/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.1716485507246377" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_events.xml" value="0.13601823708206687" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.13601823708206687" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_main.xml" value="0.1716485507246377" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_my_events.xml" value="0.13601823708206687" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_search_users.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_side_menu.xml" value="0.13601823708206687" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_sign_up.xml" value="0.21105072463768115" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/attend_event_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/category_spinner.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/create_events_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/events_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/friend_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/home_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/list_search_item.xml" value="0.21105072463768115" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/my_events_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/navigation_header.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/open_chat_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/our_messages_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/profile_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/rate_event_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/search_users_fragment.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline_fragment.xml" value="0.375" />
       </map>
     </option>
   </component>
