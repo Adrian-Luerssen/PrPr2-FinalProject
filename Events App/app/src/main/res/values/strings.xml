@@ -93,5 +93,6 @@
         <item>Concerts</item>
         <item>Museums</item>
     </string-array>
+    <string name="delete_account">Delete Account</string>
 
 </resources>
