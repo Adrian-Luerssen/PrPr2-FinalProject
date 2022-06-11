@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-
     private void initFields() {
         signIn = (Button) findViewById(R.id.sign_in_button);
         email = (EditText) findViewById(R.id.Login_email_input);

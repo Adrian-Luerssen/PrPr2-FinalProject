@@ -39,6 +39,7 @@ public class SearchUsersActivity extends AppCompatActivity {
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

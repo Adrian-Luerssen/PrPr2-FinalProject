@@ -87,5 +87,11 @@
     <string name="Already_Friends">You are already friends!</string>
     <string name="see_friends">View Friends</string>
     <string name="friends">Friends</string>
+    <string-array name="categories_array">
+        <item>Category Event</item>
+        <item>Sports</item>
+        <item>Concerts</item>
+        <item>Museums</item>
+    </string-array>
 
 </resources>

@@ -51,7 +51,8 @@
         android:fontFamily="@font/outfit_medium"
         tools:ignore="Autofill,TextFields" />
 
-    <TextView
+    <Spinner
+        android:id="@+id/categoriesSpinner"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
@@ -59,7 +60,6 @@
         android:background="@drawable/input_box"
         android:layout_marginTop="20dp"
         android:gravity="top"
-        android:hint="@string/Category_Event"
         android:textColorHint="@color/inputText"
         android:padding="16dp"
         android:textColor="@color/white"
@@ -76,7 +76,8 @@
         android:backgroundTint="@color/background"
         tools:ignore="ContentDescription,DuplicateSpeakableTextCheck" />
 
-    <TextView
+    <EditText
+        android:id="@+id/startText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
@@ -89,7 +90,9 @@
         android:padding="16dp"
         android:textColor="@color/white"
         android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:fontFamily="@font/outfit_medium"
+        android:focusable="false"
+        android:clickable="false"/>
 
     <ImageButton
         android:id="@+id/calendar1"
@@ -102,7 +105,8 @@
         tools:ignore="ContentDescription,DuplicateSpeakableTextCheck,HardcodedText"
         android:contentDescription="TODO" />
 
-    <TextView
+    <EditText
+        android:id="@+id/endText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
@@ -115,7 +119,9 @@
         android:padding="16dp"
         android:textColor="@color/white"
         android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:fontFamily="@font/outfit_medium"
+        android:focusable="false"
+        android:clickable="false"/>
 
     <ImageButton
         android:id="@+id/calendar2"
