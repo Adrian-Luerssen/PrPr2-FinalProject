@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,9 @@ public class OurMessagesFragment extends Fragment {
     private RecyclerView userRecView;
     private UserList userList;
 
+    public void setClosed() {
+    }
+
     public interface OurMessagesFragmentListener {
         void onUserChatClicked(User user);
     }
@@ -65,48 +70,33 @@ public class OurMessagesFragment extends Fragment {
         getUserMessages();
 
         search.setOnClickListener(view -> {
-            ServiceAPI.getInstance().searchUsers(searchbar.getText().toString(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
-                @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                    if (response.isSuccessful()){
-                        userList = new UserList();
-                        filterUserlist(response.body());
-                        updateUI();
-                    } else {
-                        Toast.makeText(getContext(), R.string.unable_to_find_users, Toast.LENGTH_SHORT).show();
-                    }
-                }
+            filterUserlist(searchbar.getText().toString());
+        });
+        searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
-                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterUserlist(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
         return view;
     }
 
-    private void filterUserlist(List<User> users) {
-        ServiceAPI.getInstance().getFriends(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (response.isSuccessful()){
-                    for (User user : users){
-                        assert response.body() != null;
-                        for (User friend : response.body()){
-                            if (user.getId() == friend.getId()){
-                                userList.addUser(user);
-                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void filterUserlist(String searchString) {
+        if (searchString.isEmpty()) {
+            userRecView.setAdapter(userAdapter);
+        } else {
+            userRecView.setAdapter(new UserAdapter(userList.getFilteredUsers(searchString)));
+        }
     }
 
 

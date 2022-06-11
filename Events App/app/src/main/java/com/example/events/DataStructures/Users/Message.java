@@ -3,6 +3,8 @@ package com.example.events.DataStructures.Users;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Message {
@@ -55,6 +57,9 @@ public class Message {
     }
 
     public String getDate() {
-        return mDate.toString();
+        //get day of the weeek, day and month
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM");
+        return dateFormat.format(mDate);
+
     }
 }

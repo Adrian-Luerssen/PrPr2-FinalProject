@@ -41,7 +41,6 @@ public class OpenChatFragment extends Fragment {
     private final User recipient;
     private ArrayList<Message> messages;
     private View view;
-    private ImageView profilePic;
     private ImageView back;
     private TextView username;
     private RecyclerView messageRecycler;
@@ -72,7 +71,6 @@ public class OpenChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.open_chat_fragment, container, false);
-        profilePic = view.findViewById(R.id.profile_pic);
         username = view.findViewById(R.id.username);
         back = view.findViewById(R.id.back_button);
         messageRecycler = view.findViewById(R.id.messageRecyclerView);
@@ -80,14 +78,13 @@ public class OpenChatFragment extends Fragment {
         sendMessage = view.findViewById(R.id.sendMessage);
         messageInput = view.findViewById(R.id.messageInput);
         username.setText(recipient.getName()+" "+recipient.getLastName());
-        new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(recipient.getImageURL());
         messages = new ArrayList<>();
         notClosed = true;
         updateUI();
         refresh();
-        profilePic.setOnClickListener(view1 -> {
+        username.setOnClickListener(view1 -> {
             listener.onProfileClicked(recipient);
-
+            notClosed = false;
         });
         back.setOnClickListener(view1 -> {
             listener.onBackClicked();
@@ -131,8 +128,9 @@ public class OpenChatFragment extends Fragment {
         if (messageAdapter.messageList.size() != messages.size()){
             updateUI();
         }
-        refreshUI(1000);
+        refreshUI(REFRESH_TIME);
     }
+
 
     private void refreshUI(long milli) {
         if (notClosed){

@@ -20,6 +20,7 @@ import com.example.events.Activities.Fragments.MyEventsFragment;
 import com.example.events.Activities.Fragments.OpenChatFragment;
 import com.example.events.Activities.Fragments.OurMessagesFragment;
 import com.example.events.Activities.Fragments.HomeFragment;
+import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
 import com.example.events.DataStructures.Users.User;
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         HomeFragment.HomeFragmentListener,
         OurMessagesFragment.OurMessagesFragmentListener,
         OpenChatFragment.ChatOnClickListener,
-        SearchUsersFragment.SearchUsersOnclickListener {
+        SearchUsersFragment.SearchUsersOnclickListener,
+        ProfileFragment.ProfileListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -141,13 +143,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OurMessagesFragment()).commit();
+        OurMessagesFragment ourMessagesFragment = new OurMessagesFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ourMessagesFragment).commit();
         toolbar.setTitle(R.string.our_messages);
     }
 
     @Override
     public void onProfileClicked(User user) {
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OtherUserProfileFragment()).commit();
-        //toolbar.setTitle(R.string.profile);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment(user)).commit();
+        toolbar.setTitle(R.string.profile);
+    }
+
+    @Override
+    public void onEditProfileClicked() {
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
+        //toolbar.setTitle(R.string.edit_profile);
     }
 }

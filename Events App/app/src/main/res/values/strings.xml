@@ -73,5 +73,10 @@
     <string name="type_your_message">Type your message</string>
     <string name="send">Send</string>
     <string name="default_message">this is a message bubble</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="goto_chat">Goto Chat</string>
+    <string name="Edit_Profile">Edit Profile</string>
+    <string name="Go_to_chat">Go to Chat</string>
 
 </resources>
