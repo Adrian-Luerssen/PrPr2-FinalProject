@@ -124,6 +124,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void onCreateClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventFragment()).commit();
+        toolbar.setTitle(R.string.createEvents);
+    }
+
+    @Override
+    public void onMyEventsClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyEventsFragment()).commit();
+        toolbar.setTitle(R.string.myEvents);
+    }
+
+    @Override
+    public void onRateClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateEventFragment()).commit();
+        toolbar.setTitle(R.string.rateEvents);
+    }
+
+    @Override
+    public void onExploreClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
+        toolbar.setTitle(R.string.explore_events);
+    }
+
+    //TODO: FIX TIEMLINE
+    @Override
+    public void onTimelineClicked() {
+        /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchUsersFragment()).commit();
+        toolbar.setTitle(R.string.timeline);*/
+    }
+
+    @Override
     public void onLogoutClicked() {
         SharedPreferences prefs = getSharedPreferences("com.example.app", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

@@ -18,11 +18,21 @@ public class HomeFragment extends Fragment {
     private HomeFragmentListener listener;
     private ImageButton search;
     private ImageButton logout;
+    private ImageButton explore;
+    private ImageButton my_events;
+    private ImageButton rate_events;
+    private ImageButton create_events;
+    private ImageButton timeline;
     private View view;
 
     public interface HomeFragmentListener {
         void onSearchClicked();
         void onLogoutClicked();
+        void onExploreClicked();
+        void onMyEventsClicked();
+        void onRateClicked();
+        void onCreateClicked();
+        void onTimelineClicked();
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,12 @@ public class HomeFragment extends Fragment {
 
         search = (ImageButton) view.findViewById(R.id.searchUsers);
         logout = (ImageButton) view.findViewById(R.id.logout);
+        explore = (ImageButton) view.findViewById(R.id.explore_events);
+        my_events = (ImageButton) view.findViewById(R.id.myEvents);
+        create_events = (ImageButton) view.findViewById(R.id.createEvents);
+        rate_events = (ImageButton) view.findViewById(R.id.rateEvents);
+        timeline = (ImageButton) view.findViewById(R.id.timeline);
+
         search.setOnClickListener(view -> {
             listener.onSearchClicked();
         });
@@ -42,6 +58,27 @@ public class HomeFragment extends Fragment {
         logout.setOnClickListener(view -> {
             listener.onLogoutClicked();
         });
+
+        explore.setOnClickListener(view -> {
+            listener.onExploreClicked();
+        });
+
+        my_events.setOnClickListener(view -> {
+            listener.onMyEventsClicked();
+        });
+
+        rate_events.setOnClickListener(view -> {
+            listener.onRateClicked();
+        });
+
+        create_events.setOnClickListener(view -> {
+            listener.onCreateClicked();
+        });
+
+        timeline.setOnClickListener(view -> {
+            listener.onTimelineClicked();
+        });
+
         return view;
     }
 

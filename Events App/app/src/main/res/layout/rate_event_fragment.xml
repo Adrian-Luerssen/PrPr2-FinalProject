@@ -1,122 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".Activities.Fragments.RateEventFragment">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".Activities.Fragments.RateEventFragment">
 
+        <Button
+            android:id="@+id/rate_event"
+            android:layout_width="337dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="585dp"
+            android:background="@drawable/bigbutton"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/rateEvent"
+            android:textAppearance="@style/mediumText" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="334dp"
+            android:layout_height="272dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-650dp"
+            android:src="@drawable/image"
+            tools:ignore="ContentDescription" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_light"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="38dp"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/eventFinished"
+            android:text="@string/eventFinished"
+            tools:ignore="RtlHardcoded" />
 
-    <Button
-        android:id="@+id/write_opinion"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="585dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/bigbutton"
-        android:fontFamily="@font/outfit_bold"
-        android:text="@string/opinion"
-        android:textAppearance="@style/mediumText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="38dp"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/white"
+            android:text="@string/Name_Event"
+            tools:ignore="RtlHardcoded" />
 
-    <Button
-        android:id="@+id/rate_event"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="-60dp"
-        android:background="@drawable/bigbutton"
-        android:fontFamily="@font/outfit_bold"
-        android:text="@string/rateEvents"
-        android:textAppearance="@style/mediumText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:fontFamily="@font/outfit_light"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="5dp"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            android:text="@string/Category_Event"
+            tools:ignore="RtlHardcoded" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="334dp"
-        android:layout_height="272dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="-650dp"
-        android:src="@drawable/image"
-        tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/Description"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/outfit_light"
-        android:layout_marginTop="-15dp"
-        android:layout_marginLeft="38dp"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/eventFinished"
-        android:text="@string/eventFinished"
-        tools:ignore="RtlHardcoded" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/Start_Date_Event"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:fontFamily="@font/outfit_light"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="38dp"
-        android:textAppearance="@style/mediumText"
-        android:textColor="@color/white"
-        android:text="@string/Name_Event"
-        tools:ignore="RtlHardcoded" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/End_Date_Event"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:fontFamily="@font/outfit_light"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="5dp"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        android:text="@string/Category_Event"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/outfit_light"
-        android:text="@string/Description"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/outfit_light"
-        android:text="@string/Start_Date_Event"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/outfit_light"
-        android:text="@string/End_Date_Event"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/outfit_light"
-        android:text="@string/Location_Event"
-        android:textAppearance="@style/linkText"
-        android:textColor="@color/white"
-        tools:ignore="RtlHardcoded" />
-
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/Location_Event"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+</ScrollView>

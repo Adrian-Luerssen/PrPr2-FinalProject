@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/background">
 
     <RelativeLayout
-        android:id="@+id/container_timeline_indicator"
+        android:id="@+id/timeline"
         android:layout_width="30dp"
         android:layout_height="match_parent">
 
-
         <ImageView
-            android:id="@+id/iv_timeline_indicator"
+            android:id="@+id/timeline_circle"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentTop="true"
@@ -20,13 +20,13 @@
             android:src="@drawable/blue_circle" />
 
         <TextView
-            android:id="@+id/tv_timeline_indicator_line"
+            android:id="@+id/timeline_line"
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_below="@id/iv_timeline_indicator"
+            android:layout_below="@id/timeline_circle"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="1dp"
-            android:background="#5c88c6" />
+            android:background="@color/white" />
 
     </RelativeLayout>
 

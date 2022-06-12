@@ -17,6 +17,7 @@
     <string name="Explore_Events">Explore Events</string>
     <string name="myEvents">My Events</string>
     <string name="rateEvents">Rate Events</string>
+    <string name="rateEvent">Rate Event</string>
     <string name="createEvents">Create Events</string>
     <string name="searchUsers">Search Users</string>
     <string name="timeline">Timeline</string>
