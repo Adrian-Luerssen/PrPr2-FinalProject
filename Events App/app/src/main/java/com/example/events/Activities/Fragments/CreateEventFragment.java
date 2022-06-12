@@ -129,13 +129,18 @@ public class CreateEventFragment extends Fragment {
                 @Override
                 public void onResponse(Call<Event> call, Response<Event> response) {
                     if(response.isSuccessful()){
-
+                        Toast.makeText(getContext(), "Event created", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Error creating event", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Event> call, Throwable t) {
-
+                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
                 }
             });
         });

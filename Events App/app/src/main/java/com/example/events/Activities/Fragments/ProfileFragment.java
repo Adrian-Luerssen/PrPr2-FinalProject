@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class ProfileFragment extends Fragment {
     private TextView addUserORviewRequests;
     private TextView viewFriends;
     private ProfileListener listener;
+    private Button deleteAccount;
 
     public interface ProfileListener {
         void onEditProfileClicked();
@@ -68,8 +70,17 @@ public class ProfileFragment extends Fragment {
         viewFriends = view.findViewById(R.id.see_friends);
         viewFriends.setVisibility(View.INVISIBLE);
         username.setText(user.getName() + " " + user.getLastName());
+        deleteAccount = view.findViewById(R.id.deleteAccount);
+        deleteAccount.setVisibility(View.INVISIBLE);
         if (user.getId() == AuthUser.getAuthUser().getId()) {
             viewFriends.setVisibility(View.VISIBLE);
+            deleteAccount.setVisibility(View.VISIBLE);
+
+            deleteAccount.setOnClickListener(view1 -> {
+                //TODO: delete account
+
+            });
+
             viewFriends.setOnClickListener(view -> {
                 listener.viewFriends();
             });

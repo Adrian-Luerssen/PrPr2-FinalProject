@@ -56,7 +56,8 @@
                 android:textColor="@color/white"
                 android:text="@string/our_messages"
                 android:maxLength="30"
-                android:singleLine="true"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:layout_gravity="left"
                 android:layout_margin="10dp" />
         </LinearLayout>
