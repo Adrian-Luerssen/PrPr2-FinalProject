@@ -53,6 +53,7 @@
             android:layout_marginBottom="16dp"
             android:background="@color/inputText"
             android:hint="@string/type_your_message"
+            android:maxLength="45"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/sendMessage"

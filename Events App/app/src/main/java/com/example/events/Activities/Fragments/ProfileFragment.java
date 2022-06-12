@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment {
     private TextView addUserORviewRequests;
     private TextView viewFriends;
     private ProfileListener listener;
-    private Button deleteAccount;
+    private Button delete;
 
     public interface ProfileListener {
         void onEditProfileClicked();
@@ -68,19 +68,16 @@ public class ProfileFragment extends Fragment {
         editProfileORgotochat = view.findViewById(R.id.gotochatOReditProfile);
         addUserORviewRequests = view.findViewById(R.id.addUser);
         viewFriends = view.findViewById(R.id.see_friends);
+        delete = view.findViewById(R.id.deleteAccount);
+        delete.setVisibility(View.INVISIBLE);
         viewFriends.setVisibility(View.INVISIBLE);
         username.setText(user.getName() + " " + user.getLastName());
-        deleteAccount = view.findViewById(R.id.deleteAccount);
-        deleteAccount.setVisibility(View.INVISIBLE);
         if (user.getId() == AuthUser.getAuthUser().getId()) {
             viewFriends.setVisibility(View.VISIBLE);
-            deleteAccount.setVisibility(View.VISIBLE);
-
-            deleteAccount.setOnClickListener(view1 -> {
-                //TODO: delete account
-
+            delete.setVisibility(View.VISIBLE);
+            delete.setOnClickListener(view1 -> {
+                //delete
             });
-
             viewFriends.setOnClickListener(view -> {
                 listener.viewFriends();
             });
