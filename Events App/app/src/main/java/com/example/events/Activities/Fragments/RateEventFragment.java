@@ -29,7 +29,7 @@ public class RateEventFragment extends Fragment {
     }
 
     private void initFields() {
-        rateEvent = (Button) view.findViewById(R.id.rate);
+        rateEvent = (Button) view.findViewById(R.id.rate_event);
     }
 
     private void setButtonListener() {
