@@ -45,6 +45,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="attending_Event">You are attending this event</string>
+    <string name="drop_Event">Do you want to drop this event from your calendar?</string>
     <string name="add_Event">Do you want to add this event to your calendar?</string>
     <string name="title_activity_open_chat">OpenChatActivity</string>
     <string name="bad_connection">connection to api failed</string>

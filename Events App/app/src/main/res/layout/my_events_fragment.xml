@@ -21,11 +21,13 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/dropEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/my_events_rectangle"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/imageView1"
