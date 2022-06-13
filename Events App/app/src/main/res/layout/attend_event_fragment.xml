@@ -34,6 +34,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
+            android:id="@+id/name_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/outfit_light"
@@ -44,6 +45,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/category_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:fontFamily="@font/outfit_light"
@@ -55,6 +57,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/description_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginLeft="38dp"
@@ -66,6 +69,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/start_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginLeft="38dp"
@@ -77,6 +81,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/end_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginLeft="38dp"
@@ -88,6 +93,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/location_attend_event"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginLeft="38dp"
