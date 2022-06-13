@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -51,32 +52,28 @@ public class AttendEventFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void setButtonListener() {
         attendEvent.setOnClickListener(view -> {
-            /*AlertDialog.Builder dialogBuilding = new AlertDialog.Builder(getContext());
-            final View attendPopUp = getLayoutInflater().inflate(R.layout.activity_attend_event_pop_up, null);
-            dialogBuilding.setView(attendPopUp);
-            AlertDialog dialog = dialogBuilding.create();
-            dialogBuilding.show();*/
+            Dialog dialog = new Dialog(getContext());
+            dialog.setContentView(R.layout.activity_attend_event_pop_up);
 
-            /*Intent intent = new Intent(getContext(), AttendEventPopUpActivity.class);
-            getContext().startActivity(intent);*/
+            Button no = dialog.findViewById(R.id.no);
+            Button yes = dialog.findViewById(R.id.yes);
 
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popupView = layoutInflater.inflate(R.layout.activity_attend_event_pop_up, null);
-            PopupWindow popupWindow = new PopupWindow(popupView, RadioGroup.LayoutParams.WRAP_CONTENT,
-                    RadioGroup.LayoutParams.WRAP_CONTENT);
-
-            no = (Button)popupView.findViewById(R.id.no);
-            no.setOnClickListener(new Button.OnClickListener(){
+            no.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    popupWindow.dismiss();
+                public void onClick (View view){
+                    dialog.dismiss();
                 }
             });
 
-            popupWindow.showAsDropDown(no, 50, 0);
+            yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
+                    // ServiceAPI.getInstance().getEvent();
+                }
+            });
 
-
+            dialog.show();
         });
     }
-
 }

@@ -3,6 +3,7 @@ package com.example.events.Activities.Fragments;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +35,19 @@ public class RateEventFragment extends Fragment {
 
     private void setButtonListener() {
         rateEvent.setOnClickListener(view -> {
-            AlertDialog.Builder dialogBuilding = new AlertDialog.Builder(getContext());
-            final View attendPopUp = getLayoutInflater().inflate(R.layout.rating_bar_event, null);
-            dialogBuilding.setView(attendPopUp);
-            AlertDialog dialog = dialogBuilding.create();
-            dialogBuilding.show();
+            Dialog dialog = new Dialog(getContext());
+            dialog.setContentView(R.layout.rating_bar_event);
+
+            Button rate = dialog.findViewById(R.id.rate);
+
+            rate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View view){
+                    dialog.dismiss();
+                    // CHANGE IT: WE NEED TO SEND THE RATE TO THE API
+                }
+            });
+            dialog.show();
         });
     }
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.events.Activities.Fragments.AttendEventFragment;
 import com.example.events.Activities.Fragments.CreateEventFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
 import com.example.events.Activities.Fragments.FriendRequestFragment;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OurMessagesFragment()).commit();
                 toolbar.setTitle(R.string.our_messages);
                 break;
-            case R.id.rate_event:
+            case R.id.rateEvents:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateEventFragment()).commit();
                 toolbar.setTitle(R.string.rateEvents);
                 break;
@@ -146,6 +147,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
         toolbar.setTitle(R.string.explore_events);
     }
+
+    /*@Override
+    public void onAttendEventClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment()).commit();
+        //toolbar.setTitle(R.string.attending_Event);
+    }*/
 
     //TODO: FIX TIEMLINE
     @Override
