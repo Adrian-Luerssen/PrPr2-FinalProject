@@ -14,16 +14,24 @@
             android:id="@+id/timeline_circle"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/blue_circle" />
 
         <TextView
-            android:id="@+id/timeline_line"
+            android:id="@+id/timeline_line2"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_below="@id/timeline_circle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/timeline_line1"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_above="@id/timeline_circle"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="1dp"
             android:background="@color/white" />
@@ -32,7 +40,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -47,60 +55,60 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_events_rectangle"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@drawable/my_events_rectangle" />
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:src="@drawable/image"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="-175dp"/>
 
         <TextView
             android:id="@+id/name_event"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="@string/Name_Event"
             android:textColor="@color/white"
             android:textAppearance="@style/mediumText"
             android:fontFamily="@font/outfit_light"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="-150dp"/>
 
         <TextView
             android:id="@+id/category_event"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="@string/Category_Event"
             android:textColor="@color/white"
             android:textAppearance="@style/mediumText"
             android:fontFamily="@font/outfit_light"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/start_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="@string/Start_Date_Event"
             android:textColor="@color/white"
             android:textAppearance="@style/mediumText"
             android:fontFamily="@font/outfit_light"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/location_event"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="@string/Location_Event"
             android:textColor="@color/white"
             android:textAppearance="@style/mediumText"
             android:fontFamily="@font/outfit_light"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="5dp"/>
 
     </LinearLayout>

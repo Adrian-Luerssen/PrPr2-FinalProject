@@ -52,7 +52,7 @@ public class TimelineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.timeline_item, container, false);
+        view = inflater.inflate(R.layout.timeline_fragment, container, false);
         timelineRecView = (RecyclerView) view.findViewById(R.id.timeline_rec_view);
         timelineRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
@@ -119,7 +119,7 @@ public class TimelineFragment extends Fragment {
         private Event event;
 
         public TimeLineViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.timeline_fragment, parent, false));
+            super(inflater.inflate(R.layout.timeline_item, parent, false));
             itemView.setOnClickListener(this);
             timelineImage = (ImageView) itemView.findViewById(R.id.imageView1);
             timelineName = (TextView) itemView.findViewById(R.id.name_event);
@@ -144,15 +144,15 @@ public class TimelineFragment extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof TimelineFragment.TimelineFragmentOnClickListener) {
-            listener = (TimelineFragment.TimelineFragmentOnClickListener) context;
+        if (context instanceof TimelineFragmentOnClickListener) {
+            listener = (TimelineFragmentOnClickListener) context;
         }
         else {
             throw new RuntimeException(context.toString()
                     + " must implement TimelineFragmentOnClickListener");
         }
-    }
+    }*/
 }
