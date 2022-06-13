@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OpenChatFragment.ChatOnClickListener,
         SearchUsersFragment.SearchUsersOnclickListener,
         ProfileFragment.ProfileListener,
-        FriendsFragment.FriendsOnclickListener {
+        FriendsFragment.FriendsOnclickListener,
+        EventsFragment.EventsFragmentOnClickListener{
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -148,11 +149,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.explore_events);
     }
 
-    /*@Override
+    @Override
     public void onAttendEventClicked() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment()).commit();
         //toolbar.setTitle(R.string.attending_Event);
-    }*/
+    }
 
     //TODO: FIX TIEMLINE
     @Override

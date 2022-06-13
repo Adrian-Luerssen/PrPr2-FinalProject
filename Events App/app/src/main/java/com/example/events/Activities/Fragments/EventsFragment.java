@@ -20,9 +20,9 @@ public class EventsFragment extends Fragment {
     private TextView rectangle;
     //private EventsFragmentOnClickListener listener;
 
-    /*public interface EventsFragmentOnClickListener{
+    public interface EventsFragmentOnClickListener{
         void onAttendEventClicked();
-    }*/
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
