@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(R.string.explore_events);
                 break;
             case R.id.timeline:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
                 toolbar.setTitle(R.string.timeline);
                 break;
             case R.id.searchUsers:
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //TODO: FIX TIEMLINE
     @Override
     public void onTimelineClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
         toolbar.setTitle(R.string.timeline);
     }
 

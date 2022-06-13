@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
+import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
@@ -28,10 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TimelineFragment extends Fragment {
-    public  View view;
+    public View view;
     private RecyclerView timelineRecView;
     private List<Event> timelineList;
     private TimelineAdapter timelineAdapter;
+    private User user;
+
+    public TimelineFragment(User user) {
+        this.user = user;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,9 +60,11 @@ public class TimelineFragment extends Fragment {
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 if (response.isSuccessful()) {
                     timelineList = new ArrayList<>();
+                    // Add the events just if the users are the same
                     timelineList = (ArrayList<Event>) response.body();
                     updateUI();
                 }
+
             }
 
             @Override
@@ -117,7 +125,7 @@ public class TimelineFragment extends Fragment {
 
         public void bind(Event event) {
             this.event = event;
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.imageView1)).execute(event.getImageURL());
+            new DownloadImageTask(timelineImage).execute(event.getImageURL());
             this.timelineName.setText(event.getName());
             this.timelineCat.setText(event.getEventType());
             this.timelineStartDate.setText(event.getStartDate());
