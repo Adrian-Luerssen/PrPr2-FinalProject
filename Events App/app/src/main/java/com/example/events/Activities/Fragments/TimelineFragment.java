@@ -81,7 +81,7 @@ public class TimelineFragment extends Fragment {
     }
 
     private void updateUI() {
-        timelineAdapter = new TimelineAdapter(timelineList);
+        timelineAdapter = new TimelineFragment.TimelineAdapter(timelineList);
         timelineRecView.setAdapter(timelineAdapter);
     }
 
