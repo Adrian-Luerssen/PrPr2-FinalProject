@@ -36,10 +36,9 @@ public class AttendEventFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    //@RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        System.out.println("HOLA BUENAS");
         view = inflater.inflate(R.layout.attend_event_fragment, container, false);
         attendEvent = (Button) view.findViewById(R.id.attend_button);
         image = view.findViewById(R.id.imageView);
