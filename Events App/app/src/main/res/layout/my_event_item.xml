@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/dropEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_events_rectangle"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:src="@drawable/image"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="-175dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Name_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="-150dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Category_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Start_Date_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Location_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>
