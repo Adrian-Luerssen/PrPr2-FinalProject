@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onAttendEventClicked(Event event) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment(event)).commit();
-        //toolbar.setTitle(R.string.attending_Event);
+        toolbar.setTitle(R.string.attending_Event);
     }
 
     //TODO: FIX TIEMLINE

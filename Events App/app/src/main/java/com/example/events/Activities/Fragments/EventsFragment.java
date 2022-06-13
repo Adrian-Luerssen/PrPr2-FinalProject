@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,13 +36,12 @@ public class EventsFragment extends Fragment {
     private List<Event> eventList;
     private EventAdapter eventAdapter;
 
-    public EventsFragment() {
-
-    }
-
-
     public interface EventsFragmentOnClickListener{
         void onAttendEventClicked(Event event);
+    }
+
+    public EventsFragment() {
+
     }
 
     @Override
@@ -154,6 +154,18 @@ public class EventsFragment extends Fragment {
         public void onClick(View view) {
             Toast.makeText(getContext(), this.event.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
             listener.onAttendEventClicked(this.event);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof EventsFragmentOnClickListener) {
+            listener = (EventsFragmentOnClickListener) context;
+        }
+        else {
+            throw new RuntimeException(context.toString()
+                    + " must implement EventsFragmentOnclickListener");
         }
     }
 }
