@@ -1,5 +1,6 @@
 package com.example.events.Activities.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,12 @@ public class TimelineFragment extends Fragment {
     private RecyclerView timelineRecView;
     private List<Event> timelineList;
     private TimelineAdapter timelineAdapter;
+    private TimelineFragmentOnClickListener listener;
     private User user;
+
+    public interface TimelineFragmentOnClickListener {
+        void onTimelineClicked();
+    }
 
     public TimelineFragment(User user) {
         this.user = user;
@@ -46,7 +52,7 @@ public class TimelineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.timeline_fragment, container, false);
+        view = inflater.inflate(R.layout.timeline_item, container, false);
         timelineRecView = (RecyclerView) view.findViewById(R.id.timeline_rec_view);
         timelineRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
@@ -75,25 +81,25 @@ public class TimelineFragment extends Fragment {
     }
 
     private void updateUI() {
-        timelineAdapter = new TimelineFragment.TimelineAdapter(timelineList);
+        timelineAdapter = new TimelineAdapter(timelineList);
         timelineRecView.setAdapter(timelineAdapter);
     }
 
-    private class TimelineAdapter extends RecyclerView.Adapter<TimelineFragment.TimeLineViewHolder> {
+    private class TimelineAdapter extends RecyclerView.Adapter<TimeLineViewHolder> {
         private final List<Event> timelineList;
 
-        private TimelineAdapter(List<Event> myEventList) {
-            this.timelineList = myEventList;
+        private TimelineAdapter(List<Event> timelineList) {
+            this.timelineList = timelineList;
         }
 
         @Override
-        public TimelineFragment.TimeLineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public TimeLineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            return new TimelineFragment.TimeLineViewHolder(layoutInflater, parent);
+            return new TimeLineViewHolder(layoutInflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(TimelineFragment.TimeLineViewHolder holder, int position) {
+        public void onBindViewHolder(TimeLineViewHolder holder, int position) {
             Event event = timelineList.get(position);
             holder.bind(event);
         }
@@ -134,7 +140,19 @@ public class TimelineFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
+            listener.onTimelineClicked();
+        }
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof TimelineFragment.TimelineFragmentOnClickListener) {
+            listener = (TimelineFragment.TimelineFragmentOnClickListener) context;
+        }
+        else {
+            throw new RuntimeException(context.toString()
+                    + " must implement TimelineFragmentOnClickListener");
         }
     }
 }
