@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
 public class RateEventFragment extends Fragment {
@@ -45,6 +46,7 @@ public class RateEventFragment extends Fragment {
                 public void onClick (View view){
                     dialog.dismiss();
                     // CHANGE IT: WE NEED TO SEND THE RATE TO THE API
+                    //ServiceAPI
                 }
             });
             dialog.show();

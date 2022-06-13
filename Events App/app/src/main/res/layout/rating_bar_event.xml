@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:layout_margin="120dp"
-    android:gravity="center">
+    android:layout_gravity="center">
 
     <Button
         android:layout_width="wrap_content"
@@ -13,13 +13,13 @@
         android:layout_marginTop="150dp"
         android:text="@string/rateEvent"
         android:id="@+id/rate"
-        android:gravity="center"/>
+        android:layout_marginLeft="85dp"/>
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-150dp"
-        android:gravity="center"/>
+        android:layout_marginLeft="20dp"/>
 
 </LinearLayout>

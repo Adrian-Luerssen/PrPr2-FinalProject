@@ -24,6 +24,7 @@ import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
+import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.R;
@@ -150,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onAttendEventClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment()).commit();
+    public void onAttendEventClicked(Event event) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment(event)).commit();
         //toolbar.setTitle(R.string.attending_Event);
     }
 
