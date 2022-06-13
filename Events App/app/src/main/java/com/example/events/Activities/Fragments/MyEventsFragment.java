@@ -52,7 +52,7 @@ public class MyEventsFragment extends Fragment {
         myEventRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
 
-        image = view.findViewById(R.id.imageView);
+        /* image = view.findViewById(R.id.imageView);
         name = (TextView) view.findViewById(R.id.name_attend_event);
         category = (TextView) view.findViewById(R.id.category_attend_event);
         startDate = (TextView) view.findViewById(R.id.start_attend_event);
@@ -62,7 +62,7 @@ public class MyEventsFragment extends Fragment {
         name.setText(event.getName());
         category.setText(event.getEventType());
         startDate.setText(event.getStartDate());
-        location.setText(event.getLocation());
+        location.setText(event.getLocation()); */
 
         return view;
     }
@@ -74,6 +74,10 @@ public class MyEventsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     myEventList = new ArrayList<>();
                     myEventList = (ArrayList<Event>) response.body();
+                    /* for (Event e : response.body()) {
+                        if (e.getOwnerID() == user.getId())
+                            myEventList.add(e);
+                    } */
                     updateUI();
                 }
             }
@@ -124,13 +128,13 @@ public class MyEventsFragment extends Fragment {
         private TextView location;
 
         public MyEventHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.rectangle_event, parent, false));
+            super(inflater.inflate(R.layout.my_event_item, parent, false));
             itemView.setOnClickListener(this);
             picture = (ImageView) itemView.findViewById(R.id.imageView1);
-            myEventName = (TextView) itemView.findViewById(R.id.myEventName);
-            myEventCategory = (TextView) itemView.findViewById(R.id.myEventCategory);
-            startDate = (TextView) itemView.findViewById(R.id.myEventStartDate);
-            location = (TextView) itemView.findViewById(R.id.myEventLocation);
+            myEventName = (TextView) itemView.findViewById(R.id.my_event_name);
+            myEventCategory = (TextView) itemView.findViewById(R.id.my_event_category);
+            startDate = (TextView) itemView.findViewById(R.id.my_event_start);
+            location = (TextView) itemView.findViewById(R.id.my_event_location);
 
         }
 
@@ -147,6 +151,7 @@ public class MyEventsFragment extends Fragment {
         public void onClick(View view) {
 
         }
+
     }
 
     /*private void initFields() {

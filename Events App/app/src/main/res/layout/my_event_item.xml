@@ -25,7 +25,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/myEventName"
+        android:id="@+id/my_event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Name_Event"
@@ -36,7 +36,7 @@
         android:layout_marginTop="-150dp"/>
 
     <TextView
-        android:id="@+id/myEventCategory"
+        android:id="@+id/my_event_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Category_Event"
@@ -47,7 +47,7 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
-        android:id="@+id/myEventStartDate"
+        android:id="@+id/my_event_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Start_Date_Event"
@@ -58,7 +58,7 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
-        android:id="@+id/myEventLocation"
+        android:id="@+id/my_event_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Location_Event"

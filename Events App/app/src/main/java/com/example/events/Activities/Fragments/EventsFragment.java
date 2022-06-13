@@ -30,7 +30,6 @@ import retrofit2.Response;
 
 public class EventsFragment extends Fragment {
     private View view;
-    private TextView rectangle;
     private EventsFragmentOnClickListener listener;
     private RecyclerView eventRecView;
     private List<Event> eventList;
@@ -83,17 +82,6 @@ public class EventsFragment extends Fragment {
         eventRecView.setAdapter(eventAdapter);
     }
 
-    /*private void initFields() {
-        rectangle = (TextView) view.findViewById(R.id.event_rectangle);
-    }*/
-
-    /*private void setButtonListener() {
-        rectangle.setOnClickListener(view -> {
-           getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment()).commit();
-           //listener.onAttendEventClicked();
-        });
-    }*/
-
     private class EventAdapter extends RecyclerView.Adapter<EventHolder> {
         private final List<Event> eventList;
 
@@ -136,10 +124,6 @@ public class EventsFragment extends Fragment {
             location = (TextView) itemView.findViewById(R.id.event_location);
             rectangle = (TextView) view.findViewById(R.id.event_rectangle);
 
-            /*rectangle.setOnClickListener(view -> {
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment(event)).commit();
-                listener.onAttendEventClicked(event);
-            });*/
         }
 
         public void bind(Event event) {
