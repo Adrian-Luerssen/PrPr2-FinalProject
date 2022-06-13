@@ -24,6 +24,7 @@ import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
+import com.example.events.Activities.Fragments.TimelineFragment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SearchUsersFragment.SearchUsersOnclickListener,
         ProfileFragment.ProfileListener,
         FriendsFragment.FriendsOnclickListener,
-        EventsFragment.EventsFragmentOnClickListener{
+        EventsFragment.EventsFragmentOnClickListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(R.string.explore_events);
                 break;
             case R.id.timeline:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment()).commit();
                 toolbar.setTitle(R.string.timeline);
                 break;
             case R.id.searchUsers:
@@ -159,8 +160,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //TODO: FIX TIEMLINE
     @Override
     public void onTimelineClicked() {
-        /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchUsersFragment()).commit();
-        toolbar.setTitle(R.string.timeline);*/
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment()).commit();
+        toolbar.setTitle(R.string.timeline);
     }
 
     @Override

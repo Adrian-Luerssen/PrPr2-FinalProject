@@ -38,6 +38,7 @@
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/search_users_fragment.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline_fragment.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ACER/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline_item.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/bigbutton.xml" value="0.335" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/drawable/inputbox.xml" value="0.2985" />
         <entry key="..\:/Users/adril/OneDrive/Desktop/programming/Sem-2/Project/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.5" />
@@ -47,10 +48,6 @@
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_login.xml" value="0.13601823708206687" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_my_events.xml" value="0.13601823708206687" />
         <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/activity_side_menu.xml" value="0.13601823708206687" />
-        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/events_fragment.xml" value="0.13601823708206687" />
-        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/my_event_item.xml" value="0.13601823708206687" />
-        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline_fragment.xml" value="0.13601823708206687" />
-        <entry key="..\:/Users/queen/Desktop/PrPr2-FinalProject/Events App/app/src/main/res/layout/timeline_item.xml" value="0.20606884057971014" />
       </map>
     </option>
   </component>
