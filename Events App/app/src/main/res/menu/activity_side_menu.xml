@@ -28,9 +28,6 @@
                     android:id="@+id/myEvents"
                     android:title="@string/myEvents" />
                 <item
-                    android:id="@+id/rateEvents"
-                    android:title="@string/rateEvents" />
-                <item
                     android:id="@+id/createEvents"
                     android:title="@string/createEvents" />
                 <item

@@ -96,10 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OurMessagesFragment()).commit();
                 toolbar.setTitle(R.string.our_messages);
                 break;
-            case R.id.rateEvents:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateEventFragment()).commit();
-                toolbar.setTitle(R.string.rateEvents);
-                break;
             case R.id.logout:
                 onLogoutClicked();
                 break;

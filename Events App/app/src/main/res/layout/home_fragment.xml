@@ -64,36 +64,11 @@
         tools:ignore="RtlSymmetry"/>
 
     <ImageButton
-        android:id="@+id/rateEvents"
+        android:id="@+id/createEvents"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="@color/bubblesMain"
-        android:contentDescription="@string/rateEvents"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_rate_events"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rateEvents"
-        android:paddingEnd="5dp"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textColor="@color/inputText"
-        android:gravity="center_horizontal"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="7dp"
-        tools:ignore="RtlSymmetry"/>
-
-    <ImageButton
-        android:id="@+id/createEvents"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="-115dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/bubblesMain"
         android:contentDescription="@string/createEvents"
@@ -110,7 +85,7 @@
         android:fontFamily="@font/outfit_semi_bold"
         android:textColor="@color/inputText"
         android:gravity="center_horizontal"
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="57dp"
         android:layout_marginTop="7dp"
         tools:ignore="RtlSymmetry"/>
 
@@ -118,8 +93,8 @@
         android:id="@+id/searchUsers"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="-115dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/bubblesMain"
         android:contentDescription="@string/searchUsers"
@@ -136,7 +111,7 @@
         android:fontFamily="@font/outfit_semi_bold"
         android:textColor="@color/inputText"
         android:gravity="center_horizontal"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="250dp"
         android:layout_marginTop="7dp"
         tools:ignore="RtlSymmetry"/>
 
@@ -145,8 +120,8 @@
         android:id="@+id/timeline"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginStart="257dp"
-        android:layout_marginTop="-115dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/bubblesMain"
         android:contentDescription="@string/timeline"
@@ -163,7 +138,7 @@
         android:fontFamily="@font/outfit_semi_bold"
         android:textColor="@color/inputText"
         android:gravity="center_horizontal"
-        android:layout_marginStart="275dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="7dp"
         tools:ignore="RtlSymmetry"/>
 
@@ -171,8 +146,8 @@
         android:id="@+id/logout"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="257dp"
+        android:layout_marginTop="-115dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/bubblesMain"
         android:contentDescription="@string/Log_Out"
@@ -184,7 +159,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="185dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="7dp"
         android:fontFamily="@font/outfit_semi_bold"
         android:gravity="center_horizontal"

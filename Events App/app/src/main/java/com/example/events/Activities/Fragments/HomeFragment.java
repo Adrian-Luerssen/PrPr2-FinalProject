@@ -48,7 +48,6 @@ public class HomeFragment extends Fragment {
         explore = (ImageButton) view.findViewById(R.id.explore_events);
         my_events = (ImageButton) view.findViewById(R.id.myEvents);
         create_events = (ImageButton) view.findViewById(R.id.createEvents);
-        rate_events = (ImageButton) view.findViewById(R.id.rateEvents);
         timeline = (ImageButton) view.findViewById(R.id.timeline);
 
         search.setOnClickListener(view -> {
@@ -65,10 +64,6 @@ public class HomeFragment extends Fragment {
 
         my_events.setOnClickListener(view -> {
             listener.onMyEventsClicked();
-        });
-
-        rate_events.setOnClickListener(view -> {
-            listener.onRateClicked();
         });
 
         create_events.setOnClickListener(view -> {
