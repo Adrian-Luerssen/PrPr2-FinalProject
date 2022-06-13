@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+    <TextView
+        android:id="@+id/event_rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/events_rectangle"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:layout_marginTop="-205dp"
+        android:src="@drawable/image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Name_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/mediumText"
+        android:fontFamily="@font/outfit_bold"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Start_Date_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/linkText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Location_Event"
+        android:textColor="@color/white"
+        android:textAppearance="@style/linkText"
+        android:fontFamily="@font/outfit_light"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"/>
+</LinearLayout>
