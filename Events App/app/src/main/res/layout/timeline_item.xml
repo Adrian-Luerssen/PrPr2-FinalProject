@@ -60,6 +60,7 @@
             android:layout_marginTop="-175dp"/>
 
         <TextView
+            android:id="@+id/name_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Name_Event"
@@ -70,6 +71,7 @@
             android:layout_marginTop="-150dp"/>
 
         <TextView
+            android:id="@+id/category_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Category_Event"
@@ -80,6 +82,7 @@
             android:layout_marginTop="5dp"/>
 
         <TextView
+            android:id="@+id/start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Start_Date_Event"
@@ -90,6 +93,7 @@
             android:layout_marginTop="5dp"/>
 
         <TextView
+            android:id="@+id/location_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Location_Event"
