@@ -25,7 +25,6 @@ import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
-import com.example.events.Activities.Fragments.TimelineEventFragment;
 import com.example.events.Activities.Fragments.TimelineFragment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
@@ -166,8 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onTimelineEventClicked(Event event) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineEventFragment(event)).commit();
-        toolbar.setTitle(R.string.timeline);
+        //TODO: Popup de drop event si la fecha no ha pasado, popup de rate si la fecha ha pasado
     }
 
     @Override
