@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.events.Activities.Fragments.AttendEventFragment;
 import com.example.events.Activities.Fragments.CreateEventFragment;
+import com.example.events.Activities.Fragments.EditProfileFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
 import com.example.events.Activities.Fragments.FriendRequestFragment;
 import com.example.events.Activities.Fragments.FriendsFragment;
@@ -24,6 +25,7 @@ import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
 import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
+import com.example.events.Activities.Fragments.TimelineEventFragment;
 import com.example.events.Activities.Fragments.TimelineFragment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
@@ -38,14 +40,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         HomeFragment.HomeFragmentListener,
         OurMessagesFragment.OurMessagesFragmentListener,
         OpenChatFragment.ChatOnClickListener,
-        SearchUsersFragment.SearchUsersOnclickListener,
+        SearchUsersFragment.SearchUsersOnClickListener,
         ProfileFragment.ProfileListener,
-        FriendsFragment.FriendsOnclickListener,
-        EventsFragment.EventsFragmentOnClickListener {
+        FriendsFragment.FriendsOnClickListener,
+        EventsFragment.EventsFragmentOnClickListener,
+        TimelineFragment.TimelineFragmentOnClickListener
+    {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
-    private Timer refreshTimer = new Timer();
+
+    private final Timer refreshTimer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,10 +158,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.attending_Event);
     }
 
-    //TODO: FIX TIEMLINE
     @Override
     public void onTimelineClicked() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
+        toolbar.setTitle(R.string.timeline);
+    }
+
+    @Override
+    public void onTimelineEventClicked(Event event) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineEventFragment(event)).commit();
         toolbar.setTitle(R.string.timeline);
     }
 
@@ -167,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putString("Token", null);
         editor.putString("Email", null);
         editor.putString("Password", null);
-        editor.commit();
+        editor.apply();
         finish();
     }
 
@@ -200,8 +210,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onEditProfileClicked() {
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
-        //toolbar.setTitle(R.string.edit_profile);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
+        toolbar.setTitle(R.string.edit_profile);
     }
 
     @Override

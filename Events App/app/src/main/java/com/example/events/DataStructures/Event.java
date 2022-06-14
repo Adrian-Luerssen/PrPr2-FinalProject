@@ -4,9 +4,6 @@ package com.example.events.DataStructures;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Event {
     @Expose(serialize = false)
     @SerializedName("id")
@@ -39,8 +36,6 @@ public class Event {
     @SerializedName("owner_id")
     private int ownerID;
 
-    private int currentParticipants;
-
 
     public Event(String name, String imageURL, String location, String description, String startDate, String endDate, int numParticipants, String eventType) {
         this.name = name;
@@ -51,7 +46,7 @@ public class Event {
         this.endDate = endDate;
         this.numParticipants = numParticipants;
         this.eventType = eventType;
-        this.currentParticipants = 0;
+        int currentParticipants = 0;
 
     }
 

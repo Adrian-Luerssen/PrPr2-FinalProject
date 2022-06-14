@@ -96,5 +96,6 @@
         <item>Museums</item>
     </string-array>
     <string name="delete_account">Delete Account</string>
+    <string name="edit_profile">Profile editor</string>
 
 </resources>

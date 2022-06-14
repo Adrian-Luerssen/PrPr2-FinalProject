@@ -5,15 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +25,6 @@ import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
-import java.io.InputStream;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,9 +33,7 @@ import retrofit2.Response;
 
 public class OurMessagesFragment extends Fragment {
     private OurMessagesFragmentListener listener;
-    private View view;
     private UserAdapter userAdapter;
-    private ImageButton search;
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
@@ -61,10 +52,10 @@ public class OurMessagesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.our_messages_fragment, container, false);
-        searchbar = (EditText) view.findViewById(R.id.search_users);
-        search = (ImageButton) view.findViewById(R.id.search_button);
-        userRecView = (RecyclerView) view.findViewById(R.id.our_messages_users_list);
+        View view1 = inflater.inflate(R.layout.our_messages_fragment, container, false);
+        searchbar = (EditText) view1.findViewById(R.id.search_users);
+        ImageButton search = (ImageButton) view1.findViewById(R.id.search_button);
+        userRecView = (RecyclerView) view1.findViewById(R.id.our_messages_users_list);
         userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getUserMessages();
 
@@ -87,7 +78,7 @@ public class OurMessagesFragment extends Fragment {
 
             }
         });
-        return view;
+        return view1;
     }
 
     private void filterUserlist(String searchString) {
@@ -159,7 +150,6 @@ public class OurMessagesFragment extends Fragment {
 
         private User user;
         private final TextView username;
-        private final ImageView profilePicture;
         protected final TextView message;
         private final TextView date;
 
@@ -167,7 +157,7 @@ public class OurMessagesFragment extends Fragment {
             super(inflater.inflate(R.layout.message_user_list_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.message_list_username);
-            profilePicture = (ImageView) itemView.findViewById(R.id.message_user_image);
+            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.message_user_image);
             message = (TextView) itemView.findViewById(R.id.message_user_list_message);
             date = (TextView) itemView.findViewById(R.id.message_list_date);
         }

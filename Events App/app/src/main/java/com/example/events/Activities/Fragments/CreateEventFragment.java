@@ -4,17 +4,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.events.Activities.LoginActivity;
-import com.example.events.Activities.SignUpActivity;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
-import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
-import com.google.android.material.navigation.NavigationBarView;
 
-import java.io.IOException;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -161,7 +153,7 @@ public class CreateEventFragment extends Fragment {
         launchSomeActivity.launch(i);
     }
 
-    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+    final ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null && data.getData() != null) {

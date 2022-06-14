@@ -1,6 +1,5 @@
 package com.example.events.Activities.Fragments;
 
-import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,21 +15,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
 import com.example.events.DataStructures.Users.User;
-import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,14 +35,10 @@ public class OpenChatFragment extends Fragment {
     public static final long REFRESH_TIME = 1000;
     private final User recipient;
     private ArrayList<Message> messages;
-    private View view;
-    private ImageView back;
-    private TextView username;
     private RecyclerView messageRecycler;
     private boolean notClosed;
 
     private EditText messageInput;
-    private Button sendMessage;
 
 
     private ChatOnClickListener listener;
@@ -70,13 +61,13 @@ public class OpenChatFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.open_chat_fragment, container, false);
-        username = view.findViewById(R.id.username);
-        back = view.findViewById(R.id.back_button);
-        messageRecycler = view.findViewById(R.id.messageRecyclerView);
+        View view2 = inflater.inflate(R.layout.open_chat_fragment, container, false);
+        TextView username = view2.findViewById(R.id.username);
+        ImageView back = view2.findViewById(R.id.back_button);
+        messageRecycler = view2.findViewById(R.id.messageRecyclerView);
         messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        sendMessage = view.findViewById(R.id.sendMessage);
-        messageInput = view.findViewById(R.id.messageInput);
+        Button sendMessage = view2.findViewById(R.id.sendMessage);
+        messageInput = view2.findViewById(R.id.messageInput);
         username.setText(recipient.getName()+" "+recipient.getLastName());
         messages = new ArrayList<>();
         notClosed = true;
@@ -119,7 +110,7 @@ public class OpenChatFragment extends Fragment {
         });
 
 
-        return view;
+        return view2;
     }
 
 
@@ -128,11 +119,11 @@ public class OpenChatFragment extends Fragment {
         if (messageAdapter.messageList.size() != messages.size()){
             updateUI();
         }
-        refreshUI(REFRESH_TIME);
+        refreshUI();
     }
 
 
-    private void refreshUI(long milli) {
+    private void refreshUI() {
         if (notClosed){
             final Handler handler = new Handler();
             final Runnable runnable = new Runnable() {
@@ -141,7 +132,7 @@ public class OpenChatFragment extends Fragment {
                     refresh();
                 }
             };
-            handler.postDelayed(runnable,milli);
+            handler.postDelayed(runnable, OpenChatFragment.REFRESH_TIME);
         }
 
     }
@@ -233,7 +224,7 @@ public class OpenChatFragment extends Fragment {
         public static final int VIEW_TYPE_SENT = 1;
         public static final int VIEW_TYPE_RECEIVED = 2;
         private Message message;
-        private TextView messageText;
+        private final TextView messageText;
 
         public MessageHolder(View view) {
             super(view);

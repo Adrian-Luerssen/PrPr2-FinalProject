@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +20,6 @@ import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +28,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TimelineFragment extends Fragment {
+
     public View view;
     private RecyclerView timelineRecView;
     private List<Event> timelineList;
-    private TimelineAdapter timelineAdapter;
     private TimelineFragmentOnClickListener listener;
-    private User user;
 
     public interface TimelineFragmentOnClickListener {
-        void onTimelineClicked();
+        void onTimelineEventClicked(Event event);
     }
 
     public TimelineFragment(User user) {
-        this.user = user;
     }
 
     @Override
@@ -61,6 +57,7 @@ public class TimelineFragment extends Fragment {
     }
 
     private void getAPI() {
+
         ServiceAPI.getInstance().getEvents(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
@@ -81,11 +78,12 @@ public class TimelineFragment extends Fragment {
     }
 
     private void updateUI() {
-        timelineAdapter = new TimelineFragment.TimelineAdapter(timelineList);
+        TimelineAdapter timelineAdapter = new TimelineAdapter(timelineList);
         timelineRecView.setAdapter(timelineAdapter);
     }
 
     private class TimelineAdapter extends RecyclerView.Adapter<TimeLineViewHolder> {
+
         private final List<Event> timelineList;
 
         private TimelineAdapter(List<Event> timelineList) {
@@ -108,14 +106,16 @@ public class TimelineFragment extends Fragment {
         public int getItemCount() {
             return timelineList.size();
         }
+
     }
 
     private class TimeLineViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView timelineName;
-        private TextView timelineCat;
-        private TextView timelineStartDate;
-        private TextView timelineLoc;
-        private ImageView timelineImage;
+
+        private final TextView timelineName;
+        private final TextView timelineCat;
+        private final TextView timelineStartDate;
+        private final TextView timelineLoc;
+        private final ImageView timelineImage;
         private Event event;
 
         public TimeLineViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -136,15 +136,17 @@ public class TimelineFragment extends Fragment {
             this.timelineCat.setText(event.getEventType());
             this.timelineStartDate.setText(event.getStartDate());
             this.timelineLoc.setText(event.getLocation());
+
         }
 
         @Override
         public void onClick(View view) {
-            listener.onTimelineClicked();
+            listener.onTimelineEventClicked(this.event);
         }
+
     }
 
-    /*@Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof TimelineFragmentOnClickListener) {
@@ -154,5 +156,12 @@ public class TimelineFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement TimelineFragmentOnClickListener");
         }
-    }*/
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
 }

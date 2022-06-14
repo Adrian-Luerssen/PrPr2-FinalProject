@@ -35,16 +35,13 @@ import retrofit2.Response;
 
 public class SearchUsersFragment extends Fragment {
 
-    private View view;
     private TextView numResults;
-    private UserAdapter userAdapter;
-    private ImageButton search;
     private EditText searchbar;
     private RecyclerView userRecView;
     private UserList userList;
-    private SearchUsersOnclickListener listener;
+    private SearchUsersOnClickListener listener;
 
-    public interface SearchUsersOnclickListener{
+    public interface SearchUsersOnClickListener {
         void onProfileClicked(User user);
     }
 
@@ -59,11 +56,11 @@ public class SearchUsersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.search_users_fragment, container, false);
-        searchbar = (EditText) view.findViewById(R.id.search_users);
-        numResults = (TextView) view.findViewById(R.id.num_results);
-        search = (ImageButton) view.findViewById(R.id.search_button);
-        userRecView = (RecyclerView) view.findViewById(R.id.user_search_rec_view);
+        View view1 = inflater.inflate(R.layout.search_users_fragment, container, false);
+        searchbar = (EditText) view1.findViewById(R.id.search_users);
+        numResults = (TextView) view1.findViewById(R.id.num_results);
+        ImageButton search = (ImageButton) view1.findViewById(R.id.search_button);
+        userRecView = (RecyclerView) view1.findViewById(R.id.user_search_rec_view);
         userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         search.setOnClickListener(view -> {
             searchAPI();
@@ -84,7 +81,7 @@ public class SearchUsersFragment extends Fragment {
 
             }
         });
-        return view;
+        return view1;
 
     }
 
@@ -109,7 +106,7 @@ public class SearchUsersFragment extends Fragment {
     }
 
     private void updateUI() {
-        userAdapter = new UserAdapter(userList.getUsers());
+        UserAdapter userAdapter = new UserAdapter(userList.getUsers());
         numResults.setText(getString(R.string.matchingFormat, userList.getUsers().size()));
         userRecView.setAdapter(userAdapter);
     }
@@ -151,17 +148,15 @@ public class SearchUsersFragment extends Fragment {
     private class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private User user;
-        private TextView username;
-        private ImageView profilePicture;
-        private ImageButton addFriend;
+        private final TextView username;
 
 
         public UserHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_search_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.search_user_name);
-            profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
-            addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
+            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            ImageButton addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
             addFriend.setOnClickListener(view -> {
                 ServiceAPI.getInstance().sendFriendRequest(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -198,8 +193,8 @@ public class SearchUsersFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof SearchUsersOnclickListener) {
-            listener = (SearchUsersOnclickListener) context;
+        if (context instanceof SearchUsersOnClickListener) {
+            listener = (SearchUsersOnClickListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement SearchUsersOnclickListener");

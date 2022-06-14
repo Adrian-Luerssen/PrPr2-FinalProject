@@ -1,25 +1,25 @@
 package com.example.events.Activities.Fragments;
 
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
 import com.example.events.DataStructures.Event;
 import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.R;
 
-public class AttendEventFragment extends Fragment {
-    private Button attendEvent;
+public class TimelineEventFragment extends Fragment {
+
     private final Event event;
 
-    public AttendEventFragment (Event event) {
+    public TimelineEventFragment (Event event) {
         this.event = event;
     }
 
@@ -31,8 +31,8 @@ public class AttendEventFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.attend_event_fragment, container, false);
-        attendEvent = (Button) view.findViewById(R.id.attend_button);
+
+        View view = inflater.inflate(R.layout.event_timeline_fragment, container, false);
         ImageView image = view.findViewById(R.id.imageView);
         TextView name = (TextView) view.findViewById(R.id.name_attend_event);
         TextView category = (TextView) view.findViewById(R.id.category_attend_event);
@@ -49,36 +49,8 @@ public class AttendEventFragment extends Fragment {
         endDate.setText(event.getEndDate());
         location.setText(event.getLocation());
 
-        setButtonListener();
-
         return view;
+
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void setButtonListener() {
-        attendEvent.setOnClickListener(view -> {
-            Dialog dialog = new Dialog(getContext());
-            dialog.setContentView(R.layout.activity_attend_event_pop_up);
-
-            Button no = dialog.findViewById(R.id.no);
-            Button yes = dialog.findViewById(R.id.yes);
-
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick (View view){
-                    dialog.dismiss();
-                }
-            });
-
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
-                    // ServiceAPI.getInstance().getEvent();
-                }
-            });
-
-            dialog.show();
-        });
-    }
 }

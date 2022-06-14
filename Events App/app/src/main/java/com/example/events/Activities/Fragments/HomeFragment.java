@@ -1,29 +1,19 @@
 package com.example.events.Activities.Fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.events.Activities.Fragments.SearchUsersFragment;
+import androidx.fragment.app.Fragment;
+
 import com.example.events.R;
 
 public class HomeFragment extends Fragment {
     private HomeFragmentListener listener;
-    private ImageButton search;
-    private ImageButton logout;
-    private ImageButton explore;
-    private ImageButton my_events;
     private ImageButton rate_events;
-    private ImageButton create_events;
-    private ImageButton timeline;
-    private View view;
 
     public interface HomeFragmentListener {
         void onSearchClicked();
@@ -41,14 +31,14 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.home_fragment, container, false);
+        View view1 = inflater.inflate(R.layout.home_fragment, container, false);
 
-        search = (ImageButton) view.findViewById(R.id.searchUsers);
-        logout = (ImageButton) view.findViewById(R.id.logout);
-        explore = (ImageButton) view.findViewById(R.id.explore_events);
-        my_events = (ImageButton) view.findViewById(R.id.myEvents);
-        create_events = (ImageButton) view.findViewById(R.id.createEvents);
-        timeline = (ImageButton) view.findViewById(R.id.timeline);
+        ImageButton search = (ImageButton) view1.findViewById(R.id.searchUsers);
+        ImageButton logout = (ImageButton) view1.findViewById(R.id.logout);
+        ImageButton explore = (ImageButton) view1.findViewById(R.id.explore_events);
+        ImageButton my_events = (ImageButton) view1.findViewById(R.id.myEvents);
+        ImageButton create_events = (ImageButton) view1.findViewById(R.id.createEvents);
+        ImageButton timeline = (ImageButton) view1.findViewById(R.id.timeline);
 
         search.setOnClickListener(view -> {
             listener.onSearchClicked();
@@ -74,7 +64,7 @@ public class HomeFragment extends Fragment {
             listener.onTimelineClicked();
         });
 
-        return view;
+        return view1;
     }
 
     @Override
