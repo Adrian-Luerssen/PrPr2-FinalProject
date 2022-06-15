@@ -34,7 +34,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AttendEventFragment extends Fragment {
-    private View view;
     private Button attendEvent;
     private ImageView image;
     private TextView name;
@@ -70,7 +69,7 @@ public class AttendEventFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.attend_event_fragment, container, false);
+        View view = inflater.inflate(R.layout.attend_event_fragment, container, false);
         attendEvent = (Button) view.findViewById(R.id.attend_button);
         image = view.findViewById(R.id.imageView);
         name = (TextView) view.findViewById(R.id.name_attend_event);

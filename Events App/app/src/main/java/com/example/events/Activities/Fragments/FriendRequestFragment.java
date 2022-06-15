@@ -27,8 +27,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FriendRequestFragment extends Fragment {
-    private View view;
-    private RequestAdapter requestAdapter;
     private RecyclerView requestRecView;
     private List<User> requests;
 
@@ -43,7 +41,7 @@ public class FriendRequestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.friend_requests_fragment, container, false);
+        View view = inflater.inflate(R.layout.friend_requests_fragment, container, false);
         requestRecView = view.findViewById(R.id.friendRequestsRecycler);
         requestRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         refresh();
@@ -68,7 +66,7 @@ public class FriendRequestFragment extends Fragment {
     }
     private void updateUI() {
 
-        requestAdapter = new RequestAdapter(requests);
+        RequestAdapter requestAdapter = new RequestAdapter(requests);
         requestRecView.setAdapter(requestAdapter);
     }
 
@@ -108,24 +106,21 @@ public class FriendRequestFragment extends Fragment {
     // View Holder
     private class RequestHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private User user;
-        private TextView username;
-        private ImageView profilePicture;
-        private ImageButton acceptFriend;
-        private ImageButton declineFriend;
+        private final TextView username;
+        private final ImageButton acceptFriend;
+        private final ImageButton declineFriend;
 
 
         public RequestHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.friend_request_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.username);
-            profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
             acceptFriend = (ImageButton) itemView.findViewById(R.id.acceptRequest);
             declineFriend = (ImageButton) itemView.findViewById(R.id.declineRequest);
         }
 
         public void bind(User user) {
-            this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
             new DownloadImageTask((ImageView) itemView.findViewById(R.id.profileImage)).execute(user.getImageURL());
             acceptFriend.setOnClickListener(new View.OnClickListener() {

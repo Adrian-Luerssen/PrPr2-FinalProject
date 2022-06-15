@@ -35,14 +35,10 @@ public class OpenChatFragment extends Fragment {
     public static final long REFRESH_TIME = 1000;
     private final User recipient;
     private ArrayList<Message> messages;
-    private View view;
-    private ImageView back;
-    private TextView username;
     private RecyclerView messageRecycler;
     private boolean notClosed;
 
     private EditText messageInput;
-    private Button sendMessage;
 
 
     private ChatOnClickListener listener;
@@ -65,13 +61,13 @@ public class OpenChatFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.open_chat_fragment, container, false);
-        username = view.findViewById(R.id.username);
-        back = view.findViewById(R.id.back_button);
-        messageRecycler = view.findViewById(R.id.messageRecyclerView);
+        View view2 = inflater.inflate(R.layout.open_chat_fragment, container, false);
+        TextView username = view2.findViewById(R.id.username);
+        ImageView back = view2.findViewById(R.id.back_button);
+        messageRecycler = view2.findViewById(R.id.messageRecyclerView);
         messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        sendMessage = view.findViewById(R.id.sendMessage);
-        messageInput = view.findViewById(R.id.messageInput);
+        Button sendMessage = view2.findViewById(R.id.sendMessage);
+        messageInput = view2.findViewById(R.id.messageInput);
         username.setText(recipient.getName()+" "+recipient.getLastName());
         messages = new ArrayList<>();
         notClosed = true;
@@ -114,7 +110,7 @@ public class OpenChatFragment extends Fragment {
         });
 
 
-        return view;
+        return view2;
     }
 
 
@@ -123,11 +119,11 @@ public class OpenChatFragment extends Fragment {
         if (messageAdapter.messageList.size() != messages.size()){
             updateUI();
         }
-        refreshUI(REFRESH_TIME);
+        refreshUI();
     }
 
 
-    private void refreshUI(long milli) {
+    private void refreshUI() {
         if (notClosed){
             final Handler handler = new Handler();
             final Runnable runnable = new Runnable() {
@@ -136,7 +132,7 @@ public class OpenChatFragment extends Fragment {
                     refresh();
                 }
             };
-            handler.postDelayed(runnable,milli);
+            handler.postDelayed(runnable, OpenChatFragment.REFRESH_TIME);
         }
 
     }
@@ -228,7 +224,7 @@ public class OpenChatFragment extends Fragment {
         public static final int VIEW_TYPE_SENT = 1;
         public static final int VIEW_TYPE_RECEIVED = 2;
         private Message message;
-        private TextView messageText;
+        private final TextView messageText;
 
         public MessageHolder(View view) {
             super(view);

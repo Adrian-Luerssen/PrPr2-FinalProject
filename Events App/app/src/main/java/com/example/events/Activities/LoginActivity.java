@@ -20,7 +20,6 @@ import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.BearerToken;
 import com.example.events.DataStructures.Users.LoginObject;
 import com.example.events.DataStructures.Users.User;
-import com.example.events.Persistence.Api;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
@@ -137,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("Token", user.getToken().getToken());
         editor.putString("Email", user.getEmail());
         editor.putString("Password", user.getPassword());
-        editor.commit();
+        editor.apply();
     }
 
     private void getUserFromSharedPref(){

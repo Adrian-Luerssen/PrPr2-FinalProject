@@ -93,7 +93,7 @@ public interface Api {
     @POST("events")
     Call<Event> createEvent(@Body Event event, @Header("Authorization") String token);
 
-    //get events
+    //get all events
     @GET("events")
     Call<List<Event>> getEvents(@Header("Authorization") String token);
 

@@ -25,14 +25,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FriendsFragment extends Fragment {
-    private View view;
-    private FriendAdapter friendAdapter;
     private RecyclerView friendRecView;
     private List<User> friends;
-    private FriendsOnclickListener listener;
+    private FriendsOnClickListener listener;
     private ImageView back;
 
-    public interface FriendsOnclickListener {
+    public interface FriendsOnClickListener {
         void onProfileClicked(User user);
         void onBackClicked();
     }
@@ -45,7 +43,7 @@ public class FriendsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.friend_fragment, container, false);
+        View view = inflater.inflate(R.layout.friend_fragment, container, false);
         friendRecView = view.findViewById(R.id.friendRecycler);
         friendRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         back = view.findViewById(R.id.back_button);
@@ -74,7 +72,7 @@ public class FriendsFragment extends Fragment {
     }
     private void updateUI() {
 
-        friendAdapter = new FriendAdapter(friends);
+        FriendAdapter friendAdapter = new FriendAdapter(friends);
         friendRecView.setAdapter(friendAdapter);
     }
 
@@ -106,8 +104,6 @@ public class FriendsFragment extends Fragment {
             return userList.size();
         }
 
-
-
     }
 
 
@@ -115,15 +111,14 @@ public class FriendsFragment extends Fragment {
     private class FriendHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private User user;
-        private TextView username;
-        private ImageView profilePicture;
+        private final TextView username;
 
 
         public FriendHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.friend_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.username);
-            profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
         }
 
         public void bind(User user) {
@@ -142,8 +137,8 @@ public class FriendsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof FriendsOnclickListener) {
-            listener = (FriendsOnclickListener) context;
+        if (context instanceof FriendsOnClickListener) {
+            listener = (FriendsOnClickListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement SearchUsersOnclickListener");

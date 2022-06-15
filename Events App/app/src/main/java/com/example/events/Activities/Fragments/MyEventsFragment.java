@@ -27,7 +27,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyEventsFragment extends Fragment {
-    private View view;
     private TextView dropEvent;
     private ImageView image;
     private TextView name;
@@ -38,7 +37,6 @@ public class MyEventsFragment extends Fragment {
     private RecyclerView myEventRecView;
     private List<Event> myEventList;
     private User user;
-    private MyEventAdapter myEventAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,7 @@ public class MyEventsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.my_events_fragment, container, false);
+        View view = inflater.inflate(R.layout.my_events_fragment, container, false);
         myEventRecView = (RecyclerView) view.findViewById(R.id.my_events_rec_view);
         myEventRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
@@ -90,7 +88,7 @@ public class MyEventsFragment extends Fragment {
     }
 
     private void updateUI() {
-        myEventAdapter = new MyEventsFragment.MyEventAdapter(myEventList);
+        MyEventAdapter myEventAdapter = new MyEventAdapter(myEventList);
         myEventRecView.setAdapter(myEventAdapter);
     }
 
@@ -120,17 +118,15 @@ public class MyEventsFragment extends Fragment {
     }
 
     private class MyEventHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Event event;
-        private ImageView picture;
-        private TextView myEventName;
-        private TextView myEventCategory;
-        private TextView startDate;
-        private TextView location;
+        private final TextView myEventName;
+        private final TextView myEventCategory;
+        private final TextView startDate;
+        private final TextView location;
 
         public MyEventHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.my_event_item, parent, false));
             itemView.setOnClickListener(this);
-            picture = (ImageView) itemView.findViewById(R.id.imageView1);
+            ImageView picture = (ImageView) itemView.findViewById(R.id.imageView1);
             myEventName = (TextView) itemView.findViewById(R.id.my_event_name);
             myEventCategory = (TextView) itemView.findViewById(R.id.my_event_category);
             startDate = (TextView) itemView.findViewById(R.id.my_event_start);
@@ -139,7 +135,6 @@ public class MyEventsFragment extends Fragment {
         }
 
         public void bind(Event event) {
-            this.event = event;
             new DownloadImageTask((ImageView) itemView.findViewById(R.id.imageView1)).execute(event.getImageURL());
             this.myEventName.setText(event.getName());
             this.myEventCategory.setText(event.getEventType());

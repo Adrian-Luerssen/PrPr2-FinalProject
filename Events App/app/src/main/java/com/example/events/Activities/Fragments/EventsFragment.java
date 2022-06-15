@@ -162,7 +162,7 @@ public class EventsFragment extends Fragment {
     }
 
     private void updateUI() {
-        eventAdapter = new EventAdapter(eventList);
+        EventAdapter eventAdapter = new EventAdapter(eventList);
         eventRecView.setAdapter(eventAdapter);
     }
 
@@ -193,20 +193,18 @@ public class EventsFragment extends Fragment {
 
     private class EventHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Event event;
-        private ImageView picture;
-        private TextView eventName;
-        private TextView startDate;
-        private TextView location;
-        private TextView rectangle;
+        private final TextView eventName;
+        private final TextView startDate;
+        private final TextView location;
 
         public EventHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.rectangle_event, parent, false));
             itemView.setOnClickListener(this);
-            picture = (ImageView) itemView.findViewById(R.id.imageView1);
+            ImageView picture = (ImageView) itemView.findViewById(R.id.imageView1);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             startDate = (TextView) itemView.findViewById(R.id.event_start_date);
             location = (TextView) itemView.findViewById(R.id.event_location);
-            rectangle = (TextView) view.findViewById(R.id.event_rectangle);
+            TextView rectangle = (TextView) view.findViewById(R.id.event_rectangle);
 
         }
 

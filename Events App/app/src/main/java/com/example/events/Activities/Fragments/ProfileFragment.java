@@ -30,16 +30,12 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
-    private View view;
-    private User user;
-    private TextView username;
-    private ImageView profilePicture;
-    private TextView editProfileORgotochat;
+    private final User user;
     private TextView addUserORviewRequests;
-    private TextView viewFriends;
     private ProfileListener listener;
     private Button delete;
     private ImageView back;
+    private View view2;
 
     public ProfileFragment(User user) {
         this.user = user;
@@ -66,18 +62,18 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.profile_fragment, container, false);
-        username = view.findViewById(R.id.profileName);
-        profilePicture = view.findViewById(R.id.profileImage);
-        editProfileORgotochat = view.findViewById(R.id.gotochatOReditProfile);
-        addUserORviewRequests = view.findViewById(R.id.addUser);
-        viewFriends = view.findViewById(R.id.see_friends);
-        delete = view.findViewById(R.id.deleteAccount);
+        view2 = inflater.inflate(R.layout.profile_fragment, container, false);
+        TextView username = view2.findViewById(R.id.profileName);
+        ImageView profilePicture = view2.findViewById(R.id.profileImage);
+        TextView editProfileORgotochat = view2.findViewById(R.id.gotochatOReditProfile);
+        addUserORviewRequests = view2.findViewById(R.id.addUser);
+        TextView viewFriends = view2.findViewById(R.id.see_friends);
+        Button delete = view2.findViewById(R.id.deleteAccount);
         delete.setVisibility(View.INVISIBLE);
         viewFriends.setVisibility(View.INVISIBLE);
         username.setText(user.getName() + " " + user.getLastName());
 
-        back = view.findViewById(R.id.back_button);
+        back = view2.findViewById(R.id.back_button);
 
         back.setOnClickListener(view1 -> {
             listener.onBackClicked();
@@ -173,7 +169,7 @@ public class ProfileFragment extends Fragment {
         }
 
         new DownloadImageTask(profilePicture).execute(user.getImageURL());
-        return view;
+        return view2;
     }
 
     @Override

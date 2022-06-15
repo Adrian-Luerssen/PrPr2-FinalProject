@@ -110,5 +110,6 @@
     <string name="searchInput">Search All</string>
     <string name="GetBest">Get Best</string>
     <string name="clear">Clear Inputs</string>
+    <string name="edit_profile">Profile editor</string>
 
 </resources>
