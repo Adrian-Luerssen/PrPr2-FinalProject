@@ -4,6 +4,9 @@ package com.example.events.DataStructures;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,6 +29,9 @@ public class Event {
     @Expose
     @SerializedName("eventStart_date")
     private String startDate;
+    @Expose(serialize = false,deserialize = true)
+    @SerializedName("date")
+    private String date;
     @Expose
     @SerializedName("eventEnd_date")
     private String endDate;
@@ -56,7 +62,7 @@ public class Event {
     }
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -106,7 +112,25 @@ public class Event {
     }
 
     public String getStartDate() {
-        return startDate;
+        Date date = null;
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+        if (startDate == null) {
+            System.out.println(date);
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(this.date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(startDate);
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(startDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return dateFormat.format(date);
     }
 
     public void setStartDate(String startDate) {
@@ -114,7 +138,25 @@ public class Event {
     }
 
     public String getEndDate() {
-        return endDate;
+        Date date = null;
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+        if (endDate == null) {
+
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(this.date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(endDate);
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(endDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return dateFormat.format(date);
     }
 
     public void setEndDate(String endDate) {

@@ -96,5 +96,19 @@
         <item>Museums</item>
     </string-array>
     <string name="delete_account">Delete Account</string>
+    <string name="unattend_text">Are you sure you want to unattend this event?</string>
+    <string name="unattend_message">You will no longer be able to attend this event.</string>
+    <string name="number">-</string>
+    <string name="Event">Event</string>
+    <string name="view_attendence">View Attendance</string>
+    <string name="comments">Comments:</string>
+    <string name="keyword">name</string>
+    <string name="location">Location</string>
+    <string name="date">Date</string>
+    <string name="searchAll">Search All</string>
+    <string name="searchBest">Search Best</string>
+    <string name="searchInput">Search All</string>
+    <string name="GetBest">Get Best</string>
+    <string name="clear">Clear Inputs</string>
 
 </resources>

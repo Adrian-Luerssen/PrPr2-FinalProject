@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -38,6 +39,11 @@ public class ProfileFragment extends Fragment {
     private TextView viewFriends;
     private ProfileListener listener;
     private Button delete;
+    private ImageView back;
+
+    public ProfileFragment(User user) {
+        this.user = user;
+    }
 
     public interface ProfileListener {
         void onEditProfileClicked();
@@ -47,12 +53,10 @@ public class ProfileFragment extends Fragment {
         void onUserChatClicked(User user);
 
         void viewFriends();
+        void onBackClicked();
     }
 
-    public ProfileFragment(User user) {
-        this.user = user;
-        // Required empty public constructor
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,12 @@ public class ProfileFragment extends Fragment {
         delete.setVisibility(View.INVISIBLE);
         viewFriends.setVisibility(View.INVISIBLE);
         username.setText(user.getName() + " " + user.getLastName());
+
+        back = view.findViewById(R.id.back_button);
+
+        back.setOnClickListener(view1 -> {
+            listener.onBackClicked();
+        });
         if (user.getId() == AuthUser.getAuthUser().getId()) {
             viewFriends.setVisibility(View.VISIBLE);
             delete.setVisibility(View.VISIBLE);

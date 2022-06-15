@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/background">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/comment_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/boy1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/comment_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/user1"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/comment_image"
+            app:layout_constraintBottom_toTopOf="@+id/user_comment"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/user_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/outfit_light"
+            android:text="@string/user1"
+            android:maxLength="33"
+            android:textAppearance="@style/linkText"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/comment_image"
+            app:layout_constraintTop_toBottomOf="@id/comment_user_name"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/user_score"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/outfit_extra_bold"
+            android:text="@string/number"
+            android:textAppearance="@style/BigText"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,6 +1,6 @@
 package com.example.events.Persistence;
 
-import com.example.events.DataStructures.Assistance;
+import com.example.events.DataStructures.Comment;
 import com.example.events.DataStructures.Users.BearerToken;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.LoginObject;
@@ -9,6 +9,7 @@ import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserStatistics;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -20,6 +21,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface Api {
     // Register a new user
@@ -105,7 +107,8 @@ public interface Api {
 
     //get events by search parameter
     @GET("events/search")
-    Call<List<Event>> searchEvents(@Query(value = "s",encoded = true) String match, @Header("Authorization") String token);
+    //Call<List<Event>> searchEvents(@Query(value = "name") String name,@Query(value = "location") String location,@Query(value = "date") String date, @Header("Authorization") String token);
+    Call<List<Event>> searchEvents(@QueryMap Map<String,String> options, @Header("Authorization") String token);
 
     //update event
     @PUT("events/{id}")
@@ -117,11 +120,11 @@ public interface Api {
 
     //get event assistances
     @GET("events/{id}/assistances")
-    Call<List<User>> getEventAssistances(@Path("id") int eventId, @Header("Authorization") String token);
+    Call<List<Comment>> getEventAssistances(@Path("id") int eventId, @Header("Authorization") String token);
 
     //get assistance of user with matching id for event with matching id
     @GET("events/{id}/assistances/{userId}")
-    Call<Assistance> getAssistance(@Path("id") int eventId, @Path("userId") int userId, @Header("Authorization") String token);
+    Call<Comment> getAssistance(@Path("id") int eventId, @Path("userId") int userId, @Header("Authorization") String token);
 
     //assist an event
     @POST("events/{id}/assistances")
@@ -129,7 +132,7 @@ public interface Api {
 
     //edit assistance to an event
     @PUT("events/{id}/assistances")
-    Call<ResponseBody> editAssistance(@Path("id") int eventId, @Body Assistance assistance, @Header("Authorization") String token);
+    Call<ResponseBody> editAssistance(@Path("id") int eventId, @Body Comment assistance, @Header("Authorization") String token);
 
     //delete assistance to an event
     @DELETE("events/{id}/assistances")
@@ -137,19 +140,19 @@ public interface Api {
 
 
     //get user assistence
-    @GET("users/{user_id}/{event_id}")
-    Call<Assistance> getUserAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Header("Authorization") String token);
+    @GET("assistances/{user_id}/{event_id}")
+    Call<Comment> getUserAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Header("Authorization") String token);
 
     //create assistance
-    @POST("users/{user_id}/{event_id}")
+    @POST("assistances/{user_id}/{event_id}")
     Call<ResponseBody> createAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Header("Authorization") String token);
 
     //edit assistance
-    @PUT("users/{user_id}/{event_id}")
-    Call<ResponseBody> editAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Body Assistance assistance, @Header("Authorization") String token);
+    @PUT("assistances/{user_id}/{event_id}")
+    Call<ResponseBody> editAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Body Comment assistance, @Header("Authorization") String token);
 
     //delete assistance
-    @DELETE("users/{user_id}/{event_id}")
+    @DELETE("assistances/{user_id}/{event_id}")
     Call<ResponseBody> deleteAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Header("Authorization") String token);
 
 

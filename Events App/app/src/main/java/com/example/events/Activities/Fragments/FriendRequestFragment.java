@@ -31,6 +31,11 @@ public class FriendRequestFragment extends Fragment {
     private RequestAdapter requestAdapter;
     private RecyclerView requestRecView;
     private List<User> requests;
+
+    private interface FriendRequestOnclickListener{
+        void onProfileClicked(User user);
+        void onBackClicked();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.events.Activities.Fragments.AttendEventFragment;
+import com.example.events.Activities.Fragments.AttendantListFragment;
 import com.example.events.Activities.Fragments.CreateEventFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
 import com.example.events.Activities.Fragments.FriendRequestFragment;
@@ -41,7 +42,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SearchUsersFragment.SearchUsersOnclickListener,
         ProfileFragment.ProfileListener,
         FriendsFragment.FriendsOnclickListener,
-        EventsFragment.EventsFragmentOnClickListener {
+        EventsFragment.EventsFragmentOnClickListener,
+        AttendEventFragment.AttendEventFragmentOnClickListener,
+        TimelineFragment.TimelineFragmentOnClickListener,
+        AttendantListFragment.AttendListFragmentOnClickListener{
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new HomeFragment()).commit();
         toolbar.setTitle(R.string.HomeScreen);
     }
 
@@ -119,44 +123,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSearchClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchUsersFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SearchUsersFragment()).commit();
         toolbar.setTitle(R.string.search_users);
     }
 
     @Override
     public void onCreateClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CreateEventFragment()).commit();
         toolbar.setTitle(R.string.createEvents);
     }
 
     @Override
     public void onMyEventsClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyEventsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MyEventsFragment()).commit();
         toolbar.setTitle(R.string.myEvents);
     }
 
     @Override
     public void onRateClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateEventFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new RateEventFragment()).commit();
         toolbar.setTitle(R.string.rateEvents);
     }
 
     @Override
     public void onExploreClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new EventsFragment()).commit();
         toolbar.setTitle(R.string.explore_events);
     }
 
     @Override
-    public void onAttendEventClicked(Event event) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AttendEventFragment(event)).commit();
-        toolbar.setTitle(R.string.attending_Event);
+    public void onEventClicked(Event event) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new AttendEventFragment(event)).commit();
+        toolbar.setTitle(R.string.Event);
     }
 
     //TODO: FIX TIEMLINE
     @Override
     public void onTimelineClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
         toolbar.setTitle(R.string.timeline);
     }
 
@@ -174,27 +178,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onUserChatClicked(User user) {
         OpenChatFragment frag = new OpenChatFragment(user);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, frag).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, frag).commit();
         toolbar.setTitle(R.string.our_messages);
 
     }
 
     @Override
     public void viewFriends() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FriendsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new FriendsFragment()).commit();
         toolbar.setTitle(R.string.friends);
     }
 
+
+
     @Override
     public void onBackClicked() {
-        OurMessagesFragment ourMessagesFragment = new OurMessagesFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ourMessagesFragment).commit();
-        toolbar.setTitle(R.string.our_messages);
+        getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        if (getSupportFragmentManager().getFragments().size() == 1){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            toolbar.setTitle(R.string.HomeScreen);
+        }
     }
+
+
+
+
+
+
 
     @Override
     public void onProfileClicked(User user) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment(user)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProfileFragment(user)).commit();
         toolbar.setTitle(R.string.profile);
     }
 
@@ -206,7 +220,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void viewFriendRequests() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FriendRequestFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new FriendRequestFragment()).commit();
         toolbar.setTitle(R.string.friend_requests);
     }
+
+    /*@Override
+    public void goEventBack(String origin) {
+        switch(origin){
+            case "timelineFragment":{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
+                toolbar.setTitle(R.string.timeline);
+                break;
+            }
+            case "EventsFragment":{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
+                toolbar.setTitle(R.string.explore_events);
+                break;
+            }
+        }
+    }*/
+
+    @Override
+    public void viewAttendence(Event event) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new AttendantListFragment(event)).commit();
+        toolbar.setTitle(R.string.Event);
+    }
+
+
+
 }

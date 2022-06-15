@@ -68,7 +68,7 @@ public class MyEventsFragment extends Fragment {
     }
 
     private void getAPI() {
-        ServiceAPI.getInstance().getEvents(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Event>>() {
+        ServiceAPI.getInstance().getEvents(AuthUser.getAuthUser().getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 if (response.isSuccessful()) {

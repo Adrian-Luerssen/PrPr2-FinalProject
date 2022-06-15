@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:id="@+id/attend_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/attending_Event"
@@ -19,6 +20,7 @@
         android:fontFamily="@font/outfit_bold" />
 
     <TextView
+        android:id="@+id/attend_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_Event"

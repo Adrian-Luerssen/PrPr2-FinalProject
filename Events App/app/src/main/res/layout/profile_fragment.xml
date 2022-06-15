@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +15,16 @@
             android:layout_height="350dp"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                tools:ignore="ContentDescription" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage"
                 android:layout_width="150dp"
@@ -23,78 +32,74 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="45dp"
                 android:src="@drawable/boy1" />
+
             <TextView
                 android:id="@+id/profileName"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:text="@string/First_Name"
-                android:textColor="@color/white"
-                android:textAppearance="@style/BigText"/>
+                android:textAppearance="@style/BigText"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/gotochatOReditProfile"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bigbutton"
+            android:fontFamily="@font/outfit_bold"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/goto_chat"
+            android:textAlignment="center"
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/gotochatOReditProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="@string/goto_chat"
-                android:background="@drawable/bigbutton"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textAppearance="@style/mediumText"
-                android:fontFamily="@font/outfit_bold"
-                android:textAlignment="center"/>
-        </LinearLayout>
         <TextView
             android:id="@+id/addUser"
-            android:background="@drawable/bigbutton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bigbutton"
+            android:fontFamily="@font/outfit_bold"
             android:padding="10dp"
             android:text="@string/add_Friend"
-            android:textColor="@color/black"
-            android:textAppearance="@style/mediumText"
-            android:fontFamily="@font/outfit_bold"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp"/>
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/black" />
+
         <TextView
             android:id="@+id/see_friends"
-            android:background="@drawable/bigbutton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bigbutton"
+            android:fontFamily="@font/outfit_bold"
             android:padding="10dp"
             android:text="@string/see_friends"
-            android:textColor="@color/black"
-            android:textAppearance="@style/mediumText"
-            android:fontFamily="@font/outfit_bold"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp"/>
+            android:textAppearance="@style/mediumText"
+            android:textColor="@color/black" />
+
         <Button
             android:id="@+id/deleteAccount"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/bigbutton"
             android:fontFamily="@font/outfit_bold"
             android:text="@string/delete_account"

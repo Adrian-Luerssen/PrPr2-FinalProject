@@ -154,6 +154,7 @@ public class SearchUsersFragment extends Fragment {
         private TextView username;
         private ImageView profilePicture;
         private ImageButton addFriend;
+        private boolean isFriend;
 
 
         public UserHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -162,35 +163,70 @@ public class SearchUsersFragment extends Fragment {
             username = (TextView) itemView.findViewById(R.id.search_user_name);
             profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
             addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
-            addFriend.setOnClickListener(view -> {
-                ServiceAPI.getInstance().sendFriendRequest(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            Toast.makeText(getContext(), R.string.friend_added, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), R.string.unable_to_add_friend, Toast.LENGTH_SHORT).show();
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-            });
         }
 
+        public void  clickFunction(){
+            ServiceAPI.getInstance().getFriends(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    if (response.isSuccessful()) {
+                        for (User u : response.body()) {
+                            if (user.getId() == u.getId()){
+                                isFriend = true;
+                                addFriend.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_add_disabled_24));
+                                addFriend.setOnClickListener( view1 -> {
+                                    //remove friend
+                                    clickFunction();
+                                });
+                            }
+                        }
+
+                    }
+                    if (!isFriend){
+                        addFriend.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_add_24));
+                        addFriend.setOnClickListener(view -> {
+                            ServiceAPI.getInstance().sendFriendRequest(user.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if (response.isSuccessful()){
+                                        Toast.makeText(getContext(), R.string.friend_added, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getContext(), R.string.unable_to_add_friend, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            clickFunction();
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<User>> call, Throwable t) {
+
+                }
+            });
+        }
         public void bind(User user) {
             this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
+            if (AuthUser.getAuthUser().getId() == user.getId()){
+                addFriend.setVisibility(View.INVISIBLE);
+            } else {
+                clickFunction();
+            }
             new DownloadImageTask((ImageView) itemView.findViewById(R.id.search_user_image)).execute(user.getImageURL());
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
+            //Toast.makeText(getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
             listener.onProfileClicked(this.user);
         }
     }

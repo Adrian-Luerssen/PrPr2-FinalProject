@@ -30,9 +30,11 @@ public class FriendsFragment extends Fragment {
     private RecyclerView friendRecView;
     private List<User> friends;
     private FriendsOnclickListener listener;
+    private ImageView back;
 
     public interface FriendsOnclickListener {
         void onProfileClicked(User user);
+        void onBackClicked();
     }
 
 
@@ -46,6 +48,10 @@ public class FriendsFragment extends Fragment {
         view = inflater.inflate(R.layout.friend_fragment, container, false);
         friendRecView = view.findViewById(R.id.friendRecycler);
         friendRecView.setLayoutManager(new LinearLayoutManager(getContext()));
+        back = view.findViewById(R.id.back_button);
+        back.setOnClickListener(view1 -> {
+            listener.onBackClicked();
+        });
         refresh();
         return view;
     }

@@ -103,8 +103,7 @@ public class CreateEventFragment extends Fragment {
                     category.setSelection(0);*/
                     if (parent.getItemAtPosition(pos).equals("Category Event")) {
 
-                    }
-                    else {
+                    } else {
                         selectedCategory = parent.getItemAtPosition(pos).toString();
                     }
                 }
@@ -125,24 +124,30 @@ public class CreateEventFragment extends Fragment {
 
         //TODO: Check pleaseeee!!!!
         createEvent.setOnClickListener(view -> {
-            ServiceAPI.getInstance().createEvent(new Event(title.getText().toString(), "cambiar", location.getText().toString(), description.getText().toString(), startText.getText().toString(), endText.getText().toString(), 1, selectedCategory), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Event>() {
-                @Override
-                public void onResponse(Call<Event> call, Response<Event> response) {
-                    if(response.isSuccessful()){
-                        Toast.makeText(getContext(), "Event created", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getContext(), LoginActivity.class);
-                        startActivity(intent);
+            if (true){
+                ServiceAPI.getInstance().createEvent(new Event(title.getText().toString(), "cambiar", location.getText().toString(), description.getText().toString(), startText.getText().toString(), endText.getText().toString(), 1, selectedCategory), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Event>() {
+                    @Override
+                    public void onResponse(Call<Event> call, Response<Event> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(getContext(), "Event created", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(getContext(), "Error creating event", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else{
-                        Toast.makeText(getContext(), "Error creating event", Toast.LENGTH_SHORT).show();
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<Event> call, Throwable t) {
-                    Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<Event> call, Throwable t) {
+                        Toast.makeText(getContext(), R.string.bad_connection, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(getContext(), "Please select a category", Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
         image.setOnClickListener(new View.OnClickListener() {

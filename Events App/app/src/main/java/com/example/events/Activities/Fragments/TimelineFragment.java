@@ -38,7 +38,7 @@ public class TimelineFragment extends Fragment {
     private User user;
 
     public interface TimelineFragmentOnClickListener {
-        void onTimelineClicked();
+        void onEventClicked(Event event);
     }
 
     public TimelineFragment(User user) {
@@ -61,7 +61,7 @@ public class TimelineFragment extends Fragment {
     }
 
     private void getAPI() {
-        ServiceAPI.getInstance().getEvents(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Event>>() {
+        ServiceAPI.getInstance().getAssistedEvents(AuthUser.getAuthUser().getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 if (response.isSuccessful()) {
@@ -140,11 +140,11 @@ public class TimelineFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            listener.onTimelineClicked();
+            listener.onEventClicked(event);
         }
     }
 
-    /*@Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof TimelineFragmentOnClickListener) {
@@ -154,5 +154,5 @@ public class TimelineFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement TimelineFragmentOnClickListener");
         }
-    }*/
+    }
 }
