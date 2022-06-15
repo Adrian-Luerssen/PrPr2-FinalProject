@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
@@ -131,7 +132,8 @@ public class TimelineFragment extends Fragment {
 
         public void bind(Event event) {
             this.event = event;
-            new DownloadImageTask(timelineImage).execute(event.getImageURL());
+            DownloadImageTask.loadImage(getContext(), event.getImageURL(),timelineImage ,R.drawable.image);
+
             this.timelineName.setText(event.getName());
             this.timelineCat.setText(event.getEventType());
             this.timelineStartDate.setText(event.getStartDate());

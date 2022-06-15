@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.Persistence.DownloadImageTask;
@@ -196,11 +197,12 @@ public class EventsFragment extends Fragment {
         private final TextView eventName;
         private final TextView startDate;
         private final TextView location;
+        private final ImageView picture;
 
         public EventHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.rectangle_event, parent, false));
             itemView.setOnClickListener(this);
-            ImageView picture = (ImageView) itemView.findViewById(R.id.imageView1);
+            picture = (ImageView) itemView.findViewById(R.id.imageView1);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             startDate = (TextView) itemView.findViewById(R.id.event_start_date);
             location = (TextView) itemView.findViewById(R.id.event_location);
@@ -210,7 +212,7 @@ public class EventsFragment extends Fragment {
 
         public void bind(Event event) {
             this.event = event;
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.imageView1)).execute(event.getImageURL());
+            DownloadImageTask.loadImage(getContext(), event.getImageURL(), picture,R.drawable.image);
             this.eventName.setText(event.getName());
             this.startDate.setText(event.getStartDate());
             this.location.setText(event.getLocation());

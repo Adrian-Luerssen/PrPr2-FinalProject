@@ -33,6 +33,16 @@ public class Comment {
     @SerializedName("puntuation")
     private int puntuation;
 
+    private String image;
+
+    public void setImage (String image) {
+        this.image = image;
+    }
+
+    public String getImage () {
+        return image;
+    }
+
     public int getSenderID() {
         return senderID;
     }
@@ -64,5 +74,13 @@ public class Comment {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setComment(String toString) {
+        this.text = toString;
+    }
+
+    public void setPuntuation(int value) {
+        this.puntuation = value;
     }
 }

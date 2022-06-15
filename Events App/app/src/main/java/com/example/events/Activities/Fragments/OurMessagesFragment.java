@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
 import com.example.events.DataStructures.Users.User;
@@ -152,12 +153,13 @@ public class OurMessagesFragment extends Fragment {
         private final TextView username;
         protected final TextView message;
         private final TextView date;
+        private ImageView profilePicture;
 
         public UserHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.message_user_list_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.message_list_username);
-            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.message_user_image);
+             profilePicture = (ImageView) itemView.findViewById(R.id.message_user_image);
             message = (TextView) itemView.findViewById(R.id.message_user_list_message);
             date = (TextView) itemView.findViewById(R.id.message_list_date);
         }
@@ -166,8 +168,9 @@ public class OurMessagesFragment extends Fragment {
             this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
             getLastMessage(user);
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.message_user_image))
-                    .execute(user.getImageURL());
+
+            DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+
         }
 
         @Override

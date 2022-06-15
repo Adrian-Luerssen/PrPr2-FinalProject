@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
@@ -36,9 +37,15 @@ public class ProfileFragment extends Fragment {
     private Button delete;
     private ImageView back;
     private View view2;
+    private boolean showBack;
 
     public ProfileFragment(User user) {
         this.user = user;
+        showBack = true;
+    }
+    public ProfileFragment(User user,boolean showback) {
+        this.user = user;
+        this.showBack = showback;
     }
 
     public interface ProfileListener {
@@ -74,10 +81,14 @@ public class ProfileFragment extends Fragment {
         username.setText(user.getName() + " " + user.getLastName());
 
         back = view2.findViewById(R.id.back_button);
-
-        back.setOnClickListener(view1 -> {
-            listener.onBackClicked();
-        });
+        if (showBack) {
+            back.setVisibility(View.VISIBLE);
+            back.setOnClickListener(view1 -> {
+                listener.onBackClicked();
+            });
+        } else {
+            back.setVisibility(View.INVISIBLE);
+        }
         if (user.getId() == AuthUser.getAuthUser().getId()) {
             viewFriends.setVisibility(View.VISIBLE);
             delete.setVisibility(View.VISIBLE);
@@ -168,7 +179,8 @@ public class ProfileFragment extends Fragment {
 
         }
 
-        new DownloadImageTask(profilePicture).execute(user.getImageURL());
+        DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+
         return view2;
     }
 

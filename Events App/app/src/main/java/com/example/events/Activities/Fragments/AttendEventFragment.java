@@ -1,5 +1,6 @@
 package com.example.events.Activities.Fragments;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,16 +8,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.events.DataStructures.Comment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
@@ -24,6 +34,8 @@ import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +62,23 @@ public class AttendEventFragment extends Fragment {
     private CommentAdapter commentAdapter;
     private ImageView back;
     private Button viewAttendence;
+    private NumberPicker addRating;
+    private Button submitComment;
+    private EditText inputComment;
     private AttendEventFragmentOnClickListener listener;
 
+    private class UpdateComment{
+        @Expose
+        @SerializedName("comentary")
+        private String comment;
+        @Expose
+        @SerializedName("puntuation")
+        private int rating;
+        public UpdateComment(String comment, int rating) {
+            this.comment = comment;
+            this.rating = rating;
+        }
+    }
     public interface AttendEventFragmentOnClickListener {
         void onBackClicked();
         void viewAttendence(Event event);
@@ -82,19 +109,63 @@ public class AttendEventFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         back = (ImageView) view.findViewById(R.id.back_button);
         viewAttendence = (Button) view.findViewById(R.id.attendants_button);
+        addRating = (NumberPicker) view.findViewById(R.id.numberPicker);
+        submitComment = (Button) view.findViewById(R.id.buttonComment);
+        inputComment = (EditText) view.findViewById(R.id.editTextComment);
+        addRating.setMaxValue(10);
+        addRating.setMinValue(0);
+
+        submitComment.setOnClickListener(view1 -> {
+            if (isAttending) {
+                UpdateComment comment = new UpdateComment(inputComment.getText().toString(), addRating.getValue());
+                ServiceAPI.getInstance().editAssistance(AuthUser.getAuthUser().getId(), event.getId(), comment, AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            getComments();
+                            inputComment.setText("");
+                            addRating.setValue(0);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            } else {
+                Toast.makeText(view.getContext(), R.string.Comment_Error, Toast.LENGTH_SHORT).show();
+                inputComment.setText("");
+                addRating.setValue(0);
+            }
+        });
+
+        getComments();
+
         viewAttendence.setOnClickListener(view1 -> {
             listener.viewAttendence(event);
         });
         back.setOnClickListener(view1 -> {
             listener.onBackClicked();
         });
-        new DownloadImageTask(image).execute(event.getImageURL());
+
+
+
+        DownloadImageTask.loadImage(getContext(), event.getImageURL(), image,R.drawable.image);
+
+
         name.setText(event.getName());
         category.setText(event.getEventType());
         description.setText(event.getDescription());
         startDate.setText(event.getStartDate());
         endDate.setText(event.getEndDate());
         location.setText(event.getLocation());
+
+
+
+        return view;
+    }
+    private void getComments(){
         ServiceAPI.getInstance().getEventAssistances(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Comment>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -119,9 +190,6 @@ public class AttendEventFragment extends Fragment {
 
             }
         });
-
-
-        return view;
     }
     private void updateComments() {
         commentAdapter = new CommentAdapter(comments);
@@ -131,6 +199,8 @@ public class AttendEventFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void setButtonListener() {
         attendEvent.setOnClickListener(view -> {
+
+            getComments();
             Dialog dialog = new Dialog(getContext());
             dialog.setContentView(R.layout.activity_attend_event_pop_up);
             TextView text = dialog.findViewById(R.id.attend_text);
@@ -256,18 +326,20 @@ public class AttendEventFragment extends Fragment {
         public void bind(Comment comment) {
             this.comment = comment;
             this.username.setText(comment.getName() + " " + comment.getLastName());
+
             message.setText(comment.getText());
             score.setText(String.valueOf(comment.getScore()));
-            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
+            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    user = response.body();
-                    new DownloadImageTask((ImageView) itemView.findViewById(R.id.comment_image))
-                            .execute(response.body().getImageURL());
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    user = response.body().get(0);
+
+                    DownloadImageTask.loadImage(getContext(), user.getImageURL(), profilePicture,R.drawable.boy1);
+
                 }
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(Call<List<User>> call, Throwable t) {
 
                 }
             });
@@ -277,17 +349,7 @@ public class AttendEventFragment extends Fragment {
         @Override
         public void onClick(View view) {
             //Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
-            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    listener.onProfileClicked(response.body());
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-
-                }
-            });
+            listener.onProfileClicked(user);
         }
 
     }

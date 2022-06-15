@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Comment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
@@ -35,10 +37,13 @@ public class AttendantListFragment extends Fragment {
     private AttendantAdapter attendantAdapter;
     private AttendListFragmentOnClickListener listener;
     private ImageView back;
+
     public interface AttendListFragmentOnClickListener {
         void onBackClicked();
+
         void onProfileClicked(User user);
     }
+
     public AttendantListFragment(Event event) {
         this.event = event;
     }
@@ -61,7 +66,7 @@ public class AttendantListFragment extends Fragment {
 
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                attendantList =  response.body();
+                attendantList = response.body();
                 updateAtendants();
             }
 
@@ -72,13 +77,17 @@ public class AttendantListFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
     private void updateAtendants() {
+
         attendantAdapter = new AttendantAdapter(attendantList);
         attendantRecView.setAdapter(attendantAdapter);
     }
+
+
 
     private class AttendantAdapter extends RecyclerView.Adapter<AttendantHolder> {
 
@@ -110,6 +119,7 @@ public class AttendantListFragment extends Fragment {
     private class AttendantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Comment comment;
+        private User user;
         private TextView username;
         private ImageView profilePicture;
         private ImageButton addFriend;
@@ -126,35 +136,27 @@ public class AttendantListFragment extends Fragment {
         public void bind(Comment comment) {
             this.comment = comment;
             this.username.setText(comment.getName() + " " + comment.getLastName());
-            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
+            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    new DownloadImageTask((ImageView) itemView.findViewById(R.id.search_user_image))
-                            .execute(response.body().getImageURL());
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    user = response.body().get(0);
+
+                    DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
                 }
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(Call<List<User>> call, Throwable t) {
 
                 }
             });
+
 
         }
 
         @Override
         public void onClick(View view) {
-            //Toast.makeText(view.getContext(), this.user.getName() + " clicked!", Toast.LENGTH_SHORT) .show();
-            ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    listener.onProfileClicked(response.body());
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-
-                }
-            });
+            //Toast.makeText(view.getContext(), this.comment.getName() + " clicked!", Toast.LENGTH_SHORT).show();
+            listener.onProfileClicked(user);
         }
 
     }
@@ -164,8 +166,7 @@ public class AttendantListFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof AttendListFragmentOnClickListener) {
             listener = (AttendListFragmentOnClickListener) context;
-        }
-        else {
+        } else {
             throw new RuntimeException(context.toString()
                     + " must implement AttendListFragmentOnClickListener");
         }

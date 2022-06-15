@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
@@ -27,16 +30,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyEventsFragment extends Fragment {
-    private TextView dropEvent;
-    private ImageView image;
-    private TextView name;
-    private TextView category;
-    private TextView startDate;
-    private TextView location;
-    private Event event;
     private RecyclerView myEventRecView;
     private List<Event> myEventList;
-    private User user;
+    private ImageButton addEvent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,18 +45,10 @@ public class MyEventsFragment extends Fragment {
         myEventRecView = (RecyclerView) view.findViewById(R.id.my_events_rec_view);
         myEventRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
-
-        /* image = view.findViewById(R.id.imageView);
-        name = (TextView) view.findViewById(R.id.name_attend_event);
-        category = (TextView) view.findViewById(R.id.category_attend_event);
-        startDate = (TextView) view.findViewById(R.id.start_attend_event);
-        location = (TextView) view.findViewById(R.id.location_attend_event);
-
-        new DownloadImageTask(image).execute(event.getImageURL());
-        name.setText(event.getName());
-        category.setText(event.getEventType());
-        startDate.setText(event.getStartDate());
-        location.setText(event.getLocation()); */
+        addEvent =  view.findViewById(R.id.add_Button);
+        addEvent.setOnClickListener(view1 -> {
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CreateEventFragment()).addToBackStack(null).commit();
+        });
 
         return view;
     }
@@ -72,10 +60,7 @@ public class MyEventsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     myEventList = new ArrayList<>();
                     myEventList = (ArrayList<Event>) response.body();
-                    /* for (Event e : response.body()) {
-                        if (e.getOwnerID() == user.getId())
-                            myEventList.add(e);
-                    } */
+
                     updateUI();
                 }
             }
@@ -122,11 +107,12 @@ public class MyEventsFragment extends Fragment {
         private final TextView myEventCategory;
         private final TextView startDate;
         private final TextView location;
+        private final ImageView picture;
 
         public MyEventHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.my_event_item, parent, false));
             itemView.setOnClickListener(this);
-            ImageView picture = (ImageView) itemView.findViewById(R.id.imageView1);
+            picture = (ImageView) itemView.findViewById(R.id.imageView1);
             myEventName = (TextView) itemView.findViewById(R.id.my_event_name);
             myEventCategory = (TextView) itemView.findViewById(R.id.my_event_category);
             startDate = (TextView) itemView.findViewById(R.id.my_event_start);
@@ -135,7 +121,7 @@ public class MyEventsFragment extends Fragment {
         }
 
         public void bind(Event event) {
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.imageView1)).execute(event.getImageURL());
+            DownloadImageTask.loadImage(getContext(), event.getImageURL(),picture ,R.drawable.image);
             this.myEventName.setText(event.getName());
             this.myEventCategory.setText(event.getEventType());
             this.startDate.setText(event.getStartDate());

@@ -38,7 +38,7 @@ public interface Api {
 
     //get user by id
     @GET("users/{id}")
-    Call<User> getUser(@Path("id") int userId, @Header("Authorization") String token);
+    Call<List<User>> getUser(@Path("id") int userId, @Header("Authorization") String token);
 
     //get all users with a search parameter
     @GET("users/search")
@@ -149,7 +149,7 @@ public interface Api {
 
     //edit assistance
     @PUT("assistances/{user_id}/{event_id}")
-    Call<ResponseBody> editAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Body Comment assistance, @Header("Authorization") String token);
+    Call<ResponseBody> editAssistance(@Path("user_id") int userId, @Path("event_id") int eventId, @Body Object assistance, @Header("Authorization") String token);
 
     //delete assistance
     @DELETE("assistances/{user_id}/{event_id}")

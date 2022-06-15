@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -117,13 +118,13 @@ public class FriendRequestFragment extends Fragment {
         private User user;
         private final ImageButton acceptFriend;
         private final ImageButton declineFriend;
-
+        private final ImageView profilePicture;
 
         public RequestHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.friend_request_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.username);
-            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
             acceptFriend = (ImageButton) itemView.findViewById(R.id.acceptRequest);
             declineFriend = (ImageButton) itemView.findViewById(R.id.declineRequest);
         }
@@ -131,7 +132,8 @@ public class FriendRequestFragment extends Fragment {
         public void bind(User user) {
             this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.profileImage)).execute(user.getImageURL());
+            DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+
             acceptFriend.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

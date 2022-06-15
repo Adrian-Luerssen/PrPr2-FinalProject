@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserList;
@@ -217,7 +218,9 @@ public class SearchUsersFragment extends Fragment {
             } else {
                 clickFunction();
             }
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.search_user_image)).execute(user.getImageURL());
+
+            DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+
         }
 
         @Override

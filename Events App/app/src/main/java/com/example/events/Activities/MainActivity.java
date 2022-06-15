@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -29,10 +30,15 @@ import com.example.events.Activities.Fragments.TimelineFragment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
+import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -94,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(R.string.search_users);
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment(AuthUser.getAuthUser())).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment(AuthUser.getAuthUser(),false)).commit();
                 toolbar.setTitle(R.string.profile);
                 break;
             case R.id.nav_message:
@@ -195,16 +201,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackClicked() {
         getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-        if (getSupportFragmentManager().getFragments().size() == 1){
+        if (getSupportFragmentManager().getFragments().size() <= 1){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             toolbar.setTitle(R.string.HomeScreen);
         }
     }
 
 
+    public void onProfileClicked(int userID) {
+        Toast.makeText(getApplicationContext(), userID + " clicked!", Toast.LENGTH_SHORT) .show();
 
+        /*ServiceAPI.getInstance().getUser(userID,AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()){
+                   getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProfileFragment(response.body(),true)).commit();
+                    toolbar.setTitle(R.string.profile);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
 
+            }
+        });*/
+    }
 
 
     @Override

@@ -125,13 +125,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="25dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="40dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/bigbutton"
                 android:fontFamily="@font/outfit_bold"
                 android:text="@string/view_attendence"
                 android:textAppearance="@style/mediumText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+                <EditText
+                    android:id="@+id/editTextComment"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="50dp"
+                    android:textSize="20sp"
+                    android:hint="@string/inputAComment"
+                    android:textColorHint="@color/inputText"
+                    android:background="@drawable/input_box"
+                    android:textAppearance="@style/linkText"
+                    android:textColor="@color/white"/>
 
+                <NumberPicker
+                    android:id="@+id/numberPicker"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:theme="@style/AppTheme.Picker"/>
+
+                <Button
+                    android:id="@+id/buttonComment"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bigbutton"
+                    android:text="@string/Comment"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textAppearance="@style/mediumText" />
+
+
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

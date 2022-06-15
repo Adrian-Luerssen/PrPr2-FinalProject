@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -112,19 +113,20 @@ public class FriendsFragment extends Fragment {
 
         private User user;
         private final TextView username;
-
+        private final ImageView profilePicture;
 
         public FriendHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.friend_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.username);
-            ImageView profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            profilePicture = (ImageView) itemView.findViewById(R.id.profileImage);
         }
 
         public void bind(User user) {
             this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
-            new DownloadImageTask((ImageView) itemView.findViewById(R.id.profileImage)).execute(user.getImageURL());
+            DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+
 
         }
 
