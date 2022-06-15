@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         EventsFragment.EventsFragmentOnClickListener,
         AttendEventFragment.AttendEventFragmentOnClickListener,
         TimelineFragment.TimelineFragmentOnClickListener,
-        AttendantListFragment.AttendListFragmentOnClickListener{
+        AttendantListFragment.AttendListFragmentOnClickListener,
+        FriendRequestFragment.FriendRequestOnclickListener{
 
     private DrawerLayout drawer;
     private Toolbar toolbar;

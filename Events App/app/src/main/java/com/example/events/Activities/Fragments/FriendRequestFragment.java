@@ -1,5 +1,6 @@
 package com.example.events.Activities.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +30,10 @@ import retrofit2.Response;
 public class FriendRequestFragment extends Fragment {
     private RecyclerView requestRecView;
     private List<User> requests;
+    private ImageView back;
+    private FriendRequestOnclickListener listener;
 
-    private interface FriendRequestOnclickListener{
+    public interface FriendRequestOnclickListener{
         void onProfileClicked(User user);
         void onBackClicked();
     }
@@ -43,6 +46,10 @@ public class FriendRequestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.friend_requests_fragment, container, false);
         requestRecView = view.findViewById(R.id.friendRequestsRecycler);
+        back = view.findViewById(R.id.back_button);
+        back.setOnClickListener(view1 -> {
+            listener.onBackClicked();
+        });
         requestRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         refresh();
         return view;
@@ -107,6 +114,7 @@ public class FriendRequestFragment extends Fragment {
     private class RequestHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView username;
+        private User user;
         private final ImageButton acceptFriend;
         private final ImageButton declineFriend;
 
@@ -121,6 +129,7 @@ public class FriendRequestFragment extends Fragment {
         }
 
         public void bind(User user) {
+            this.user = user;
             this.username.setText(user.getName()+" "+user.getLastName());
             new DownloadImageTask((ImageView) itemView.findViewById(R.id.profileImage)).execute(user.getImageURL());
             acceptFriend.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +175,17 @@ public class FriendRequestFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            
+            listener.onProfileClicked(user);
+        }
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FriendRequestOnclickListener) {
+            listener = (FriendRequestOnclickListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FriendRequestOnclickListener");
         }
     }
 }
