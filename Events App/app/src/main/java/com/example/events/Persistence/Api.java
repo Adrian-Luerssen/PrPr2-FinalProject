@@ -53,7 +53,7 @@ public interface Api {
     Call<User> updateUser(@Body User user, @Header("Authorization") String token);
 
     //delete user
-    @DELETE("user")
+    @DELETE("users")
     Call<ResponseBody> deleteUser(@Header("Authorization") String token);
 
     //get all events of a user

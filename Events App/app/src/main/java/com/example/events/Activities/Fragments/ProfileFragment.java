@@ -102,6 +102,7 @@ public class ProfileFragment extends Fragment {
             });
             editProfileORgotochat.setText(R.string.Edit_Profile);
             editProfileORgotochat.setOnClickListener(view1 -> {
+
                 listener.onEditProfileClicked();
             });
             addUserORviewRequests.setText(R.string.View_Requests);

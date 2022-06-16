@@ -20,6 +20,21 @@
             tools:ignore="ContentDescription" />
 
         <EditText
+            android:id="@+id/imageURL"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/input_box"
+            android:gravity="top"
+            android:hint="@string/imageURL"
+            android:textColorHint="@color/inputText"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/InputFieldText"
+            android:fontFamily="@font/outfit_medium"/>
+        <EditText
             android:id="@+id/EditEvent_title_input"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -39,7 +54,8 @@
         <EditText
             android:id="@+id/EditEvent_description_input"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/input_box"
@@ -68,6 +84,22 @@
             android:textAppearance="@style/InputFieldText"
             android:fontFamily="@font/outfit_medium">
         </Spinner>
+        <EditText
+            android:id="@+id/numberofpeople"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/input_box"
+            android:gravity="top"
+            android:hint="@string/numberofpeople"
+            android:inputType="number"
+            android:textColorHint="@color/inputText"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/InputFieldText"
+            android:fontFamily="@font/outfit_medium"/>
 
 
         <EditText
@@ -154,7 +186,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/bigbutton"
             android:fontFamily="@font/outfit_bold"
-            android:text="@string/createEvents"
+            android:text="@string/updateEvent"
             android:textAppearance="@style/mediumText" />
 
     </LinearLayout>

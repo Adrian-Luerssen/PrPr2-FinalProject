@@ -118,5 +118,10 @@
     <string name="Repeat_password">Repeat password</string>
     <string name="Repeat_Email">Repeat email</string>
     <string name="EditUser_main_title">Edit your account</string>
+    <string name="imageURL">Image URL</string>
+    <string name="updateEvent">Update Event</string>
+    <string name="editEvent">Edit Event</string>
+    <string name="numberofpeople">Max number of Participants</string>
+    <string name="category">Select Category</string>
 
 </resources>

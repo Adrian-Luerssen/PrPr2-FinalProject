@@ -1,109 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp">
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    tools:ignore="ContentDescription" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/boy1" />
+
+                <TextView
+                    android:id="@+id/profileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/First_Name"
+                    android:textAppearance="@style/BigText"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_baseline_arrow_back_24"
-                tools:ignore="ContentDescription" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="45dp"
-                android:src="@drawable/boy1" />
 
             <TextView
-                android:id="@+id/profileName"
+                android:id="@+id/gotochatOReditProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="@string/First_Name"
-                android:textAppearance="@style/BigText"
-                android:textColor="@color/white" />
+                android:background="@drawable/bigbutton"
+                android:fontFamily="@font/outfit_bold"
+                android:padding="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/goto_chat"
+                android:textAlignment="center"
+                android:textAppearance="@style/mediumText"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/addUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bigbutton"
+                android:fontFamily="@font/outfit_bold"
+                android:padding="10dp"
+                android:text="@string/add_Friend"
+                android:textAlignment="center"
+                android:textAppearance="@style/mediumText"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/see_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bigbutton"
+                android:fontFamily="@font/outfit_bold"
+                android:padding="10dp"
+                android:text="@string/see_friends"
+                android:textAlignment="center"
+                android:textAppearance="@style/mediumText"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/deleteAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bigbutton"
+                android:fontFamily="@font/outfit_bold"
+                android:text="@string/delete_account"
+                android:textAppearance="@style/mediumText" />
         </LinearLayout>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/gotochatOReditProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bigbutton"
-            android:fontFamily="@font/outfit_bold"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/goto_chat"
-            android:textAlignment="center"
-            android:textAppearance="@style/mediumText"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/addUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bigbutton"
-            android:fontFamily="@font/outfit_bold"
-            android:padding="10dp"
-            android:text="@string/add_Friend"
-            android:textAlignment="center"
-            android:textAppearance="@style/mediumText"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/see_friends"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bigbutton"
-            android:fontFamily="@font/outfit_bold"
-            android:padding="10dp"
-            android:text="@string/see_friends"
-            android:textAlignment="center"
-            android:textAppearance="@style/mediumText"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/deleteAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bigbutton"
-            android:fontFamily="@font/outfit_bold"
-            android:text="@string/delete_account"
-            android:textAppearance="@style/mediumText" />
     </LinearLayout>
 
-</LinearLayout>
+
+</ScrollView>

@@ -75,6 +75,7 @@ public class AttendEventFragment extends Fragment {
         void onBackClicked();
         void viewAttendence(Event event);
         void onProfileClicked(User user);
+        void onEditClicked(Event event);
     }
     public AttendEventFragment(Event event) {
         this.event = event;
@@ -106,6 +107,10 @@ public class AttendEventFragment extends Fragment {
         inputComment = (EditText) view.findViewById(R.id.editTextComment);
         addRating.setMaxValue(10);
         addRating.setMinValue(0);
+
+
+
+
 
         submitComment.setOnClickListener(view1 -> {
             if (isAttending) {
@@ -190,83 +195,95 @@ public class AttendEventFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void setButtonListener() {
-        attendEvent.setOnClickListener(view -> {
 
-            getComments();
-            Dialog dialog = new Dialog(getContext());
-            dialog.setContentView(R.layout.activity_attend_event_pop_up);
-            TextView text = dialog.findViewById(R.id.attend_text);
-            TextView mess = dialog.findViewById(R.id.attend_message);
-            Button no = dialog.findViewById(R.id.no);
-            Button yes = dialog.findViewById(R.id.yes);
-            if (isAttending) {
-                text.setText(R.string.unattend_text);
-                mess.setText(R.string.unattend_message);
-            } else {
-                text.setText(getText(R.string.attending_Event));
-                mess.setText(getText(R.string.add_Event));
-            }
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
+        if (event.getOwnerID() == AuthUser.getAuthUser().getId()){
+            attendEvent.setText("Edit Event");
+            attendEvent.setOnClickListener(view -> {
+                listener.onEditClicked(event);
             });
+        }else {
+            attendEvent.setOnClickListener(view -> {
 
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
-                    if (!isAttending) {
-                        ServiceAPI.getInstance().assistEvent(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if (response.isSuccessful()) {
-                                    dialog.dismiss();
-                                    isAttending = true;
-                                    updateAttendButton();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                            }
-                        });
-                    } else {
-                        ServiceAPI.getInstance().deleteAssistance(AuthUser.getAuthUser().getId(), event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if (response.isSuccessful()) {
-                                    dialog.dismiss();
-                                    isAttending = false;
-                                    updateAttendButton();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                            }
-                        });
+                getComments();
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.activity_attend_event_pop_up);
+                TextView text = dialog.findViewById(R.id.attend_text);
+                TextView mess = dialog.findViewById(R.id.attend_message);
+                Button no = dialog.findViewById(R.id.no);
+                Button yes = dialog.findViewById(R.id.yes);
+                if (isAttending) {
+                    text.setText(R.string.unattend_text);
+                    mess.setText(R.string.unattend_message);
+                } else {
+                    text.setText(getText(R.string.attending_Event));
+                    mess.setText(getText(R.string.add_Event));
+                }
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
                     }
+                });
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
+                        if (!isAttending) {
+                            ServiceAPI.getInstance().assistEvent(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if (response.isSuccessful()) {
+                                        dialog.dismiss();
+                                        isAttending = true;
+                                        updateAttendButton();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                }
+                            });
+                        } else {
+                            ServiceAPI.getInstance().deleteAssistance(AuthUser.getAuthUser().getId(), event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if (response.isSuccessful()) {
+                                        dialog.dismiss();
+                                        isAttending = false;
+                                        updateAttendButton();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                }
+                            });
+                        }
 
 
-                }
+                    }
+                });
+
+                dialog.show();
             });
+        }
 
-            dialog.show();
-        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void updateAttendButton() {
-        System.out.printf("isAttending: %b", isAttending);
-        if (!isAttending) {
-            attendEvent.setText("Attend");
-        } else {
-            attendEvent.setText("Unattend");
+        if (event.getOwnerID() != AuthUser.getAuthUser().getId()){
+            System.out.printf("isAttending: %b", isAttending);
+            if (!isAttending) {
+                attendEvent.setText("Attend");
+            } else {
+                attendEvent.setText("Unattend");
+            }
         }
+
         setButtonListener();
     }
 

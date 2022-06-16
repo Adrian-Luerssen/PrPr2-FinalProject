@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.events.Activities.Fragments.AttendEventFragment;
 import com.example.events.Activities.Fragments.AttendantListFragment;
 import com.example.events.Activities.Fragments.CreateEventFragment;
+import com.example.events.Activities.Fragments.EditEventFragment;
 import com.example.events.Activities.Fragments.EditProfileFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
 import com.example.events.Activities.Fragments.FriendRequestFragment;
@@ -54,7 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AttendEventFragment.AttendEventFragmentOnClickListener,
         TimelineFragment.TimelineFragmentOnClickListener,
         AttendantListFragment.AttendListFragmentOnClickListener,
-        FriendRequestFragment.FriendRequestOnclickListener{
+        FriendRequestFragment.FriendRequestOnclickListener,
+        EditProfileFragment.EditProfileListener,
+        EditEventFragment.EditEventListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -215,8 +218,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "User deleted!", Toast.LENGTH_SHORT) .show();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
-                    toolbar.setTitle(R.string.explore_events);
+                    onLogoutClicked();
                 }
             }
 
@@ -227,24 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void onProfileClicked(int userID) {
-        Toast.makeText(getApplicationContext(), userID + " clicked!", Toast.LENGTH_SHORT) .show();
 
-        /*ServiceAPI.getInstance().getUser(userID,AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()){
-                   getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProfileFragment(response.body(),true)).commit();
-                    toolbar.setTitle(R.string.profile);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });*/
-    }
 
 
     @Override
@@ -254,8 +239,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void onEditClicked(Event event) {
+        getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new EditEventFragment(event)).commit();
+        toolbar.setTitle(R.string.editEvent);
+    }
+
+    @Override
     public void onEditProfileClicked() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new EditProfileFragment()).commit();
         toolbar.setTitle(R.string.edit_profile);
     }
 
@@ -265,21 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.friend_requests);
     }
 
-    /*@Override
-    public void goEventBack(String origin) {
-        switch(origin){
-            case "timelineFragment":{
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
-                toolbar.setTitle(R.string.timeline);
-                break;
-            }
-            case "EventsFragment":{
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
-                toolbar.setTitle(R.string.explore_events);
-                break;
-            }
-        }
-    }*/
+
 
     @Override
     public void viewAttendence(Event event) {
@@ -287,4 +266,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.Event);
     }
 
+    @Override
+    public void saveEdit() {
+        getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProfileFragment(AuthUser.getAuthUser(),false)).commit();
+    }
+
+    @Override
+    public void onEditEvent(Event event) {
+        getSupportFragmentManager().beginTransaction().detach(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new AttendEventFragment(event)).commit();
+    }
 }

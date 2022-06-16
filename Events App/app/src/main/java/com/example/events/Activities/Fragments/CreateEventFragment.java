@@ -11,6 +11,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.example.events.Activities.LoginActivity;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
+import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
@@ -39,7 +42,6 @@ import retrofit2.Response;
 
 public class CreateEventFragment extends Fragment {
     private View view;
-    private ImageButton selectCategory;
     private ImageButton startDate;
     private ImageButton endDate;
     private ImageView image;
@@ -51,12 +53,14 @@ public class CreateEventFragment extends Fragment {
     private Button createEvent;
     private Spinner category;
     private String selectedCategory;
+    private EditText numberofpeople;
+    private EditText url;
 
     private void initFields() {
         image = (ImageView) view.findViewById(R.id.EditEvent_imageview);
         title = (EditText) view.findViewById(R.id.EditEvent_title_input);
+        numberofpeople = (EditText) view.findViewById(R.id.numberofpeople);
         description = (EditText) view.findViewById(R.id.EditEvent_description_input);
-        //selectCategory = (ImageButton) view.findViewById(R.id.options);
         category = (Spinner) view.findViewById(R.id.EditEvent_category_spinner);
         startDate = (ImageButton) view.findViewById(R.id.EditEvent_calendar1);
         startText = (EditText) view.findViewById(R.id.EditEvent_startDate_input);
@@ -68,6 +72,9 @@ public class CreateEventFragment extends Fragment {
         sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(sequence);
         category.setSelection(0);
+        url = view.findViewById(R.id.imageURL);
+        selectedCategory = "";
+
     }
 
     @Override
@@ -89,11 +96,10 @@ public class CreateEventFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                     ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.inputText));
-                    if (parent.getItemAtPosition(pos).equals("Category Event")) {
-
-                    } else {
-                        selectedCategory = parent.getItemAtPosition(pos).toString();
+                    if (pos > 0){
+                        ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.white));
                     }
+                    selectedCategory = parent.getItemAtPosition(pos).toString();
                 }
 
                 public void onNothingSelected(AdapterView<?> parent) {
@@ -111,14 +117,13 @@ public class CreateEventFragment extends Fragment {
         });
 
         createEvent.setOnClickListener(view -> {
-            if (true){
-                ServiceAPI.getInstance().createEvent(new Event(title.getText().toString(), "cambiar", location.getText().toString(), description.getText().toString(), startText.getText().toString(), endText.getText().toString(), 1, selectedCategory), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Event>() {
+            if (!selectedCategory.equals("Category Event")){
+                ServiceAPI.getInstance().createEvent(new Event(title.getText().toString(), url.getText().toString(), location.getText().toString(), description.getText().toString(), startText.getText().toString(), endText.getText().toString(), Integer.parseInt(numberofpeople.getText().toString()), selectedCategory), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Event>() {
                     @Override
                     public void onResponse(Call<Event> call, Response<Event> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(getContext(), "Event created", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getContext(), LoginActivity.class);
-                            startActivity(intent);
+
                         }
                         else{
                             Toast.makeText(getContext(), "Error creating event", Toast.LENGTH_SHORT).show();
@@ -137,31 +142,25 @@ public class CreateEventFragment extends Fragment {
 
         });
 
-        image.setOnClickListener(new View.OnClickListener() {
+        url.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                imageChooser();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                DownloadImageTask.loadImage(getContext(),url.getText().toString(),image,R.drawable.image);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
 
-    private void imageChooser() {
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
 
-        launchSomeActivity.launch(i);
-    }
-
-    final ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    if (data != null && data.getData() != null) {
-                        Uri selectedImageUri = data.getData();
-                        image.setImageURI(selectedImageUri);
-                    }
-                }
-    });
 
     public static class DatePickerFragment extends DialogFragment {
         private DatePickerDialog.OnDateSetListener listener;

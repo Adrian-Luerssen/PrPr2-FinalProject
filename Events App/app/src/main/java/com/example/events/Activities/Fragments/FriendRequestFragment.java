@@ -124,7 +124,7 @@ public class FriendRequestFragment extends Fragment {
             super(inflater.inflate(R.layout.friend_request_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.username);
-            profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
+            profilePicture = (ImageView) itemView.findViewById(R.id.profileImage);
             acceptFriend = (ImageButton) itemView.findViewById(R.id.acceptRequest);
             declineFriend = (ImageButton) itemView.findViewById(R.id.declineRequest);
         }

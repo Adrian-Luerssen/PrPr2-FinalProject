@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -16,7 +17,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     final ImageView bmImage;
@@ -40,23 +44,25 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
-        if (result != null)  bmImage.setImageBitmap(result);
+        if (result != null) bmImage.setImageBitmap(result);
     }
 
-    public static void loadImage(Context context, String url, ImageView imageView, int placeholder) {
-        System.out.println("Loading image: " + url);
+    public static void loadImage(Context context, String string, ImageView imageView, int placeholder) {
+        System.out.println("Loading image: " + string);
         System.out.println("ImageView: " + imageView);
         System.out.println("Placeholder: " + placeholder);
         System.out.println("Context: " + context);
+
+
         Glide.with(context)
-                .load(url)
+                .load(string)
                 .placeholder(placeholder)
                 .dontAnimate()
                 .addListener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
 
-                        new DownloadImageTask(imageView).execute(url);
+                        new DownloadImageTask(imageView).execute(string);
                         return false;
                     }
 
@@ -67,5 +73,26 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
                     }
                 })
                 .into(imageView);
+
+
+    }
+
+    public static String BitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    public static Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:layout_width="match_parent"
@@ -7,109 +7,138 @@
     tools:context=".Activities.SignUpActivity"
     android:orientation="vertical">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/outfit_extra_bold"
-        android:gravity="top"
-        android:text="@string/EditUser_main_title"
-        android:textAppearance="@style/BigText"
-        tools:ignore="MissingConstraints" />
-    <EditText
-        android:id="@+id/EditUser_FirstName_input"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/input_box"
-        android:gravity="top"
-        android:hint="@string/First_Name"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background">
 
-    <EditText
-        android:id="@+id/EditUser_LastName_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/input_box"
-        android:layout_marginTop="10dp"
-        android:gravity="top"
-        android:hint="@string/Last_Name"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/outfit_extra_bold"
+            android:gravity="top"
+            android:text="@string/EditUser_main_title"
+            android:textAppearance="@style/BigText"
+            tools:ignore="MissingConstraints" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/boy1" />
+        <EditText
+            android:id="@+id/imageURL"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/input_box"
+            android:gravity="top"
+            android:hint="@string/imageURL"
+            android:textColorHint="@color/inputText"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/InputFieldText"
+            android:fontFamily="@font/outfit_medium"/>
+        <EditText
+            android:id="@+id/EditUser_FirstName_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/input_box"
+            android:gravity="top"
+            android:hint="@string/First_Name"
+            android:textColorHint="@color/inputText"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/InputFieldText"
+            android:fontFamily="@font/outfit_medium"/>
 
-    <EditText
-        android:id="@+id/EditUser_Email_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/input_box"
-        android:fontFamily="@font/outfit_medium"
-        android:gravity="top"
-        android:hint="@string/email"
-        android:inputType="text"
-        android:padding="16dp"
-        android:textAppearance="@style/InputFieldText"
-        android:textColor="@color/white"
-        android:textColorHint="@color/inputText" />
+        <EditText
+            android:id="@+id/EditUser_LastName_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/input_box"
+            android:layout_marginTop="10dp"
+            android:gravity="top"
+            android:hint="@string/Last_Name"
+            android:textColorHint="@color/inputText"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/InputFieldText"
+            android:fontFamily="@font/outfit_medium"/>
 
-    <EditText
-        android:id="@+id/EditUser_Password_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/input_box"
-        android:fontFamily="@font/outfit_medium"
-        android:gravity="top"
-        android:hint="@string/password"
-        android:padding="16dp"
-        android:textAppearance="@style/InputFieldText"
-        android:textColor="@color/white"
-        android:textColorHint="@color/inputText" />
+        <EditText
+            android:id="@+id/EditUser_Email_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/input_box"
+            android:fontFamily="@font/outfit_medium"
+            android:gravity="top"
+            android:hint="@string/email"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textAppearance="@style/InputFieldText"
+            android:textColor="@color/white"
+            android:textColorHint="@color/inputText" />
 
-    <EditText
-        android:id="@+id/EditUser_RepeatPassword_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/input_box"
-        android:fontFamily="@font/outfit_medium"
-        android:gravity="top"
-        android:hint="@string/Repeat_password"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textAppearance="@style/InputFieldText"
-        android:textColor="@color/white"
-        android:textColorHint="@color/inputText" />
+        <EditText
+            android:id="@+id/EditUser_Password_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/input_box"
+            android:fontFamily="@font/outfit_medium"
+            android:gravity="top"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textAppearance="@style/InputFieldText"
+            android:textColor="@color/white"
+            android:textColorHint="@color/inputText" />
 
-    <Button
-        android:id="@+id/EditUser_confirm_edit"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/bigbutton"
-        android:fontFamily="@font/outfit_bold"
-        android:text="@string/Confirm_Edit"
-        android:textAppearance="@style/mediumText" />
+        <EditText
+            android:id="@+id/EditUser_RepeatPassword_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/input_box"
+            android:fontFamily="@font/outfit_medium"
+            android:gravity="top"
+            android:hint="@string/Repeat_password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textAppearance="@style/InputFieldText"
+            android:textColor="@color/white"
+            android:textColorHint="@color/inputText" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/EditUser_confirm_edit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/bigbutton"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/Confirm_Edit"
+            android:textAppearance="@style/mediumText" />
+    </LinearLayout>
+
+
+</ScrollView>
