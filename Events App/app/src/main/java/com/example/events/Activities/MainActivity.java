@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.events.Activities.Fragments.AttendEventFragment;
 import com.example.events.Activities.Fragments.AttendantListFragment;
 import com.example.events.Activities.Fragments.CreateEventFragment;
+import com.example.events.Activities.Fragments.EditProfileFragment;
 import com.example.events.Activities.Fragments.EventsFragment;
 import com.example.events.Activities.Fragments.FriendRequestFragment;
 import com.example.events.Activities.Fragments.FriendsFragment;
@@ -36,6 +37,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.createEvents:
+            case R.id.EditEvent_confirm_button:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventFragment()).commit();
                 toolbar.setTitle(R.string.createEvents);
                 break;
@@ -164,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.Event);
     }
 
-    //TODO: FIX TIEMLINE
     @Override
     public void onTimelineClicked() {
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new TimelineFragment(AuthUser.getAuthUser())).commit();
@@ -207,6 +208,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @Override
+    public void onDeleteUserClicked() {
+        ServiceAPI.getInstance().deleteUser(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "User deleted!", Toast.LENGTH_SHORT) .show();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragment()).commit();
+                    toolbar.setTitle(R.string.explore_events);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
 
     public void onProfileClicked(int userID) {
         Toast.makeText(getApplicationContext(), userID + " clicked!", Toast.LENGTH_SHORT) .show();
@@ -236,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onEditProfileClicked() {
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
-        //toolbar.setTitle(R.string.edit_profile);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditProfileFragment()).commit();
+        toolbar.setTitle(R.string.edit_profile);
     }
 
     @Override
@@ -267,7 +286,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new AttendantListFragment(event)).commit();
         toolbar.setTitle(R.string.Event);
     }
-
-
 
 }

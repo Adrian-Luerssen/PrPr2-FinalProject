@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -56,7 +54,11 @@ public class ProfileFragment extends Fragment {
         void onUserChatClicked(User user);
 
         void viewFriends();
+
         void onBackClicked();
+
+        void onDeleteUserClicked();
+
     }
 
 
@@ -105,6 +107,10 @@ public class ProfileFragment extends Fragment {
             addUserORviewRequests.setText(R.string.View_Requests);
             addUserORviewRequests.setOnClickListener(view1 -> {
                 listener.viewFriendRequests();
+            });
+
+            delete.setOnClickListener(view1 -> {
+                listener.onDeleteUserClicked();
             });
 
         } else {

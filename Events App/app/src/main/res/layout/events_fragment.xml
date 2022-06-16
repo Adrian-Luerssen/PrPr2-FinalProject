@@ -68,7 +68,7 @@
                     android:focusable="false"
                     android:clickable="false"/>
                 <ImageButton
-                    android:id="@+id/calendar1"
+                    android:id="@+id/EditEvent_calendar1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_calendar"

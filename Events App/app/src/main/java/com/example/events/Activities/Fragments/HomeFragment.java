@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
         ImageButton logout = (ImageButton) view1.findViewById(R.id.logout);
         ImageButton explore = (ImageButton) view1.findViewById(R.id.explore_events);
         ImageButton my_events = (ImageButton) view1.findViewById(R.id.myEvents);
-        ImageButton create_events = (ImageButton) view1.findViewById(R.id.createEvents);
+        ImageButton create_events = (ImageButton) view1.findViewById(R.id.EditEvent_confirm_button);
         ImageButton timeline = (ImageButton) view1.findViewById(R.id.timeline);
 
         search.setOnClickListener(view -> {

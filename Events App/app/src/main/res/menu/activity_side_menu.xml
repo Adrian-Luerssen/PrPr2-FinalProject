@@ -28,7 +28,7 @@
                     android:id="@+id/myEvents"
                     android:title="@string/myEvents" />
                 <item
-                    android:id="@+id/createEvents"
+                    android:id="@+id/EditEvent_confirm_button"
                     android:title="@string/createEvents" />
                 <item
                     android:id="@+id/timeline"

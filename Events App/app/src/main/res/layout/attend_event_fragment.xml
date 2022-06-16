@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_baseline_arrow_back_24"
                 tools:ignore="ContentDescription" />
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/EditEvent_imageview"
                 android:layout_width="334dp"
                 android:layout_height="272dp"
                 android:layout_gravity="center"

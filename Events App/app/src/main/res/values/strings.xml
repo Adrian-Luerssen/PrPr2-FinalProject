@@ -113,5 +113,10 @@
     <string name="inputAComment">Inupt a comment</string>
     <string name="Comment">Comment</string>
     <string name="Comment_Error">You must attend the event to comment</string>
+    <string name="Confirm_Edit">Confirm edit</string>
+    <string name="Deny_edit">Deny edit and go back</string>
+    <string name="Repeat_password">Repeat password</string>
+    <string name="Repeat_Email">Repeat email</string>
+    <string name="EditUser_main_title">Edit your account</string>
 
 </resources>

@@ -53,17 +53,17 @@ public class CreateEventFragment extends Fragment {
     private String selectedCategory;
 
     private void initFields() {
-        image = (ImageView) view.findViewById(R.id.imageView);
-        title = (EditText) view.findViewById(R.id.title);
-        description = (EditText) view.findViewById(R.id.description);
+        image = (ImageView) view.findViewById(R.id.EditEvent_imageview);
+        title = (EditText) view.findViewById(R.id.EditEvent_title_input);
+        description = (EditText) view.findViewById(R.id.EditEvent_description_input);
         //selectCategory = (ImageButton) view.findViewById(R.id.options);
-        category = (Spinner) view.findViewById(R.id.categoriesSpinner);
-        startDate = (ImageButton) view.findViewById(R.id.calendar1);
-        startText = (EditText) view.findViewById(R.id.startText);
-        endDate = (ImageButton) view.findViewById(R.id.calendar2);
-        endText = (EditText) view.findViewById(R.id.endText);
-        location = (EditText) view.findViewById(R.id.location);
-        createEvent = (Button) view.findViewById(R.id.createEvents);
+        category = (Spinner) view.findViewById(R.id.EditEvent_category_spinner);
+        startDate = (ImageButton) view.findViewById(R.id.EditEvent_calendar1);
+        startText = (EditText) view.findViewById(R.id.EditEvent_startDate_input);
+        endDate = (ImageButton) view.findViewById(R.id.EditEvent_calendar2);
+        endText = (EditText) view.findViewById(R.id.EditEvent_endDate_input);
+        location = (EditText) view.findViewById(R.id.EditEvent_location_input);
+        createEvent = (Button) view.findViewById(R.id.EditEvent_confirm_button);
         ArrayAdapter<CharSequence> sequence = ArrayAdapter.createFromResource(getContext(), R.array.categories_array, android.R.layout.simple_spinner_item);
         sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(sequence);
@@ -89,10 +89,6 @@ public class CreateEventFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                     ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.inputText));
-                    /*ArrayAdapter<CharSequence> sequence = ArrayAdapter.createFromResource(getContext(), R.array.categories_array, android.R.layout.simple_spinner_item);
-                    sequence.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    category.setAdapter(sequence);
-                    category.setSelection(0);*/
                     if (parent.getItemAtPosition(pos).equals("Category Event")) {
 
                     } else {
@@ -114,7 +110,6 @@ public class CreateEventFragment extends Fragment {
             showDatePickerDialog(endText);
         });
 
-        //TODO: Check pleaseeee!!!!
         createEvent.setOnClickListener(view -> {
             if (true){
                 ServiceAPI.getInstance().createEvent(new Event(title.getText().toString(), "cambiar", location.getText().toString(), description.getText().toString(), startText.getText().toString(), endText.getText().toString(), 1, selectedCategory), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<Event>() {

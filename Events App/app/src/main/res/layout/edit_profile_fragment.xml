@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="100dp"
-        android:text="@string/Register_account"
-        android:textAppearance="@style/BigText"
+        android:fontFamily="@font/outfit_extra_bold"
         android:gravity="top"
-        tools:ignore="MissingConstraints"
-        android:fontFamily="@font/outfit_extra_bold"/>
+        android:text="@string/EditUser_main_title"
+        android:textAppearance="@style/BigText"
+        tools:ignore="MissingConstraints" />
     <EditText
         android:id="@+id/EditUser_FirstName_input"
         android:layout_width="match_parent"
@@ -55,91 +55,61 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/input_box"
-        android:layout_marginTop="10dp"
-        android:gravity="top"
-        android:hint="@string/phonenumber"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
         android:fontFamily="@font/outfit_medium"
-        android:inputType="phone"/>
+        android:gravity="top"
+        android:hint="@string/email"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textAppearance="@style/InputFieldText"
+        android:textColor="@color/white"
+        android:textColorHint="@color/inputText" />
 
     <EditText
         android:id="@+id/EditUser_Password_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/input_box"
-        android:layout_marginTop="10dp"
+        android:fontFamily="@font/outfit_medium"
         android:gravity="top"
-        android:hint="@string/email"
-        android:textColorHint="@color/inputText"
+        android:hint="@string/password"
         android:padding="16dp"
-        android:textColor="@color/white"
         android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"/>
+        android:textColor="@color/white"
+        android:textColorHint="@color/inputText" />
 
     <EditText
         android:id="@+id/EditUser_RepeatPassword_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
         android:background="@drawable/input_box"
-        android:gravity="top"
-        android:hint="@string/password"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
         android:fontFamily="@font/outfit_medium"
-        android:inputType="textPassword"/>
+        android:gravity="top"
+        android:hint="@string/Repeat_password"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textAppearance="@style/InputFieldText"
+        android:textColor="@color/white"
+        android:textColorHint="@color/inputText" />
 
     <Button
         android:id="@+id/EditUser_confirm_edit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/bigbutton"
-        android:text="@string/SignUp"
-        android:textAppearance="@style/mediumText"
-        android:fontFamily="@font/outfit_bold"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/already_registered_message_part1"
-            android:paddingEnd="5dp"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:textColor="@color/inputText"
-            android:gravity="center"
-            tools:ignore="RtlSymmetry" />
-        <Button
-            android:id="@+id/move_to_login"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:text="@string/already_registered_message_part2"
-            android:textAppearance="@style/linkText"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:gravity="left|center_vertical"
-            tools:ignore="RtlHardcoded" />
-    </LinearLayout>
+        android:background="@drawable/bigbutton"
+        android:fontFamily="@font/outfit_bold"
+        android:text="@string/Confirm_Edit"
+        android:textAppearance="@style/mediumText" />
 
 </LinearLayout>

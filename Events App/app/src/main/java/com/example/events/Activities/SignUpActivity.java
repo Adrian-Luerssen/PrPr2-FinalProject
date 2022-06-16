@@ -91,12 +91,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initFields() {
-        signUp = (Button) findViewById(R.id.sign_up_button);
-        email = (EditText) findViewById(R.id.SignUp_email_input);
-        password = (EditText) findViewById(R.id.SignUp_password_input);
-        phone = (EditText) findViewById(R.id.SignUp_Phone_input);
-        firstName = (EditText) findViewById(R.id.SignUp_First_Name_input);
-        lastName = (EditText) findViewById(R.id.SignUp_Last_Name_input);
+        signUp = (Button) findViewById(R.id.EditUser_confirm_edit);
+        email = (EditText) findViewById(R.id.EditUser_Password_input);
+        password = (EditText) findViewById(R.id.EditUser_RepeatPassword_input);
+        phone = (EditText) findViewById(R.id.EditUser_Email_input);
+        firstName = (EditText) findViewById(R.id.EditUser_FirstName_input);
+        lastName = (EditText) findViewById(R.id.EditUser_LastName_input);
         gotoLogin = (Button) findViewById(R.id.move_to_login);
         emailPattern = Pattern.compile("^(.+)@(.+)$");
     }
