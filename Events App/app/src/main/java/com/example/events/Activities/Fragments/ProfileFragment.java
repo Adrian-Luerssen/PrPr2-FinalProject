@@ -33,9 +33,7 @@ public class ProfileFragment extends Fragment {
     private TextView addUserORviewRequests;
     private ProfileListener listener;
     private Button delete;
-    private ImageView back;
-    private View view2;
-    private boolean showBack;
+    private final boolean showBack;
 
     public ProfileFragment(User user) {
         this.user = user;
@@ -71,7 +69,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view2 = inflater.inflate(R.layout.profile_fragment, container, false);
+        View view2 = inflater.inflate(R.layout.profile_fragment, container, false);
         TextView username = view2.findViewById(R.id.profileName);
         ImageView profilePicture = view2.findViewById(R.id.profileImage);
         TextView editProfileORgotochat = view2.findViewById(R.id.gotochatOReditProfile);
@@ -82,12 +80,10 @@ public class ProfileFragment extends Fragment {
         viewFriends.setVisibility(View.INVISIBLE);
         username.setText(user.getName() + " " + user.getLastName());
 
-        back = view2.findViewById(R.id.back_button);
+        ImageView back = view2.findViewById(R.id.back_button);
         if (showBack) {
             back.setVisibility(View.VISIBLE);
-            back.setOnClickListener(view1 -> {
-                listener.onBackClicked();
-            });
+            back.setOnClickListener(view1 -> listener.onBackClicked());
         } else {
             back.setVisibility(View.INVISIBLE);
         }
@@ -97,30 +93,19 @@ public class ProfileFragment extends Fragment {
             delete.setOnClickListener(view1 -> {
                 //delete
             });
-            viewFriends.setOnClickListener(view -> {
-                listener.viewFriends();
-            });
+            viewFriends.setOnClickListener(view -> listener.viewFriends());
             editProfileORgotochat.setText(R.string.Edit_Profile);
-            editProfileORgotochat.setOnClickListener(view1 -> {
-
-                listener.onEditProfileClicked();
-            });
+            editProfileORgotochat.setOnClickListener(view1 -> listener.onEditProfileClicked());
             addUserORviewRequests.setText(R.string.View_Requests);
-            addUserORviewRequests.setOnClickListener(view1 -> {
-                listener.viewFriendRequests();
-            });
+            addUserORviewRequests.setOnClickListener(view1 -> listener.viewFriendRequests());
 
-            delete.setOnClickListener(view1 -> {
-                listener.onDeleteUserClicked();
-            });
+            delete.setOnClickListener(view1 -> listener.onDeleteUserClicked());
 
         } else {
 
 
             editProfileORgotochat.setText(R.string.Go_to_chat);
-            editProfileORgotochat.setOnClickListener(view1 -> {
-                listener.onUserChatClicked(user);
-            });
+            editProfileORgotochat.setOnClickListener(view1 -> listener.onUserChatClicked(user));
             ServiceAPI.getInstance().getFriends(AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
                 public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -197,7 +182,7 @@ public class ProfileFragment extends Fragment {
         if (context instanceof ProfileListener) {
             listener = (ProfileListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement ProfileListener");
         }
     }

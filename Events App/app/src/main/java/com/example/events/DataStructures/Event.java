@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 public class Event {
     @Expose(serialize = false)
@@ -27,7 +26,7 @@ public class Event {
     @Expose
     @SerializedName("eventStart_date")
     private String startDate;
-    @Expose(serialize = false,deserialize = true)
+    @Expose(serialize = false)
     @SerializedName("date")
     private String date;
     @Expose

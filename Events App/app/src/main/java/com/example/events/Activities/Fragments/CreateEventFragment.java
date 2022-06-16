@@ -1,15 +1,10 @@
 package com.example.events.Activities.Fragments;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.events.Activities.LoginActivity;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.Persistence.DownloadImageTask;
@@ -108,13 +102,9 @@ public class CreateEventFragment extends Fragment {
             });
         //});
 
-        startDate.setOnClickListener(view -> {
-            showDatePickerDialog(startText);
-        });
+        startDate.setOnClickListener(view -> showDatePickerDialog(startText));
 
-        endDate.setOnClickListener(view -> {
-            showDatePickerDialog(endText);
-        });
+        endDate.setOnClickListener(view -> showDatePickerDialog(endText));
 
         createEvent.setOnClickListener(view -> {
             if (!selectedCategory.equals("Category Event")){
@@ -188,12 +178,9 @@ public class CreateEventFragment extends Fragment {
 
 
     private void showDatePickerDialog(final EditText editText) {
-        DatePickerFragment date = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
-                editText.setText(selectedDate);
-            }
+        DatePickerFragment date = DatePickerFragment.newInstance((view, year, month, day) -> {
+            final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
+            editText.setText(selectedDate);
         });
         date.show(getActivity().getSupportFragmentManager(), "datePicker");
     }

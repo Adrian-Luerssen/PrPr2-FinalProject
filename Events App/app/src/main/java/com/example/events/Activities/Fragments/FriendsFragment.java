@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -29,7 +28,6 @@ public class FriendsFragment extends Fragment {
     private RecyclerView friendRecView;
     private List<User> friends;
     private FriendsOnClickListener listener;
-    private ImageView back;
 
     public interface FriendsOnClickListener {
         void onProfileClicked(User user);
@@ -47,10 +45,8 @@ public class FriendsFragment extends Fragment {
         View view = inflater.inflate(R.layout.friend_fragment, container, false);
         friendRecView = view.findViewById(R.id.friendRecycler);
         friendRecView.setLayoutManager(new LinearLayoutManager(getContext()));
-        back = view.findViewById(R.id.back_button);
-        back.setOnClickListener(view1 -> {
-            listener.onBackClicked();
-        });
+        ImageView back = view.findViewById(R.id.back_button);
+        back.setOnClickListener(view1 -> listener.onBackClicked());
         refresh();
         return view;
     }
@@ -142,7 +138,7 @@ public class FriendsFragment extends Fragment {
         if (context instanceof FriendsOnClickListener) {
             listener = (FriendsOnClickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement SearchUsersOnclickListener");
         }
     }

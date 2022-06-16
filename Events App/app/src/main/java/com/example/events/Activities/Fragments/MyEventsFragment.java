@@ -8,16 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
-import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
@@ -32,7 +29,6 @@ import retrofit2.Response;
 public class MyEventsFragment extends Fragment {
     private RecyclerView myEventRecView;
     private List<Event> myEventList;
-    private ImageButton addEvent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +41,8 @@ public class MyEventsFragment extends Fragment {
         myEventRecView = (RecyclerView) view.findViewById(R.id.my_events_rec_view);
         myEventRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getAPI();
-        addEvent =  view.findViewById(R.id.add_Button);
-        addEvent.setOnClickListener(view1 -> {
-            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CreateEventFragment()).addToBackStack(null).commit();
-        });
+        ImageButton addEvent = view.findViewById(R.id.add_Button);
+        addEvent.setOnClickListener(view1 -> getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CreateEventFragment()).addToBackStack(null).commit());
 
         return view;
     }

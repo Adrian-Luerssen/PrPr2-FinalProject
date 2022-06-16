@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.DataStructures.Users.UserList;
@@ -63,9 +62,7 @@ public class SearchUsersFragment extends Fragment {
         ImageButton search = (ImageButton) view1.findViewById(R.id.search_button);
         userRecView = (RecyclerView) view1.findViewById(R.id.user_search_rec_view);
         userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
-        search.setOnClickListener(view -> {
-            searchAPI();
-        });
+        search.setOnClickListener(view -> searchAPI());
         searchbar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -149,9 +146,9 @@ public class SearchUsersFragment extends Fragment {
     private class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private User user;
-        private TextView username;
-        private ImageView profilePicture;
-        private ImageButton addFriend;
+        private final TextView username;
+        private final ImageView profilePicture;
+        private final ImageButton addFriend;
         private boolean isFriend;
 
 
@@ -236,7 +233,7 @@ public class SearchUsersFragment extends Fragment {
         if (context instanceof SearchUsersOnClickListener) {
             listener = (SearchUsersOnClickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement SearchUsersOnclickListener");
         }
     }

@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Comment;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
@@ -30,13 +28,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AttendantListFragment extends Fragment {
-    private Event event;
-    private View view;
+    private final Event event;
     private RecyclerView attendantRecView;
     private List<Comment> attendantList;
-    private AttendantAdapter attendantAdapter;
     private AttendListFragmentOnClickListener listener;
-    private ImageView back;
 
     public interface AttendListFragmentOnClickListener {
         void onBackClicked();
@@ -55,13 +50,11 @@ public class AttendantListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.attendant_list_fragment, container, false);
-        back = (ImageView) view.findViewById(R.id.back_button);
+        View view = inflater.inflate(R.layout.attendant_list_fragment, container, false);
+        ImageView back = (ImageView) view.findViewById(R.id.back_button);
         attendantRecView = (RecyclerView) view.findViewById(R.id.attendant_rec_view);
         attendantRecView.setLayoutManager(new LinearLayoutManager(getContext()));
-        back.setOnClickListener(view1 -> {
-            listener.onBackClicked();
-        });
+        back.setOnClickListener(view1 -> listener.onBackClicked());
         ServiceAPI.getInstance().getEventAssistances(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<Comment>>() {
 
             @Override
@@ -83,7 +76,7 @@ public class AttendantListFragment extends Fragment {
 
     private void updateAtendants() {
 
-        attendantAdapter = new AttendantAdapter(attendantList);
+        AttendantAdapter attendantAdapter = new AttendantAdapter(attendantList);
         attendantRecView.setAdapter(attendantAdapter);
     }
 
@@ -118,23 +111,20 @@ public class AttendantListFragment extends Fragment {
 
     private class AttendantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private Comment comment;
         private User user;
-        private TextView username;
-        private ImageView profilePicture;
-        private ImageButton addFriend;
+        private final TextView username;
+        private final ImageView profilePicture;
 
         public AttendantHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_search_item, parent, false));
             itemView.setOnClickListener(this);
             username = (TextView) itemView.findViewById(R.id.search_user_name);
             profilePicture = (ImageView) itemView.findViewById(R.id.search_user_image);
-            addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
+            ImageButton addFriend = (ImageButton) itemView.findViewById(R.id.addUser);
             addFriend.setVisibility(View.INVISIBLE);
         }
 
         public void bind(Comment comment) {
-            this.comment = comment;
             this.username.setText(comment.getName() + " " + comment.getLastName());
             ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
@@ -171,7 +161,7 @@ public class AttendantListFragment extends Fragment {
         if (context instanceof AttendListFragmentOnClickListener) {
             listener = (AttendListFragmentOnClickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement AttendListFragmentOnClickListener");
         }
     }

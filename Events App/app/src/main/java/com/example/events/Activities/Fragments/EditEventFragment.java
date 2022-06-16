@@ -3,7 +3,6 @@ package com.example.events.Activities.Fragments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +23,6 @@ import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.example.events.Activities.LoginActivity;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.Persistence.DownloadImageTask;
@@ -39,7 +37,7 @@ import retrofit2.Response;
 
 
 public class EditEventFragment extends Fragment {
-    private Event event;
+    private final Event event;
     private View view;
     private ImageButton selectCategory;
     private ImageButton startDate;
@@ -56,6 +54,7 @@ public class EditEventFragment extends Fragment {
     private EditText url;
     private EditEventListener listener;
     private EditText numberofpeople;
+
     public interface EditEventListener{
         void onEditEvent(Event event);
     }
@@ -63,12 +62,12 @@ public class EditEventFragment extends Fragment {
     public EditEventFragment(Event event) {
         this.event = event;
     }
+
     private void initFields() {
         image = (ImageView) view.findViewById(R.id.EditEvent_imageview);
         title = (EditText) view.findViewById(R.id.EditEvent_title_input);
         description = (EditText) view.findViewById(R.id.EditEvent_description_input);
         numberofpeople = (EditText) view.findViewById(R.id.numberofpeople);
-        //selectCategory = (ImageButton) view.findViewById(R.id.options);
         category = (Spinner) view.findViewById(R.id.EditEvent_category_spinner);
         startDate = (ImageButton) view.findViewById(R.id.EditEvent_calendar1);
         startText = (EditText) view.findViewById(R.id.EditEvent_startDate_input);
@@ -98,7 +97,6 @@ public class EditEventFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    //TODO: No se puede hacer sin crear un event antes
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.edit_event_fragment, container, false);
@@ -124,13 +122,9 @@ public class EditEventFragment extends Fragment {
         });
         //});
 
-        startDate.setOnClickListener(view -> {
-            showDatePickerDialog(startText);
-        });
+        startDate.setOnClickListener(view -> showDatePickerDialog(startText));
 
-        endDate.setOnClickListener(view -> {
-            showDatePickerDialog(endText);
-        });
+        endDate.setOnClickListener(view -> showDatePickerDialog(endText));
 
         updateEvent.setOnClickListener(view -> {
             if (!selectCategory.equals("Category Event")){
@@ -204,12 +198,9 @@ public class EditEventFragment extends Fragment {
 
 
     private void showDatePickerDialog(final EditText editText) {
-        CreateEventFragment.DatePickerFragment date = CreateEventFragment.DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
-                editText.setText(selectedDate);
-            }
+        CreateEventFragment.DatePickerFragment date = CreateEventFragment.DatePickerFragment.newInstance((view, year, month, day) -> {
+            final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
+            editText.setText(selectedDate);
         });
         date.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
@@ -224,7 +215,7 @@ public class EditEventFragment extends Fragment {
         if (context instanceof EditEventListener) {
             listener = (EditEventListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement EditEventListener");
         }
     }

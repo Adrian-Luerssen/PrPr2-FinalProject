@@ -1,14 +1,7 @@
 package com.example.events.DataStructures;
 
-import com.example.events.DataStructures.Users.AuthUser;
-import com.example.events.DataStructures.Users.User;
-import com.example.events.Persistence.ServiceAPI;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Comment {
     @Expose

@@ -39,36 +39,17 @@ import retrofit2.Response;
 
 public class AttendEventFragment extends Fragment {
     private Button attendEvent;
-    private ImageView image;
-    private TextView name;
-    private TextView category;
-    private TextView description;
-    private TextView startDate;
-    private TextView endDate;
-    private TextView location;
-    private Event event;
+    private final Event event;
     private boolean isAttending;
     private RecyclerView recyclerView;
     private List<Comment> comments;
     private List<User> assistences;
-    private CommentAdapter commentAdapter;
-    private ImageView back;
-    private Button viewAttendence;
     private NumberPicker addRating;
-    private Button submitComment;
     private EditText inputComment;
     private AttendEventFragmentOnClickListener listener;
 
     private class UpdateComment{
-        @Expose
-        @SerializedName("comentary")
-        private String comment;
-        @Expose
-        @SerializedName("puntuation")
-        private int rating;
         public UpdateComment(String comment, int rating) {
-            this.comment = comment;
-            this.rating = rating;
         }
     }
     public interface AttendEventFragmentOnClickListener {
@@ -91,19 +72,19 @@ public class AttendEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.attend_event_fragment, container, false);
         attendEvent = (Button) view.findViewById(R.id.attend_button);
-        image = view.findViewById(R.id.imageView);
-        name = (TextView) view.findViewById(R.id.name_attend_event);
-        category = (TextView) view.findViewById(R.id.category_attend_event);
-        description = (TextView) view.findViewById(R.id.description_attend_event);
-        startDate = (TextView) view.findViewById(R.id.start_attend_event);
-        endDate = (TextView) view.findViewById(R.id.end_attend_event);
-        location = (TextView) view.findViewById(R.id.location_attend_event);
+        ImageView image = view.findViewById(R.id.imageView);
+        TextView name = (TextView) view.findViewById(R.id.name_attend_event);
+        TextView category = (TextView) view.findViewById(R.id.category_attend_event);
+        TextView description = (TextView) view.findViewById(R.id.description_attend_event);
+        TextView startDate = (TextView) view.findViewById(R.id.start_attend_event);
+        TextView endDate = (TextView) view.findViewById(R.id.end_attend_event);
+        TextView location = (TextView) view.findViewById(R.id.location_attend_event);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerComments);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        back = (ImageView) view.findViewById(R.id.back_button);
-        viewAttendence = (Button) view.findViewById(R.id.attendants_button);
+        ImageView back = (ImageView) view.findViewById(R.id.back_button);
+        Button viewAttendence = (Button) view.findViewById(R.id.attendants_button);
         addRating = (NumberPicker) view.findViewById(R.id.numberPicker);
-        submitComment = (Button) view.findViewById(R.id.buttonComment);
+        Button submitComment = (Button) view.findViewById(R.id.buttonComment);
         inputComment = (EditText) view.findViewById(R.id.editTextComment);
         addRating.setMaxValue(10);
         addRating.setMinValue(0);
@@ -139,12 +120,8 @@ public class AttendEventFragment extends Fragment {
 
         getComments();
 
-        viewAttendence.setOnClickListener(view1 -> {
-            listener.viewAttendence(event);
-        });
-        back.setOnClickListener(view1 -> {
-            listener.onBackClicked();
-        });
+        viewAttendence.setOnClickListener(view1 -> listener.viewAttendence(event));
+        back.setOnClickListener(view1 -> listener.onBackClicked());
 
 
 
@@ -189,7 +166,7 @@ public class AttendEventFragment extends Fragment {
         });
     }
     private void updateComments() {
-        commentAdapter = new CommentAdapter(comments);
+        CommentAdapter commentAdapter = new CommentAdapter(comments);
         recyclerView.setAdapter(commentAdapter);
     }
 
@@ -198,9 +175,7 @@ public class AttendEventFragment extends Fragment {
 
         if (event.getOwnerID() == AuthUser.getAuthUser().getId()){
             attendEvent.setText("Edit Event");
-            attendEvent.setOnClickListener(view -> {
-                listener.onEditClicked(event);
-            });
+            attendEvent.setOnClickListener(view -> listener.onEditClicked(event));
         }else {
             attendEvent.setOnClickListener(view -> {
 
@@ -218,53 +193,45 @@ public class AttendEventFragment extends Fragment {
                     text.setText(getText(R.string.attending_Event));
                     mess.setText(getText(R.string.add_Event));
                 }
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
+                no.setOnClickListener(view12 -> dialog.dismiss());
+
+                yes.setOnClickListener(view1 -> {
+                    // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
+                    if (!isAttending) {
+                        ServiceAPI.getInstance().assistEvent(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    dialog.dismiss();
+                                    isAttending = true;
+                                    updateAttendButton();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
+                    } else {
+                        ServiceAPI.getInstance().deleteAssistance(AuthUser.getAuthUser().getId(), event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    dialog.dismiss();
+                                    isAttending = false;
+                                    updateAttendButton();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
                     }
-                });
-
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // GET DATA FROM API AND SEND INFO ABOUT EVENT TO MyEvents
-                        if (!isAttending) {
-                            ServiceAPI.getInstance().assistEvent(event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        dialog.dismiss();
-                                        isAttending = true;
-                                        updateAttendButton();
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                                }
-                            });
-                        } else {
-                            ServiceAPI.getInstance().deleteAssistance(AuthUser.getAuthUser().getId(), event.getId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        dialog.dismiss();
-                                        isAttending = false;
-                                        updateAttendButton();
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                                }
-                            });
-                        }
 
 
-                    }
                 });
 
                 dialog.show();
@@ -316,7 +283,6 @@ public class AttendEventFragment extends Fragment {
 
     private class CommentHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private Comment comment;
         private User user;
         private final TextView username;
         private final ImageView profilePicture;
@@ -333,7 +299,6 @@ public class AttendEventFragment extends Fragment {
         }
 
         public void bind(Comment comment) {
-            this.comment = comment;
             this.username.setText(comment.getName() + " " + comment.getLastName());
 
             message.setText(comment.getText());
@@ -374,7 +339,7 @@ public class AttendEventFragment extends Fragment {
             listener = (AttendEventFragmentOnClickListener) context;
         }
         else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement AttendEventFragmentOnClickListener");
         }
     }

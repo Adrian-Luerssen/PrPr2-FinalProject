@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
@@ -31,7 +30,6 @@ import retrofit2.Response;
 public class FriendRequestFragment extends Fragment {
     private RecyclerView requestRecView;
     private List<User> requests;
-    private ImageView back;
     private FriendRequestOnclickListener listener;
 
     public interface FriendRequestOnclickListener{
@@ -47,10 +45,8 @@ public class FriendRequestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.friend_requests_fragment, container, false);
         requestRecView = view.findViewById(R.id.friendRequestsRecycler);
-        back = view.findViewById(R.id.back_button);
-        back.setOnClickListener(view1 -> {
-            listener.onBackClicked();
-        });
+        ImageView back = view.findViewById(R.id.back_button);
+        back.setOnClickListener(view1 -> listener.onBackClicked());
         requestRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         refresh();
         return view;
@@ -134,45 +130,35 @@ public class FriendRequestFragment extends Fragment {
             this.username.setText(user.getName()+" "+user.getLastName());
             DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
 
-            acceptFriend.setOnClickListener(new View.OnClickListener() {
+            acceptFriend.setOnClickListener(v -> ServiceAPI.getInstance().acceptFriendRequest(user.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onClick(View v) {
-                    ServiceAPI.getInstance().acceptFriendRequest(user.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if(response.isSuccessful()) {
-                                Toast.makeText(getContext(), "Friend request accepted", Toast.LENGTH_SHORT).show();
-                                refresh();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getContext(), "Friend request accepted", Toast.LENGTH_SHORT).show();
+                        refresh();
+                    }
                 }
-            });
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                }
+            }));
             
-            declineFriend.setOnClickListener(new View.OnClickListener() {
+            declineFriend.setOnClickListener(v -> ServiceAPI.getInstance().declineFriendRequest(user.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onClick(View v) {
-                    ServiceAPI.getInstance().declineFriendRequest(user.getId(),AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if(response.isSuccessful()) {
-                                Toast.makeText(getContext(), "Friend request declined", Toast.LENGTH_SHORT).show();
-                                refresh();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getContext(), "Friend request declined", Toast.LENGTH_SHORT).show();
+                        refresh();
+                    }
                 }
-            });
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                }
+            }));
         }
 
         @Override
@@ -186,7 +172,7 @@ public class FriendRequestFragment extends Fragment {
         if (context instanceof FriendRequestOnclickListener) {
             listener = (FriendRequestOnclickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement FriendRequestOnclickListener");
         }
     }

@@ -126,12 +126,7 @@ public class OpenChatFragment extends Fragment {
     private void refreshUI() {
         if (notClosed){
             final Handler handler = new Handler();
-            final Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    refresh();
-                }
-            };
+            final Runnable runnable = () -> refresh();
             handler.postDelayed(runnable, OpenChatFragment.REFRESH_TIME);
         }
 
@@ -169,7 +164,7 @@ public class OpenChatFragment extends Fragment {
         if (context instanceof ChatOnClickListener) {
             listener = (ChatOnClickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement ChatOnClickListener");
         }
     }

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Event;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
@@ -155,7 +154,7 @@ public class TimelineFragment extends Fragment {
             listener = (TimelineFragmentOnClickListener) context;
         }
         else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement TimelineFragmentOnClickListener");
         }
     }

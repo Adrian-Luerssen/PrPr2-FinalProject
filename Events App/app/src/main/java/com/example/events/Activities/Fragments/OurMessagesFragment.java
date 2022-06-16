@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.Message;
 import com.example.events.DataStructures.Users.User;
@@ -60,9 +59,7 @@ public class OurMessagesFragment extends Fragment {
         userRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         getUserMessages();
 
-        search.setOnClickListener(view -> {
-            filterUserlist(searchbar.getText().toString());
-        });
+        search.setOnClickListener(view -> filterUserlist(searchbar.getText().toString()));
         searchbar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -153,7 +150,7 @@ public class OurMessagesFragment extends Fragment {
         private final TextView username;
         protected final TextView message;
         private final TextView date;
-        private ImageView profilePicture;
+        private final ImageView profilePicture;
 
         public UserHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.message_user_list_item, parent, false));
@@ -216,7 +213,7 @@ public class OurMessagesFragment extends Fragment {
         if (context instanceof OurMessagesFragmentListener) {
             listener = (OurMessagesFragmentListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement OurMessagesFragmentListener");
         }
     }

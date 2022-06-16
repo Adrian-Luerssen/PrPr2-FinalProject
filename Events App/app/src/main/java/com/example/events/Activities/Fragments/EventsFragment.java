@@ -46,11 +46,7 @@ public class EventsFragment extends Fragment {
     private EventAdapter eventAdapter;
     private EditText name;
     private EditText location;
-    private ImageButton datePicker;
     private EditText date;
-    private Button searchButton;
-    private Button searchBestButton;
-    private Button clearButton;
 
     public interface EventsFragmentOnClickListener{
         void onEventClicked(Event event);
@@ -73,26 +69,20 @@ public class EventsFragment extends Fragment {
         name = (EditText) view.findViewById(R.id.event_name);
         location = (EditText) view.findViewById(R.id.event_location);
         date = (EditText) view.findViewById(R.id.event_date);
-        datePicker = (ImageButton) view.findViewById(R.id.calendar1);
-        searchButton = (Button) view.findViewById(R.id.searchButton);
-        searchBestButton = (Button) view.findViewById(R.id.searchButtonBest);
-        clearButton = (Button) view.findViewById(R.id.clearButton);
+        ImageButton datePicker = (ImageButton) view.findViewById(R.id.calendar1);
+        Button searchButton = (Button) view.findViewById(R.id.searchButton);
+        Button searchBestButton = (Button) view.findViewById(R.id.searchButtonBest);
+        Button clearButton = (Button) view.findViewById(R.id.clearButton);
         clearButton.setOnClickListener(view1 -> {
             name.setText("");
             location.setText("");
             date.setText("");
         });
-        searchButton.setOnClickListener(view1 -> {
-            searchAll();
-        });
-        searchBestButton.setOnClickListener(view1 -> {
-            searchBest();
-        });
+        searchButton.setOnClickListener(view1 -> searchAll());
+        searchBestButton.setOnClickListener(view1 -> searchBest());
         searchAll();
 
-        datePicker.setOnClickListener(view1 -> {
-            showDatePickerDialog(date);
-        });
+        datePicker.setOnClickListener(view1 -> showDatePickerDialog(date));
         //initFields();
         //setButtonListener();
         return view;
@@ -232,7 +222,7 @@ public class EventsFragment extends Fragment {
             listener = (EventsFragmentOnClickListener) context;
         }
         else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement EventsFragmentOnclickListener");
         }
     }
@@ -263,12 +253,9 @@ public class EventsFragment extends Fragment {
 
 
     private void showDatePickerDialog(final EditText editText) {
-        DatePickerFragment date = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
-                editText.setText(selectedDate);
-            }
+        DatePickerFragment date = DatePickerFragment.newInstance((view, year, month, day) -> {
+            final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
+            editText.setText(selectedDate);
         });
         date.show(getActivity().getSupportFragmentManager(), "datePicker");
     }

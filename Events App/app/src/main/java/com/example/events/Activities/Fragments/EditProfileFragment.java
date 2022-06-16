@@ -1,13 +1,8 @@
 package com.example.events.Activities.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -18,8 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
@@ -29,22 +22,17 @@ import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditProfileFragment extends Fragment {
-    private View view;
     private EditText url;
     private EditText firstName;
     private EditText lastName;
     private EditText email;
     private EditText password;
     private EditText repeatPassword;
-    //TODO: Image edition
-    private Button saveButton;
     private EditProfileListener listener;
     private ImageView image;
     public interface EditProfileListener {
@@ -63,13 +51,14 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.edit_profile_fragment, container, false);
+        View view = inflater.inflate(R.layout.edit_profile_fragment, container, false);
         firstName = (EditText) view.findViewById(R.id.EditUser_FirstName_input);
         lastName = (EditText) view.findViewById(R.id.EditUser_LastName_input);
         email = (EditText) view.findViewById(R.id.EditUser_Email_input);
         password = (EditText) view.findViewById(R.id.EditUser_Password_input);
         repeatPassword = (EditText) view.findViewById(R.id.EditUser_RepeatPassword_input);
-        saveButton = (Button) view.findViewById(R.id.EditUser_confirm_edit);
+        //TODO: Image edition
+        Button saveButton = (Button) view.findViewById(R.id.EditUser_confirm_edit);
         firstName.setText(AuthUser.getAuthUser().getName());
         lastName.setText(AuthUser.getAuthUser().getLastName());
         email.setText(AuthUser.getAuthUser().getEmail());
@@ -146,7 +135,7 @@ public class EditProfileFragment extends Fragment {
         if (context instanceof EditProfileListener) {
             listener = (EditProfileListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement EditProfileListener");
         }
     }
