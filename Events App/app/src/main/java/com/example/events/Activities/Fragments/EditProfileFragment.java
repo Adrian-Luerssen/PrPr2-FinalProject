@@ -97,8 +97,8 @@ public class EditProfileFragment extends Fragment {
 
             String firstNameString = firstName.getText().toString().equals("") ? AuthUser.getAuthUser().getName() : firstName.getText().toString();
             String lastNameString = lastName.getText().toString().equals("") ? AuthUser.getAuthUser().getLastName() : lastName.getText().toString();
-            String passwordString = password.getText().toString().equals("") ? AuthUser.getAuthUser().getPassword() : password.getText().toString();
-            String repeatPasswordString = repeatPassword.getText().toString().equals("") ? AuthUser.getAuthUser().getPassword() : repeatPassword.getText().toString();
+            String passwordString = password.getText().toString().equals("") && repeatPassword.getText().toString().equals("") ? AuthUser.getAuthUser().getPassword() : password.getText().toString();
+            String repeatPasswordString = password.getText().toString().equals("") && repeatPassword.getText().toString().equals("") ? AuthUser.getAuthUser().getPassword() : repeatPassword.getText().toString();
             String emailString = email.getText().toString().equals("") ? AuthUser.getAuthUser().getEmail() : email.getText().toString();
 
 
