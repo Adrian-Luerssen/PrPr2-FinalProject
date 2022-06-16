@@ -139,9 +139,13 @@ public class AttendantListFragment extends Fragment {
             ServiceAPI.getInstance().getUser(comment.getUserId(), AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<List<User>>() {
                 @Override
                 public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                    user = response.body().get(0);
+                    if (response.body().size() > 0){
+                        user = response.body().get(0);
 
-                    DownloadImageTask.loadImage(getContext(), user.getImageURL(),profilePicture ,R.drawable.boy1);
+                        DownloadImageTask.loadImage(getContext(), user.getImageURL(), profilePicture,R.drawable.boy1);
+                    } else {
+                        profilePicture.setImageResource(R.drawable.boy1);
+                    }
                 }
 
                 @Override
