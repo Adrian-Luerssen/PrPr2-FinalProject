@@ -54,25 +54,27 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         System.out.println("Context: " + context);
 
 
-        Glide.with(context)
-                .load(string)
-                .placeholder(placeholder)
-                .dontAnimate()
-                .addListener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+            Glide.with(context)
+                    .load(string)
+                    .placeholder(placeholder)
+                    .error(placeholder)
+                    .dontAnimate()
+                    .addListener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            new DownloadImageTask(imageView).execute(string);
+                            return false;
+                        }
 
-                        new DownloadImageTask(imageView).execute(string);
-                        return false;
-                    }
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            imageView.setImageDrawable(resource);
+                            return false;
+                        }
+                    })
+                    .into(imageView);
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        imageView.setImageDrawable(resource);
-                        return false;
-                    }
-                })
-                .into(imageView);
+
 
 
     }

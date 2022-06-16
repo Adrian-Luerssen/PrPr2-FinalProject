@@ -20,7 +20,6 @@ public class HomeFragment extends Fragment {
         void onLogoutClicked();
         void onExploreClicked();
         void onMyEventsClicked();
-        void onRateClicked();
         void onCreateClicked();
         void onTimelineClicked();
     }

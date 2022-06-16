@@ -26,7 +26,6 @@ import com.example.events.Activities.Fragments.OpenChatFragment;
 import com.example.events.Activities.Fragments.OurMessagesFragment;
 import com.example.events.Activities.Fragments.HomeFragment;
 import com.example.events.Activities.Fragments.ProfileFragment;
-import com.example.events.Activities.Fragments.RateEventFragment;
 import com.example.events.Activities.Fragments.SearchUsersFragment;
 import com.example.events.Activities.Fragments.TimelineFragment;
 import com.example.events.DataStructures.Event;
@@ -151,11 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(R.string.myEvents);
     }
 
-    @Override
-    public void onRateClicked() {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new RateEventFragment()).commit();
-        toolbar.setTitle(R.string.rateEvents);
-    }
 
     @Override
     public void onExploreClicked() {

@@ -23,7 +23,6 @@ public class SignUpActivity extends AppCompatActivity {
     private Button gotoLogin;
     private EditText email;
     private EditText password;
-    private EditText phone;
     private EditText firstName;
     private EditText lastName;
     private Pattern emailPattern;
@@ -74,10 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             System.out.println("email password fine");
             if (firstName.getText().toString().length() != 0 && (firstName.getText().toString().split(" ")).length == 1 && lastName.getText().toString().length() != 0){
                 System.out.println("names fine");
-                if (validPhone(phone.getText().toString())){
-                    System.out.println("phone fine");
-                    return true;
-                }
+                return true;
 
             }
 
@@ -94,7 +90,6 @@ public class SignUpActivity extends AppCompatActivity {
         signUp = (Button) findViewById(R.id.EditUser_confirm_edit);
         email = (EditText) findViewById(R.id.EditUser_Password_input);
         password = (EditText) findViewById(R.id.EditUser_RepeatPassword_input);
-        phone = (EditText) findViewById(R.id.EditUser_Email_input);
         firstName = (EditText) findViewById(R.id.EditUser_FirstName_input);
         lastName = (EditText) findViewById(R.id.EditUser_LastName_input);
         gotoLogin = (Button) findViewById(R.id.move_to_login);

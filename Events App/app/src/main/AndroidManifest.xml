@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.events">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,31 +21,32 @@
             android:theme="@style/Theme.Events.NoActionBar" />
         <activity
             android:name=".Activities.Fragments.OurMessagesFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.Fragments.OpenChatFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.Fragments.HomeFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.Fragments.EventsFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.Fragments.AttendEventFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable"/>
         <activity
             android:name=".Activities.Fragments.CreateEventFragment"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.Fragments.MyEventsFragment"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Fragments.RateEventFragment"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.AttendEventPopUpActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activities.SignUpActivity"
             android:exported="false" />
