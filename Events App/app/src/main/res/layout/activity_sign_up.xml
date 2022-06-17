@@ -50,22 +50,7 @@
         android:textAppearance="@style/InputFieldText"
         android:fontFamily="@font/outfit_medium"/>
 
-    <EditText
-        android:id="@+id/EditUser_Email_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/input_box"
-        android:layout_marginTop="10dp"
-        android:gravity="top"
-        android:hint="@string/phonenumber"
-        android:textColorHint="@color/inputText"
-        android:padding="16dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/InputFieldText"
-        android:fontFamily="@font/outfit_medium"
-        android:inputType="phone"/>
+
 
     <EditText
         android:id="@+id/EditUser_Password_input"

@@ -69,22 +69,25 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validInputs() {
-        if (validEmail(email.getText().toString()) && password.getText().toString().length() != 0){
-            System.out.println("email password fine");
-            if (firstName.getText().toString().length() != 0 && (firstName.getText().toString().split(" ")).length == 1 && lastName.getText().toString().length() != 0){
-                System.out.println("names fine");
-                return true;
+        if (validEmail(email.getText().toString()) ){
+            if (password.getText().toString().length() >= 8) {
+                System.out.println("email password fine");
 
+                if (firstName.getText().toString().length() != 0 && (firstName.getText().toString().split(" ")).length == 1 && lastName.getText().toString().length() != 0) {
+                    System.out.println("names fine");
+                    return true;
+
+                }
+            }else{
+                Toast.makeText(SignUpActivity.this, R.string.Invalid_password, Toast.LENGTH_SHORT).show();
             }
-
+        } else{
+            Toast.makeText(SignUpActivity.this, R.string.Invalid_email, Toast.LENGTH_SHORT).show();
         }
         return false;
     }
 
-    private boolean validPhone(String phoneNumber) {
-        //CHECK PHONE NUMBER PLEASEE
-        return true;
-    }
+
 
     private void initFields() {
         signUp = (Button) findViewById(R.id.EditUser_confirm_edit);
@@ -93,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
         firstName = (EditText) findViewById(R.id.EditUser_FirstName_input);
         lastName = (EditText) findViewById(R.id.EditUser_LastName_input);
         gotoLogin = (Button) findViewById(R.id.move_to_login);
-        emailPattern = Pattern.compile("^(.+)@(.+)$");
+        emailPattern = Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$");
     }
 
     private boolean validEmail(String email){

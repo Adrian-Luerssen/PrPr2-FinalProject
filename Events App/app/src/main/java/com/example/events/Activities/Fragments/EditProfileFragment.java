@@ -16,11 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.events.Activities.SignUpActivity;
 import com.example.events.DataStructures.Users.AuthUser;
 import com.example.events.DataStructures.Users.User;
 import com.example.events.Persistence.DownloadImageTask;
 import com.example.events.Persistence.ServiceAPI;
 import com.example.events.R;
+
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,34 +93,36 @@ public class EditProfileFragment extends Fragment {
             String repeatPasswordString = password.getText().toString().equals("") && repeatPassword.getText().toString().equals("") ? AuthUser.getAuthUser().getPassword() : repeatPassword.getText().toString();
             String emailString = email.getText().toString().equals("") ? AuthUser.getAuthUser().getEmail() : email.getText().toString();
 
+            if (validInputs(emailString,passwordString)){
+                if (!passwordString.equals(repeatPasswordString)) {
+                    Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
 
-            if (!passwordString.equals(repeatPasswordString)) {
-                Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                } else {
+                    User user = new User(firstNameString, lastNameString, emailString, passwordString);
+                    user.setImageURL(url.getText().toString());
+                    user.setToken(AuthUser.getAuthUser().getToken());
+                    AuthUser.getAuthUser().setUser(user);
 
-            } else {
-                User user = new User(firstNameString, lastNameString, emailString, passwordString);
-                user.setImageURL(url.getText().toString());
-                user.setToken(AuthUser.getAuthUser().getToken());
-                AuthUser.getAuthUser().setUser(user);
-
-                ServiceAPI.getInstance().updateUser(user, AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(getContext(), "User updated", Toast.LENGTH_SHORT).show();
-                            listener.saveEdit();
+                    ServiceAPI.getInstance().updateUser(user, AuthUser.getAuthUser().getToken().getToken()).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getContext(), "User updated", Toast.LENGTH_SHORT).show();
+                                listener.saveEdit();
                             } else {
+                                Toast.makeText(getContext(), "User not updated", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
                             Toast.makeText(getContext(), "User not updated", Toast.LENGTH_SHORT).show();
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(getContext(), "User not updated", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+                }
             }
+
         });
 
 
@@ -125,9 +130,29 @@ public class EditProfileFragment extends Fragment {
         return view;
 
     }
+    private boolean validInputs(String email, String password){
+        if (validEmail(email) ){
+            if (password.length() >= 8) {
+                System.out.println("email password fine");
 
+                if (firstName.getText().toString().length() != 0 && (firstName.getText().toString().split(" ")).length == 1 && lastName.getText().toString().length() != 0) {
+                    System.out.println("names fine");
+                    return true;
 
+                }
+            }else{
+                Toast.makeText(getContext(), R.string.Invalid_password, Toast.LENGTH_SHORT).show();
+            }
+        } else{
+            Toast.makeText(getContext(), R.string.Invalid_email, Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
 
+    private boolean validEmail(String email){
+        Pattern emailPattern = Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$");
+        return emailPattern.matcher(email).matches();
+    }
 
     @Override
     public void onAttach(Context context) {

@@ -123,5 +123,7 @@
     <string name="editEvent">Edit Event</string>
     <string name="numberofpeople">Max number of Participants</string>
     <string name="category">Select Category</string>
+    <string name="Invalid_email">Incorrect Email Format</string>
+    <string name="Invalid_password">Password Too Short</string>
 
 </resources>
